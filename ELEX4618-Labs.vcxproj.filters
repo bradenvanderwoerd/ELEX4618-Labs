@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src\Lab3">
+      <UniqueIdentifier>{5d788f2d-ced9-4d65-932e-fc01acefa792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Lab4">
+      <UniqueIdentifier>{ea94bf23-f3f5-45d2-bc32-126539aa7126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Lab3">
+      <UniqueIdentifier>{6fdd6e54-11a8-4ca5-98ed-0f8c411e0793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Lab4">
+      <UniqueIdentifier>{36711763-14f3-4c29-bf35-e4b7cfc7a067}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Client.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cvui.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Serial.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\server.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdafx.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab3\CControl.h">
+      <Filter>include\Lab3</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab3\Lab3.h">
+      <Filter>include\Lab3</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab4\CBase4618.h">
+      <Filter>include\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab4\CSnakeGame.h">
+      <Filter>include\Lab4</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\4618_Client.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\4618_Template.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Serial.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab3\CControl.cpp">
+      <Filter>src\Lab3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab3\Lab3.cpp">
+      <Filter>src\Lab3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab4\CBase4618.cpp">
+      <Filter>src\Lab4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab4\CSnakeGame.cpp">
+      <Filter>src\Lab4</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
