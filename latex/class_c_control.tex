@@ -1,0 +1,167 @@
+\hypertarget{class_c_control}{}\doxysection{CControl Class Reference}
+\label{class_c_control}\index{CControl@{CControl}}
+
+
+Implements ELEX 4618 communication protocol on serial port.  
+
+
+
+
+{\ttfamily \#include $<$CControl.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_control_a6498500ff403327b5770a3acebed1d93}\label{class_c_control_a6498500ff403327b5770a3acebed1d93}} 
+\mbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_control}{CControl}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_control_ab2ae420ef75b010c0c9078e597781105}\label{class_c_control_ab2ae420ef75b010c0c9078e597781105}} 
+\mbox{\hyperlink{class_c_control_ab2ae420ef75b010c0c9078e597781105}{$\sim$\+CControl}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_control}{CControl}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\+\_\+com}} (int comport)
+\begin{DoxyCompactList}\small\item\em Initializes serial port object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}{init\+\_\+com}} ()
+\begin{DoxyCompactList}\small\item\em Initializes serial port object (scans ports automatically) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\+\_\+data}} (int type, int channel, int \&result)
+\begin{DoxyCompactList}\small\item\em Gets data from the com port. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\+\_\+data}} (int type, int channel, int val)
+\begin{DoxyCompactList}\small\item\em Sets data on the com port. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_c_control_a89115dbb987b3ea983ea8dbe6d78139e}{get\+\_\+analog}} (int analog\+\_\+channel)
+\begin{DoxyCompactList}\small\item\em Gets data from an analog pin. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_c_control_add56a263c0b661198261cca204952a9a}{get\+\_\+button}} (int button\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Gets the state of a button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}\label{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}} 
+\mbox{\hyperlink{class_serial}{Serial}} \mbox{\hyperlink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\+\_\+com}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_serial}{Serial}} port object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements ELEX 4618 communication protocol on serial port. 
+
+This class implements the ELEX 4618 communication protocol using functions that allow reading and writing to digital and analog I/\+Os via a serial port
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_control_a89115dbb987b3ea983ea8dbe6d78139e}\label{class_c_control_a89115dbb987b3ea983ea8dbe6d78139e}} 
+\index{CControl@{CControl}!get\_analog@{get\_analog}}
+\index{get\_analog@{get\_analog}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_analog()}{get\_analog()}}
+{\footnotesize\ttfamily float CControl\+::get\+\_\+analog (\begin{DoxyParamCaption}\item[{int}]{analog\+\_\+channel }\end{DoxyParamCaption})}
+
+
+
+Gets data from an analog pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em analog\+\_\+channel} & The analog channel from which the data will be requested \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The percent of the maximum value on the analog channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_control_add56a263c0b661198261cca204952a9a}\label{class_c_control_add56a263c0b661198261cca204952a9a}} 
+\index{CControl@{CControl}!get\_button@{get\_button}}
+\index{get\_button@{get\_button}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_button()}{get\_button()}}
+{\footnotesize\ttfamily int CControl\+::get\+\_\+button (\begin{DoxyParamCaption}\item[{int}]{button\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Gets the state of a button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button\+\_\+number} & The button from which the state will be requested \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the button is pressed, 1 if the button is not pressed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}\label{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}} 
+\index{CControl@{CControl}!get\_data@{get\_data}}
+\index{get\_data@{get\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_data()}{get\_data()}}
+{\footnotesize\ttfamily bool CControl\+::get\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int}]{channel,  }\item[{int \&}]{result }\end{DoxyParamCaption})}
+
+
+
+Gets data from the com port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of data that will be requested (DIGITAL, ANALOG, SERVO) \\
+\hline
+{\em channel} & The pin from which the data will be requested \\
+\hline
+{\em result} & The variable to store the result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True is the get command is successful, false if request timed out 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}\label{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}} 
+\index{CControl@{CControl}!init\_com@{init\_com}}
+\index{init\_com@{init\_com}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{init\_com()}{init\_com()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void CControl\+::init\+\_\+com (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes serial port object (scans ports automatically) 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}\label{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}} 
+\index{CControl@{CControl}!init\_com@{init\_com}}
+\index{init\_com@{init\_com}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{init\_com()}{init\_com()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void CControl\+::init\+\_\+com (\begin{DoxyParamCaption}\item[{int}]{comport }\end{DoxyParamCaption})}
+
+
+
+Initializes serial port object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comport} & The number of the com port to be used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}\label{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}} 
+\index{CControl@{CControl}!set\_data@{set\_data}}
+\index{set\_data@{set\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{set\_data()}{set\_data()}}
+{\footnotesize\ttfamily bool CControl\+::set\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int}]{channel,  }\item[{int}]{val }\end{DoxyParamCaption})}
+
+
+
+Sets data on the com port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of data that will be set (DIGITAL, SERVO) \\
+\hline
+{\em channel} & The pin on which the data will be set \\
+\hline
+{\em val} & The data that will be set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True is the set command is successful, false if request timed out 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab3/CControl.\+h\end{DoxyCompactItemize}
