@@ -1,5 +1,5 @@
 #pragma once
-#include "CBase4618.h"
+#include "Lab4\\CBase4618.h"
 
 /**
 *
