@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "cvui.h"
-#include "CSnakeGame.h"
+#include "Lab4\\CSnakeGame.h"
 
 #define CVUI_IMPLEMENTATION
 #define DEADZONE_PERCENT 40
@@ -149,7 +149,10 @@ void CSnakeGame::draw() {
 
 	cvui::update();
 
-	cv::imshow(CANVAS_NAME, _canvas);
+	if (_exit_flag)
+		cv::destroyWindow(CANVAS_NAME);
+	else
+		cv::imshow(CANVAS_NAME, _canvas);
 }
 
 void CSnakeGame::reset() {

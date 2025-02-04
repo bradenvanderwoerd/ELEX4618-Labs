@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "CControl.h"
+#include "Lab3\\CControl.h"
 #include <regex>
 #include <iostream>
 

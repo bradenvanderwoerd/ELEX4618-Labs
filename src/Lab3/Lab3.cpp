@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Lab3.h"
+#include "Lab3\\Lab3.h"
 #include <iomanip>
 #include <conio.h>
 

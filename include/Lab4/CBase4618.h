@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CControl.h"
+#include "Lab3\\CControl.h"
 
 /**
 *

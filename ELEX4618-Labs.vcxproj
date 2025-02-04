@@ -132,6 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)lib\opencv\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,7 +184,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Client.h" />
     <ClInclude Include="include\cvui.h" />
     <ClInclude Include="include\Lab3\CControl.h" />
     <ClInclude Include="include\Lab3\Lab3.h" />
@@ -191,19 +191,15 @@
     <ClInclude Include="include\Lab4\CSnakeGame.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\Serial.h" />
-    <ClInclude Include="include\server.h" />
     <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\4618_Client.cpp" />
     <ClCompile Include="src\4618_Template.cpp" />
-    <ClCompile Include="src\Client.cpp" />
     <ClCompile Include="src\Lab3\CControl.cpp" />
     <ClCompile Include="src\Lab3\Lab3.cpp" />
     <ClCompile Include="src\Lab4\CBase4618.cpp" />
     <ClCompile Include="src\Lab4\CSnakeGame.cpp" />
     <ClCompile Include="src\Serial.cpp" />
-    <ClCompile Include="src\server.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

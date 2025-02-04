@@ -34,9 +34,11 @@ Serial::Serial()
 
 bool Serial::open(string commPortName, int bitRate)
 {
-  commPortName = "\\\\.\\" + commPortName;
+	commPortName = "\\\\.\\" + commPortName;
 
-	commHandle = CreateFile(commPortName.c_str(), GENERIC_READ|GENERIC_WRITE, 0,NULL, OPEN_EXISTING, 0, NULL);
+	std::wstring wideCommPortName = std::wstring(commPortName.begin(), commPortName.end());
+
+	commHandle = CreateFileW(wideCommPortName.c_str(), GENERIC_READ|GENERIC_WRITE, 0,NULL, OPEN_EXISTING, 0, NULL);
 
 	if(commHandle == INVALID_HANDLE_VALUE) 
 	{

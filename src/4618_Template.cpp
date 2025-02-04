@@ -19,14 +19,11 @@
 #include <thread>
 #include <conio.h>
 
-#include "Client.h"
-#include "Server.h"
-
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h"
 
-#include "Lab3.h"
-#include "CSnakeGame.h"
+#include "Lab3\\Lab3.h"
+#include "Lab4\\CSnakeGame.h"
 
 #define CANVAS_NAME "Display Image"
 
@@ -236,89 +233,6 @@ void do_video()
     }
     while (cv::waitKey(1) != 'q' && do_exit == false);
   }      
-}		
-
-////////////////////////////////////////////////////////////////
-// Demo client server communication
-////////////////////////////////////////////////////////////////
-void serverthread(CServer* server)
-{
-  // Start server
-  server->start(4618);
-}
-
-void do_clientserver()
-{
-  char inputchar = 0;
-  std::vector<std::string> cmds;
-
-  cv::VideoCapture vid;
-  CServer server;
-
-  // Start server thread
-  std::thread t(&serverthread, &server);
-  t.detach();
-
-  vid.open(0);
-
-  while (inputchar != 'q')
-  {
-    inputchar = cv::waitKey(100);
-
-    server.get_cmd(cmds);
-    if (cmds.size() > 0)
-    {
-      // Process different commands received by the server
-      for (int i = 0; i < cmds.size(); i++)
-      {
-        if (cmds.at(i) == "im")
-        {
-          std::cout << "\nServer Rx: " << cmds.at(i);
-
-          std::string reply = "Hi there from Server";
-          server.send_string(reply);
-        }
-        else
-        {
-          std::cout << "\nServer Rx: " << cmds.at(i);
-
-          std::string reply = "Got some other message";
-          server.send_string(reply);
-        }
-      }
-    }
-
-		// Update server image with the latest camera image
-		if (vid.isOpened() == true)
-		{
-			cv::Mat frame;
-			vid >> frame;
-			if (frame.empty() == false)
-			{
-				imshow("Server Image", frame);
-				process_msg();
-				server.set_txim(frame);
-			}
-		}
-  };
-
-  server.stop();
-  
-  Sleep(100);
-}
-
-////////////////////////////////////////////////////////////////
-// Lab 1
-////////////////////////////////////////////////////////////////
-void lab1()
-{
-}
-
-////////////////////////////////////////////////////////////////
-// Lab 2
-////////////////////////////////////////////////////////////////
-void lab2()
-{
 }
 
 ////////////////////////////////////////////////////////////////
@@ -358,11 +272,9 @@ void print_menu()
     std::cout << "\n***********************************";
     std::cout << "\n* ELEX4618 Template Project";
     std::cout << "\n***********************************";
-    std::cout << "\n(1) Lab 1 - User Input";
-    std::cout << "\n(2) Lab 2 - Grading";
     std::cout << "\n(3) Lab 3 - Embedded Control";
-    std::cout << "\n(4) Lab 4 - Etch-A-Sketch";
-    std::cout << "\n(5) Lab 5 - Pong";
+    std::cout << "\n(4) Lab 4 - Snake V1";
+    std::cout << "\n(5) Lab 5 - Snake V2";
     std::cout << "\n(6) Lab 6 - Classic Arcade Game";
     std::cout << "\n(7) Lab 7 - Linux Port";
     std::cout << "\n(8) Lab 8 - Sorting";
@@ -386,8 +298,6 @@ int main(int argc, char* argv[])
 		std::cin >> cmd;
 		switch (cmd)
 		{
-            case 1: lab1(); break;
-            case 2: lab2(); break;
             case 3: lab3(); break;
             case 4: lab4(); break;
             case 5: lab5(); break;
@@ -395,7 +305,6 @@ int main(int argc, char* argv[])
             case 10: test_com(); break;
             case 11: do_image(); break;
             case 12: do_video(); break;
-            case 13: do_clientserver(); break;
 		}
 	} while (cmd != 0);
 }

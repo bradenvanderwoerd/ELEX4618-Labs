@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Client.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\cvui.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -37,9 +34,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Serial.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\server.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\stdafx.h">
@@ -59,19 +53,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\4618_Client.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\4618_Template.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Client.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Serial.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\server.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
