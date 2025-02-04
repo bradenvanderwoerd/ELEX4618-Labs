@@ -57,6 +57,12 @@
     <ClInclude Include="include\Lab4\CSnakeGame.h">
       <Filter>include\Lab4</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab5\CBase4618Threaded.h">
+      <Filter>include\Lab5</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab5\CSnakeGameV2.h">
+      <Filter>include\Lab5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -79,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="src\Lab4\CSnakeGame.cpp">
       <Filter>src\Lab4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab5\CBase4618Threaded.cpp">
+      <Filter>src\Lab5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab5\CSnakeGameV2.cpp">
+      <Filter>src\Lab5</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
