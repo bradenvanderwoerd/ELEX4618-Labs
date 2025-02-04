@@ -119,12 +119,24 @@ void CSnakeGame::draw() {
 	cvui::window(_canvas, gui_position.x, gui_position.y, 140, 80, "Snake: " + std::to_string(_snake.at(SEGMENTS-1).x) + ", " + std::to_string(_snake.at(SEGMENTS - 1).y));
 	
 	gui_position += cv::Point(5, 25);
-	if (_colour == RED)
+
+	cv::Scalar colour_tuple;
+	cv::Scalar depth_tuple;
+	if (_colour == RED) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: RED");
-	else if (_colour == GREEN)
+		colour_tuple = cv::Scalar(0, 0, 255);
+		depth_tuple = cv::Scalar(0, 0, 155);
+	}
+	else if (_colour == GREEN) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: GREEN");
-	else if (_colour == BLUE)
+		colour_tuple = cv::Scalar(0, 255, 0);
+		depth_tuple = cv::Scalar(0, 155, 0);
+	}
+	else if (_colour == BLUE) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: BLUE");
+		colour_tuple = cv::Scalar(255, 170, 50);
+		depth_tuple = cv::Scalar(155, 85, 25);
+	}
 
 	gui_position += cv::Point(0, 25);
 	if (cvui::button(_canvas, gui_position.x, gui_position.y, "RESET"))
@@ -134,17 +146,23 @@ void CSnakeGame::draw() {
 	if (cvui::button(_canvas, gui_position.x, gui_position.y, "QUIT"))
 		_exit_flag = 1;
 
-	cv::Scalar colour_tuple;
-	if (_colour == RED)
-		colour_tuple = cv::Scalar(0, 0, 255);
-	else if (_colour == GREEN)
-		colour_tuple = cv::Scalar(0, 255, 0);
-	else if (_colour == BLUE)
-		colour_tuple = cv::Scalar(255, 0, 0);
+	int offset = STEP_SIZE / 2 - 1;
+	for (int index = 0; index < SEGMENTS; index++) {
+		std::vector<cv::Point> depth_shape;
+		depth_shape.push_back(_snake.at(index) + cv::Point(-offset, offset));
+		depth_shape.push_back(_snake.at(index) + cv::Point(-offset + STEP_SIZE / 2, offset + STEP_SIZE / 2));
+		depth_shape.push_back(_snake.at(index) + cv::Point(offset + STEP_SIZE / 2, offset + STEP_SIZE / 2));
+		depth_shape.push_back(_snake.at(index) + cv::Point(offset + STEP_SIZE / 2, -offset + STEP_SIZE / 2));
+		depth_shape.push_back(_snake.at(index) + cv::Point(offset, -offset));
+		depth_shape.push_back(_snake.at(index) + cv::Point(offset, offset));
+
+		cv::fillPoly(_canvas, depth_shape, depth_tuple);
+	}
 
 	for (int index = 0; index < SEGMENTS; index++) {
-		int offset = STEP_SIZE / 2 - 1;
-		cv::rectangle(_canvas, _snake.at(index) - cv::Point(offset, offset), _snake.at(index) + cv::Point(offset, offset), colour_tuple, -1);
+		cv::rectangle(_canvas, _snake.at(index) - cv::Point(offset, offset),
+			_snake.at(index) + cv::Point(offset, offset),
+			colour_tuple, -1);
 	}
 
 	cvui::update();
