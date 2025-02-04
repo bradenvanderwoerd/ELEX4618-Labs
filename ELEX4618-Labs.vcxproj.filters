@@ -25,6 +25,12 @@
     <Filter Include="include\Lab4">
       <UniqueIdentifier>{36711763-14f3-4c29-bf35-e4b7cfc7a067}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Lab5">
+      <UniqueIdentifier>{81f77229-e190-4255-8497-34ec1185dc64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Lab5">
+      <UniqueIdentifier>{dbf1c435-70c4-4b05-b267-996bafda20f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cvui.h">
