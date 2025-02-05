@@ -19,8 +19,6 @@ class CBase4618 {
 
 		cv::Mat _canvas; ///< Image to display
 
-		bool _exit_flag; ///< Flag to exit program
-
 		/** @brief Interacts with GPIOs
 		* 
 		* @return nothing to return
@@ -51,6 +49,6 @@ class CBase4618 {
 		* 
 		* @return nothing to return
 		*/
-		void run();
+		virtual void run() = 0;
 };
 
