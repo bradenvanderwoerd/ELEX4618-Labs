@@ -15,11 +15,33 @@ class CSnakeGame : public CBase4618 {
 
 		std::vector<cv::Point> _snake; ///< Segments of snake
 
-		int _direction; ///< Direction of snake
+		int _direction; ///< Current direction of snake
+
+		int _previous_direction; ///< True if joystick returned to center
 
 		int _colour; ///< Colour of snake
 
 		bool _reset_flag; ///< Flag to reset game
+
+		bool _exit_flag; ///< Flag to exit program
+
+		/** @brief Changes _direction based on joystick input
+		*
+		* @return nothing to return
+		*/
+		void gpio();
+
+		/** @brief Advances snake to next location
+		*
+		* @return nothing to return
+		*/
+		void update();
+
+		/** @brief Draws snake in new location
+		*
+		* @return nothing to return
+		*/
+		void draw();
 
 		/** @brief Resets the snake to the middle of the canvas
 		* 
@@ -48,22 +70,10 @@ class CSnakeGame : public CBase4618 {
 		/** @brief CSnakeGame deconstructor */
 		~CSnakeGame();
 
-		/** @brief Changes _direction based on joystick input
+		/** @brief Runs game code in a loop
 		*
 		* @return nothing to return
 		*/
-		void gpio();
-
-		/** @brief Advances snake to next location
-		*
-		* @return nothing to return
-		*/
-		void update();
-
-		/** @brief Draws snake in new location
-		*
-		* @return nothing to return
-		*/
-		void draw();
+		void run();
 };
 

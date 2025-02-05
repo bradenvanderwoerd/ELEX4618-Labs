@@ -8,7 +8,7 @@
 #define STEP_SIZE 10
 #define CANVAS_NAME "SSSSSNAKE"
 
-enum { UP = 0, RIGHT, DOWN, LEFT, RED, GREEN, BLUE};
+enum { UP = 0, RIGHT, DOWN, LEFT, NEUTRAL, RED, GREEN, BLUE};
 
 CSnakeGame::CSnakeGame() {
 	_canvas = cv::Mat::zeros(cv::Size(600,600), CV_8UC3);
@@ -38,10 +38,22 @@ CSnakeGame::~CSnakeGame() {
 	
 }
 
+void CSnakeGame::run() {
+	char key;
+	do {
+		gpio();
+		update();
+		draw();
+
+		key = cv::waitKey(1);
+	} while (key != 'q' && !_exit_flag);
+}
+
 void CSnakeGame::gpio() {
 	float right_left = _ctrl.get_analog(JOY_X);
 	float up_down = _ctrl.get_analog(JOY_Y);
 
+	_previous_direction = _direction;
 	if (up_down > 50 + DEADZONE_PERCENT / 2 && up_down > right_left && up_down > 100 - right_left && _direction != DOWN)
 		_direction = UP;
 	else if (right_left > 50 + DEADZONE_PERCENT / 2 && right_left > up_down && right_left > 100 - up_down && _direction != LEFT)
@@ -50,6 +62,8 @@ void CSnakeGame::gpio() {
 		_direction = DOWN;
 	else if (right_left < 50 - DEADZONE_PERCENT / 2 && right_left < up_down && right_left < 100 - up_down && _direction != RIGHT)
 		_direction = LEFT;
+	else
+		_direction = NEUTRAL;
 
 	int switch_colour = _ctrl.get_button(BUTTON1);
 	if (switch_colour == 0) {
@@ -105,8 +119,10 @@ void CSnakeGame::update() {
 	else if (new_point.y > _canvas.rows)
 		new_point.y = 0;
 
-	_snake.push_back(new_point);
-	_snake.erase(_snake.begin());
+	if (_previous_direction == NEUTRAL && _direction != NEUTRAL) {
+		_snake.push_back(new_point);
+		_snake.erase(_snake.begin());
+	}
 
 	if (_reset_flag)
 		reset();
@@ -175,8 +191,11 @@ void CSnakeGame::draw() {
 
 void CSnakeGame::reset() {
 	_reset_flag = false;
+	_exit_flag = false;
 	
 	_direction = UP;
+	_previous_direction = UP;
+
 	_colour = RED;
 
 	_ctrl.set_data(DIGITAL, RED_LED, 1);
