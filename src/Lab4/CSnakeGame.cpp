@@ -72,7 +72,7 @@ void CSnakeGame::gpio() {
 
 	int do_reset = _ctrl.get_button(BUTTON2);
 	if (do_reset == 0)
-		_reset_flag = 1;
+		_reset_flag = false;
 }
 
 void CSnakeGame::update() {
@@ -140,11 +140,11 @@ void CSnakeGame::draw() {
 
 	gui_position += cv::Point(0, 25);
 	if (cvui::button(_canvas, gui_position.x, gui_position.y, "RESET"))
-		_reset_flag = 1;
+		_reset_flag = true;
 
 	gui_position += cv::Point(70, 0);
 	if (cvui::button(_canvas, gui_position.x, gui_position.y, "QUIT"))
-		_exit_flag = 1;
+		_exit_flag = true;
 
 	int offset = STEP_SIZE / 2 - 1;
 	for (int index = 0; index < SEGMENTS; index++) {
@@ -174,7 +174,7 @@ void CSnakeGame::draw() {
 }
 
 void CSnakeGame::reset() {
-	_reset_flag = 0;
+	_reset_flag = false;
 	
 	_direction = UP;
 	_colour = RED;

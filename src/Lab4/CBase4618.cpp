@@ -3,7 +3,7 @@
 
 
 CBase4618::CBase4618() {
-	_exit_flag = 0;
+	_exit_flag = true;
 }
 CBase4618::~CBase4618() {
 

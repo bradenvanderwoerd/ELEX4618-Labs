@@ -19,7 +19,7 @@ class CSnakeGame : public CBase4618 {
 
 		int _colour; ///< Colour of snake
 
-		int _reset_flag; ///< Flag to reset game
+		bool _reset_flag; ///< Flag to reset game
 
 		/** @brief Resets the snake to the middle of the canvas
 		* 
