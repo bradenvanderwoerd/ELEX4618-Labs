@@ -24,6 +24,7 @@
 
 #include "Lab3\\Lab3.h"
 #include "Lab4\\CSnakeGame.h"
+#include "Lab5\\CSnakeGameV2.h"
 
 #define CANVAS_NAME "Display Image"
 
@@ -258,6 +259,8 @@ void lab4()
 ////////////////////////////////////////////////////////////////
 void lab5()
 {
+    CSnakeGameV2 game(cv::Size(1000, 800));
+    game.run();
 }
 
 ////////////////////////////////////////////////////////////////
