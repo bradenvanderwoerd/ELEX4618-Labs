@@ -27,6 +27,7 @@ CSnakeGameV2::CSnakeGameV2() {
 
 	_last_update_tick = cv::getTickCount();
 	_last_frame_time = 1;
+	_fps = 30;
 
 	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + SEGMENTS * STEP_SIZE; x_pos += STEP_SIZE) {
 		cv::Point current_point(x_pos, _canvas_size.height / 2);
@@ -50,6 +51,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 
 	_last_update_tick = cv::getTickCount();
 	_last_frame_time = 1;
+	_fps = 30;
 
 	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + SEGMENTS * STEP_SIZE; x_pos += STEP_SIZE) {
 		cv::Point current_point(x_pos, _canvas_size.height / 2);
@@ -73,6 +75,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size, int comport) {
 
 	_last_update_tick = cv::getTickCount();
 	_last_frame_time = 1;
+	_fps = 30;
 
 	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + SEGMENTS * STEP_SIZE; x_pos += STEP_SIZE) {
 		cv::Point current_point(x_pos, _canvas_size.height / 2);
