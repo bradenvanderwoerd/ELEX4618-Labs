@@ -37,62 +37,56 @@ class CSnakeGameV2 : public CBase4618 {
 
 		double _last_frame_time; ///< Time it took for the last frame to draw
 
-		int _fps;
+		int _fps; ///< Frames per second (updated at the same rate as the snake)
 
-		/** @brief Changes _direction based on joystick input
+		/** @brief Runs gpio() in a loop
 		*
 		* @return nothing to return
 		*/
 		void gpio_thread();
 
-		/** @brief Changes _direction based on joystick input
+		/** @brief Runs update() in a loop
 		*
 		* @return nothing to return
 		*/
 		void update_thread();
 
-		/** @brief Changes _direction based on joystick input
+		/** @brief Runs draw() in a loop
 		*
 		* @return nothing to return
 		*/
 		void draw_thread();
 
-		/** @brief Changes _direction based on joystick input
+		/** @brief Changes snake direction and colour and may reset game based on controller input
 		*
 		* @return nothing to return
 		*/
 		void gpio();
 
-		/** @brief Advances snake to next location
+		/** @brief Updates game objects
 		*
 		* @return nothing to return
 		*/
 		void update();
 
-		/** @brief Draws snake in new location
+		/** @brief Draws game objects and UI
 		*
 		* @return nothing to return
 		*/
 		void draw();
 
-		/** @brief Resets the snake to the middle of the canvas
-		* 
-		* @return nothing to return
-		*/
-		void reset();
-
 	public:
 
-		/** @brief Initializes canvas to 600x600 and auto-initializes COM port */
+		/** @brief Initializes members and auto-initializes COM port */
 		CSnakeGameV2();
 
-		/** @brief Initializes canvas to 600x600 and auto-initializes COM port
+		/** @brief Initializes members and auto-initializes COM port
 		*
 		* @param size Size of canvas
 		*/
 		CSnakeGameV2(cv::Size size);
 
-		/** @brief Initializes canvas to 600x600 and auto-initializes COM port
+		/** @brief Initializes members and initializes COM port
 		* 
 		* @param size Size of canvas
 		* @param comport Number of COM port to be used
