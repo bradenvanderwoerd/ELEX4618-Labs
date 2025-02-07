@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "cvui.h"
-#include "Lab5\\CSnakeGameV2.h"
+#include "Lab5/CSnakeGameV2.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #define CVUI_IMPLEMENTATION
 #define DEADZONE_PERCENT 40
@@ -120,6 +122,25 @@ void CSnakeGameV2::update_thread() {
 void CSnakeGameV2::draw_thread() {
 	cvui::init(CANVAS_NAME);
 	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
+
+	// Initialize SDL and SDL_mixer
+	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+		std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+		std::cerr << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+	}
+
+	// Load the WAV file
+	Mix_Music* music = Mix_LoadMUS("snake.wav");
+
+	if (!music) {
+		std::cerr << "Failed to load snake.wav! SDL_mixer Error: " << Mix_GetError() << std::endl;
+	}
+
+	Mix_PlayMusic(music, -1);
+
 	char key = ' ';
 
 	do {
@@ -139,6 +160,10 @@ void CSnakeGameV2::draw_thread() {
 		_last_frame_time = (cv::getTickCount() - start_ticks) / cv::getTickFrequency();
 
 	} while (_exit_flag == false);
+
+	Mix_FreeMusic(music);
+	Mix_CloseAudio();
+	SDL_Quit();
 }
 
 void CSnakeGameV2::gpio() {
