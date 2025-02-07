@@ -31,6 +31,8 @@ class CSnakeGameV2 : public CBase4618 {
 
 		cv::Size _canvas_size; ///< Size of the canvas
 
+		int _snake_size; ///< Number of pixels per snake step
+
 		int _snake_speed; ///< Number of ms for each snake update
 
 		double _last_update_tick; ///< Number of ticks when the snake was most recently updated
