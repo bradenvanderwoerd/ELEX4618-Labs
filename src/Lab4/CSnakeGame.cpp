@@ -3,7 +3,7 @@
 #include "Lab4\\CSnakeGame.h"
 
 #define CVUI_IMPLEMENTATION
-#define DEADZONE_PERCENT 40
+#define DEADZONE_PERCENT 60
 #define SEGMENTS 20
 #define STEP_SIZE 10
 #define CANVAS_NAME "SSSSSNAKE"
