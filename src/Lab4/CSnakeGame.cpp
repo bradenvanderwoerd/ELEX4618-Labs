@@ -39,14 +39,17 @@ CSnakeGame::~CSnakeGame() {
 }
 
 void CSnakeGame::run() {
-	char key;
+	char key = ' ';
 	do {
+		if (key == 'q')
+			_exit_flag = true;
+		
 		gpio();
 		update();
 		draw();
 
 		key = cv::waitKey(1);
-	} while (key != 'q' && !_exit_flag);
+	} while (!_exit_flag);
 }
 
 void CSnakeGame::gpio() {
