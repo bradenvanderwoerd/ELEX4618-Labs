@@ -17,6 +17,8 @@ class CSnakeGameV2 : public CBase4618 {
 
 		std::vector<cv::Point> _snake; ///< Segments of snake
 
+		std::vector<cv::Point> _apples; ///< Apple points
+
 		int _direction; ///< Direction of snake
 
 		int _colour; ///< Colour of snake
@@ -39,7 +41,11 @@ class CSnakeGameV2 : public CBase4618 {
 
 		double _last_frame_time; ///< Time it took for the last frame to draw
 
+		double _last_apple_tick; ///< Number of ticks when the last apple spawned
+
 		int _fps; ///< Frames per second (updated at the same rate as the snake)
+
+		bool _game_over;
 
 		/** @brief Runs gpio() in a loop
 		*
@@ -79,21 +85,11 @@ class CSnakeGameV2 : public CBase4618 {
 
 	public:
 
-		/** @brief Initializes members and auto-initializes COM port */
-		CSnakeGameV2();
-
 		/** @brief Initializes members and auto-initializes COM port
 		*
 		* @param size Size of canvas
 		*/
 		CSnakeGameV2(cv::Size size);
-
-		/** @brief Initializes members and initializes COM port
-		* 
-		* @param size Size of canvas
-		* @param comport Number of COM port to be used
-		*/
-		CSnakeGameV2(cv::Size size, int comport);
 
 		/** @brief CSnakeGame deconstructor */
 		~CSnakeGameV2();

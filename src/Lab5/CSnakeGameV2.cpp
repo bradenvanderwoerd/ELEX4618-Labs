@@ -10,34 +10,12 @@
 #define CANVAS_NAME "SSSSSNAKE"
 #define LOOP_PERIOD 28
 #define SIMPLE_RENDER_SIZE 3
+#define APPLE_SPAWN_RATE 5
+#define X_OFFSET 220
+
 
 enum { UP = 0, RIGHT, DOWN, LEFT };
 enum { RED = 0, GREEN, BLUE};
-
-CSnakeGameV2::CSnakeGameV2() {
-	_canvas_size = cv::Size(600, 600);
-
-	_ctrl.init_com();
-
-	_reset_flag = false;
-	_exit_flag = false;
-
-	_direction = UP;
-	_colour = RED;
-	_score = 0;
-	
-	_snake_size = 10;
-	_snake_speed = 245;
-
-	_last_update_tick = cv::getTickCount();
-	_last_frame_time = 1;
-	_fps = 30;
-
-	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + STARTING_SEGMENTS * _snake_size; x_pos += _snake_size) {
-		cv::Point current_point(x_pos, _canvas_size.height / 2);
-		_snake.push_back(current_point);
-	}
-}
 
 CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_canvas_size = canvas_size;
@@ -51,42 +29,24 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_colour = RED;
 	_score = 0;
 
-	_snake_size = 10;
-	_snake_speed = 245;
+	_snake_size = 20;
+	_snake_speed = 70;
 
 	_last_update_tick = cv::getTickCount();
 	_last_frame_time = 1;
+	_last_apple_tick = cv::getTickCount();
 	_fps = 30;
 
-	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + STARTING_SEGMENTS * _snake_size; x_pos += _snake_size) {
-		cv::Point current_point(x_pos, _canvas_size.height / 2);
+	_game_over = false;
+
+	for (int x_pos = (_canvas_size.width - X_OFFSET) / 2 / _snake_size; x_pos < (_canvas_size.width - X_OFFSET) / 2 / _snake_size + STARTING_SEGMENTS; x_pos++) {
+		cv::Point current_point(x_pos, _canvas_size.height / 2 / _snake_size);
 		_snake.push_back(current_point);
 	}
-}
 
-CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size, int comport) {
-	_canvas_size = canvas_size;
-
-	_ctrl.init_com(comport);
-
-	_reset_flag = false;
-	_exit_flag = false;
-
-	_direction = UP;
-	_colour = RED;
-	_score = 0;
-
-	_snake_size = 1;
-	_snake_speed = 245;
-
-	_last_update_tick = cv::getTickCount();
-	_last_frame_time = 1;
-	_fps = 30;
-
-	for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + STARTING_SEGMENTS * _snake_size; x_pos += _snake_size) {
-		cv::Point current_point(x_pos, _canvas_size.height / 2);
-		_snake.push_back(current_point);
-	}
+	srand(time(0));
+	cv::Point new_apple(rand() % ((_canvas_size.width - X_OFFSET) / _snake_size - 1) + 1, rand() % (_canvas_size.height / _snake_size - 1) + 1);
+	_apples.push_back(new_apple);
 }
 
 CSnakeGameV2::~CSnakeGameV2() {
@@ -123,22 +83,9 @@ void CSnakeGameV2::draw_thread() {
 	cvui::init(CANVAS_NAME);
 	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
 
-	// Initialize SDL and SDL_mixer
-	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-		std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
-	}
-
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-		std::cerr << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
-	}
-
-	// Load the WAV file
-	Mix_Music* music = Mix_LoadMUS("snake.wav");
-
-	if (!music) {
-		std::cerr << "Failed to load snake.wav! SDL_mixer Error: " << Mix_GetError() << std::endl;
-	}
-
+	SDL_Init(SDL_INIT_AUDIO);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	Mix_Music* music = Mix_LoadMUS("sounds/snake.wav");
 	Mix_PlayMusic(music, -1);
 
 	char key = ' ';
@@ -207,43 +154,86 @@ void CSnakeGameV2::update() {
 	cv::Point new_point;
 
 	double elapsed = 1000 * (cv::getTickCount() - _last_update_tick) / cv::getTickFrequency();
-	if (elapsed > _snake_speed) {
+	if (elapsed > _snake_speed && !_game_over) {
 
 		if (_direction == UP) {
-			new_point.x = _snake[STARTING_SEGMENTS + _score - 1].x;
-			new_point.y = _snake[STARTING_SEGMENTS + _score - 1].y - _snake_size;
+			new_point.x = _snake[_snake.size() - 1].x;
+			new_point.y = _snake[_snake.size() - 1].y - 1;
 		}
 		else if (_direction == RIGHT) {
-			new_point.x = _snake[STARTING_SEGMENTS + _score - 1].x + _snake_size;
-			new_point.y = _snake[STARTING_SEGMENTS + _score - 1].y;
+			new_point.x = _snake[_snake.size() - 1].x + 1;
+			new_point.y = _snake[_snake.size() - 1].y;
 		}
 		else if (_direction == DOWN) {
-			new_point.x = _snake[STARTING_SEGMENTS + _score - 1].x;
-			new_point.y = _snake[STARTING_SEGMENTS + _score - 1].y + _snake_size;
+			new_point.x = _snake[_snake.size() - 1].x;
+			new_point.y = _snake[_snake.size() - 1].y + 1;
 		}
 		else if (_direction == LEFT) {
-			new_point.x = _snake[STARTING_SEGMENTS + _score - 1].x - _snake_size;
-			new_point.y = _snake[STARTING_SEGMENTS + _score - 1].y;
+			new_point.x = _snake[_snake.size() - 1].x - 1;
+			new_point.y = _snake[_snake.size() - 1].y;
 		}
 
-		if (new_point.x < 0)
-			new_point.x = _canvas_size.width - (_canvas_size.width % _snake_size);
-		else if (new_point.x > _canvas_size.width)
-			new_point.x = 0;
+		if (new_point.x < 1)
+			new_point.x = (_canvas_size.width - X_OFFSET) / _snake_size - 1;
+		else if (new_point.x > (_canvas_size.width - X_OFFSET) / _snake_size - 1)
+			new_point.x = 1;
 
-		if (new_point.y < 0)
-			new_point.y = _canvas_size.height - (_canvas_size.height % _snake_size);
-		else if (new_point.y > _canvas_size.height)
-			new_point.y = 0;
+		if (new_point.y < 1)
+			new_point.y = _canvas_size.height / _snake_size - 1;
+		else if (new_point.y > _canvas_size.height / _snake_size - 1)
+			new_point.y = 1;
 
 		_snake_mutex.lock();
-		_snake.push_back(new_point);
-		_snake.erase(_snake.begin());
+		for (cv::Point segment : _snake) {
+			if (new_point.x == segment.x && new_point.y == segment.y)
+				_game_over = true;
+		}
+
+		if (!_game_over) {
+			_snake.push_back(new_point);
+			if (_snake.size() > STARTING_SEGMENTS + _score)
+				_snake.erase(_snake.begin());
+		}
 		_snake_mutex.unlock();
 
 		_last_update_tick = cv::getTickCount();
 
 		_fps = 1 / _last_frame_time;
+	}
+
+	for (int index = 0; index < _apples.size(); index++) {
+		_snake_mutex.lock();
+		if ((_snake.at(_snake.size() - 1).x == _apples.at(index).x || _snake.at(_snake.size() - 1).x + 1 == _apples.at(index).x) &&
+			(_snake.at(_snake.size() - 1).y == _apples.at(index).y || _snake.at(_snake.size() - 1).y + 1 == _apples.at(index).y)) {
+			_score++;
+			_apples.erase(_apples.begin() + index);
+			_snake_mutex.unlock();
+			break;
+		}
+		_snake_mutex.unlock();
+	}
+
+	if ((cv::getTickCount() - _last_apple_tick) / cv::getTickFrequency() > APPLE_SPAWN_RATE && !_game_over) {
+		cv::Point new_apple;
+		bool point_is_valid = true;
+
+		do {
+			new_apple = cv::Point(rand() % ((_canvas_size.width - X_OFFSET) / _snake_size - 1) + 1, rand() % (_canvas_size.height / _snake_size - 1) + 1);
+			_snake_mutex.lock();
+			for (cv::Point segment : _snake) {
+				if (new_apple.x == segment.x && new_apple.y == segment.y) {
+					point_is_valid = false;
+					break;
+				}
+			}
+			_snake_mutex.unlock();
+		} while (!point_is_valid);
+
+		_snake_mutex.lock();
+		_apples.push_back(new_apple);
+		_snake_mutex.unlock();
+
+		_last_apple_tick = cv::getTickCount();
 	}
 
 	if (_reset_flag) {
@@ -257,13 +247,22 @@ void CSnakeGameV2::update() {
 		_snake.clear();
 		_snake_mutex.unlock();
 
-		for (int x_pos = _canvas_size.width / 2; x_pos < _canvas_size.width / 2 + STARTING_SEGMENTS * _snake_size; x_pos += _snake_size) {
-			cv::Point current_point(x_pos, _canvas_size.height / 2);
+		for (int x_pos = (_canvas_size.width - X_OFFSET) / 2 / _snake_size; x_pos < (_canvas_size.width - X_OFFSET) / 2 / _snake_size + STARTING_SEGMENTS; x_pos++) {
+			cv::Point current_point(x_pos, _canvas_size.height / 2 / _snake_size);
 
 			_snake_mutex.lock();
 			_snake.push_back(current_point);
 			_snake_mutex.unlock();
 		}
+
+		_last_apple_tick = cv::getTickCount();
+		_snake_mutex.lock();
+		_apples.clear();
+		cv::Point new_apple(rand() % ((_canvas_size.width - X_OFFSET) / _snake_size - 1) + 1, rand() % (_canvas_size.height / _snake_size - 1) + 1);
+		_apples.push_back(new_apple);
+		_snake_mutex.unlock();
+
+		_game_over = false;
 	}
 }
 
@@ -273,11 +272,11 @@ void CSnakeGameV2::draw() {
 	_canvas.setTo(cv::Scalar(0, 0, 0));
 
 	// CVUI window
-	cv::Point gui_position(10, 10);
+	cv::Point gui_position(0, 0);
 	_snake_mutex.lock();
-	cv::Point snake_position = _snake.at(STARTING_SEGMENTS + _score - 1);
+	cv::Point snake_position = _snake.at(_snake.size() - 1);
 	_snake_mutex.unlock();
-	cvui::window(_canvas, gui_position.x, gui_position.y, 220, 220, "Snake: (" + std::to_string(snake_position.x) + ", " + std::to_string(snake_position.y) + 
+	cvui::window(_canvas, gui_position.x, gui_position.y, X_OFFSET, _canvas_size.height, "Snake: (" + std::to_string(snake_position.x * _snake_size) + ", " + std::to_string(snake_position.y * _snake_size) +
 				 ") (FPS = " + std::to_string(_fps) + ")");
 
 	// Colour and score
@@ -319,6 +318,22 @@ void CSnakeGameV2::draw() {
 	if (cvui::button(_canvas, gui_position.x, gui_position.y, "QUIT"))
 		close_window = true;
 
+	// Apple
+	_snake_mutex.lock();
+	for (int index = 0; index < _apples.size(); index++) {
+		
+		cv::Point current_point = _apples.at(index) * _snake_size;
+
+		int radius = 1;
+		if (_snake_size > SIMPLE_RENDER_SIZE + 7) {
+			radius = _snake_size / 2;
+			cv::circle(_canvas, current_point + cv::Point(4 + X_OFFSET, 4), radius, cv::Scalar(0, 100, 150), -1, cv::LineTypes::LINE_AA);
+		}
+		
+		cv::circle(_canvas, current_point + cv::Point(2 + X_OFFSET, 2), radius, cv::Scalar(0, 150, 250), -1, cv::LineTypes::LINE_AA);
+	}
+	_snake_mutex.unlock();
+
 
 	// Shadow
 	int offset;
@@ -327,33 +342,38 @@ void CSnakeGameV2::draw() {
 	else
 		offset = _snake_size - 1;
 
-	for (int index = 0; index < STARTING_SEGMENTS + _score && _snake_size > SIMPLE_RENDER_SIZE; index++) {
-		_snake_mutex.lock();
-		cv::Point current_point = _snake.at(index);
-		_snake_mutex.unlock();
+
+	_snake_mutex.lock();
+	for (int index = 0; index < _snake.size() && _snake_size > SIMPLE_RENDER_SIZE; index++) {
+		
+		cv::Point current_point = _snake.at(index) * _snake_size;
 		
 		std::vector<cv::Point> depth_shape;
-		depth_shape.push_back(current_point + cv::Point(-offset, offset));
-		depth_shape.push_back(current_point + cv::Point(-offset + _snake_size / 2, offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2, offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2, -offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset, -offset));
-		depth_shape.push_back(current_point + cv::Point(offset, offset));
+		depth_shape.push_back(current_point + cv::Point(-offset + X_OFFSET, offset));
+		depth_shape.push_back(current_point + cv::Point(-offset + _snake_size / 2 + X_OFFSET, offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET, offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET, -offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET, -offset));
+		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET, offset));
 
 		cv::fillPoly(_canvas, depth_shape, depth_tuple);
 	}
+	_snake_mutex.unlock();
 
 	// Segment
-	for (int index = 0; index < STARTING_SEGMENTS + _score; index++) {
-		_snake_mutex.lock();
-		cv::Point current_point = _snake.at(index);
-		_snake_mutex.unlock();
+	_snake_mutex.lock();
+	for (int index = 0; index < _snake.size(); index++) {
+		cv::Point current_point = _snake.at(index) * _snake_size;
 
 		cv::rectangle(_canvas,
-					  current_point - cv::Point(offset, offset),
-					  current_point + cv::Point(offset, offset),
+					  current_point - cv::Point(offset - X_OFFSET, offset),
+					  current_point + cv::Point(offset + X_OFFSET, offset),
 				      colour_tuple, -1);
 	}
+	_snake_mutex.unlock();
+
+	if (_game_over)
+		cvui::text(_canvas, _canvas_size.width / 2, _canvas_size.height / 2, "GAME OVER", 1);
 
 	// Update
 	cvui::update();
