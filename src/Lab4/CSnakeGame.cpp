@@ -89,7 +89,7 @@ void CSnakeGame::gpio() {
 
 	int do_reset = _ctrl.get_button(BUTTON2);
 	if (do_reset == 0)
-		_reset_flag = false;
+		_reset_flag = true;
 }
 
 void CSnakeGame::update() {
