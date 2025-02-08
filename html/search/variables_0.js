@@ -1,11 +1,22 @@
 var searchData=
 [
-  ['_5fcanvas_66',['_canvas',['../class_c_base4618.html#a1b925f757247b33ca2072f777f24582d',1,'CBase4618']]],
-  ['_5fcolour_67',['_colour',['../class_c_snake_game.html#a530b9d7608e03786a7854dfcc86252fe',1,'CSnakeGame']]],
-  ['_5fcom_68',['_com',['../class_c_control.html#aef87fbcfdcd323b1fdcf41be993e006c',1,'CControl']]],
-  ['_5fctrl_69',['_ctrl',['../class_lab3.html#ac1110d57cba3aab62383d8364b914d73',1,'Lab3::_ctrl()'],['../class_c_base4618.html#a464091bf227d5f9ef7a480c732888d02',1,'CBase4618::_ctrl()']]],
-  ['_5fdirection_70',['_direction',['../class_c_snake_game.html#af242ff0d67385d43547c29e971c91b22',1,'CSnakeGame']]],
-  ['_5fexit_5fflag_71',['_exit_flag',['../class_c_base4618.html#aa090d71d84f76bdbcc17b53604a1a370',1,'CBase4618']]],
-  ['_5freset_5fflag_72',['_reset_flag',['../class_c_snake_game.html#a617f5ad3aba76c7065a7cf6602e2eed6',1,'CSnakeGame']]],
-  ['_5fsnake_73',['_snake',['../class_c_snake_game.html#ae184834133aea260acf317451c567620',1,'CSnakeGame']]]
+  ['_5fapples_88',['_apples',['../class_c_snake_game_v2.html#a333c3793ace1a9447105d2877136586a',1,'CSnakeGameV2']]],
+  ['_5fcanvas_89',['_canvas',['../class_c_base4618.html#a1b925f757247b33ca2072f777f24582d',1,'CBase4618']]],
+  ['_5fcanvas_5fsize_90',['_canvas_size',['../class_c_snake_game_v2.html#ad31ac6ba83e6d3363163e0a5af824401',1,'CSnakeGameV2']]],
+  ['_5fcolour_91',['_colour',['../class_c_snake_game.html#a530b9d7608e03786a7854dfcc86252fe',1,'CSnakeGame::_colour()'],['../class_c_snake_game_v2.html#a33f84c6ec60bb65f2b0240a645b688f1',1,'CSnakeGameV2::_colour()']]],
+  ['_5fcom_92',['_com',['../class_c_control.html#aef87fbcfdcd323b1fdcf41be993e006c',1,'CControl']]],
+  ['_5fctrl_93',['_ctrl',['../class_lab3.html#ac1110d57cba3aab62383d8364b914d73',1,'Lab3::_ctrl()'],['../class_c_base4618.html#a464091bf227d5f9ef7a480c732888d02',1,'CBase4618::_ctrl()']]],
+  ['_5fdirection_94',['_direction',['../class_c_snake_game.html#af242ff0d67385d43547c29e971c91b22',1,'CSnakeGame::_direction()'],['../class_c_snake_game_v2.html#acd14a73fd3171fa25c40392ab6b73443',1,'CSnakeGameV2::_direction()']]],
+  ['_5fexit_5fflag_95',['_exit_flag',['../class_c_snake_game.html#a1af284e157baf095e9baed9818097827',1,'CSnakeGame::_exit_flag()'],['../class_c_snake_game_v2.html#a7a7d5943a54b44ee1c0b6d65472f5a11',1,'CSnakeGameV2::_exit_flag()']]],
+  ['_5ffps_96',['_fps',['../class_c_snake_game_v2.html#a6b594f932ebd4f46f222ab55b71e2158',1,'CSnakeGameV2']]],
+  ['_5flast_5fapple_5ftick_97',['_last_apple_tick',['../class_c_snake_game_v2.html#a3bc6b387b30c9d223897d9ab4ec1da0c',1,'CSnakeGameV2']]],
+  ['_5flast_5fframe_5ftime_98',['_last_frame_time',['../class_c_snake_game_v2.html#ab8e16c994ff51fb2df7be88ba3f9f0ab',1,'CSnakeGameV2']]],
+  ['_5flast_5fupdate_5ftick_99',['_last_update_tick',['../class_c_snake_game_v2.html#a7cb294d9397ad3e385211b17c9745b39',1,'CSnakeGameV2']]],
+  ['_5fprevious_5fdirection_100',['_previous_direction',['../class_c_snake_game.html#ac62facefc4c8724ac382c7886906dfab',1,'CSnakeGame']]],
+  ['_5freset_5fflag_101',['_reset_flag',['../class_c_snake_game.html#ac764661e0d65771edbb221e3a31c0726',1,'CSnakeGame::_reset_flag()'],['../class_c_snake_game_v2.html#a40aa6ed29c2cf74c92b0e1cfc79021ea',1,'CSnakeGameV2::_reset_flag()']]],
+  ['_5fscore_102',['_score',['../class_c_snake_game_v2.html#af6440edfb449f14cb6003e9d737387c7',1,'CSnakeGameV2']]],
+  ['_5fsnake_103',['_snake',['../class_c_snake_game.html#ae184834133aea260acf317451c567620',1,'CSnakeGame::_snake()'],['../class_c_snake_game_v2.html#ae615ad31861ae514764d962cef20762d',1,'CSnakeGameV2::_snake()']]],
+  ['_5fsnake_5fmutex_104',['_snake_mutex',['../class_c_snake_game_v2.html#a57e2f2d8ff586e789bc4828ffb1f7629',1,'CSnakeGameV2']]],
+  ['_5fsnake_5fsize_105',['_snake_size',['../class_c_snake_game_v2.html#a616a34c365b7d7eb2115ce56ed8a203f',1,'CSnakeGameV2']]],
+  ['_5fsnake_5fspeed_106',['_snake_speed',['../class_c_snake_game_v2.html#aa6185a9f5a5e64af35bed6661dece90e',1,'CSnakeGameV2']]]
 ];
