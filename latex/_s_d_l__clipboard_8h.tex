@@ -1,0 +1,154 @@
+\hypertarget{_s_d_l__clipboard_8h}{}\doxysection{include/\+SDL2/\+SDL\+\_\+clipboard.h File Reference}
+\label{_s_d_l__clipboard_8h}\index{include/SDL2/SDL\_clipboard.h@{include/SDL2/SDL\_clipboard.h}}
+{\ttfamily \#include \char`\"{}SDL\+\_\+stdinc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}begin\+\_\+code.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}close\+\_\+code.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DECLSPEC int SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_a36d97ed867cc1a6a4f015aaa5972ed46}{SDL\+\_\+\+Set\+Clipboard\+Text}} (const char $\ast$text)
+\item 
+DECLSPEC char $\ast$SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_abbe260fcf16ab844d6626e0bd83587d1}{SDL\+\_\+\+Get\+Clipboard\+Text}} (void)
+\item 
+DECLSPEC SDL\+\_\+bool SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_a415fa85de093cf6117626a9415394509}{SDL\+\_\+\+Has\+Clipboard\+Text}} (void)
+\item 
+DECLSPEC int SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_abef47ca01857a805daa2a125b1b6ab5d}{SDL\+\_\+\+Set\+Primary\+Selection\+Text}} (const char $\ast$text)
+\item 
+DECLSPEC char $\ast$SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_a06f24652fdaad6603849c258590ae458}{SDL\+\_\+\+Get\+Primary\+Selection\+Text}} (void)
+\item 
+DECLSPEC SDL\+\_\+bool SDLCALL \mbox{\hyperlink{_s_d_l__clipboard_8h_af5987d27a6c48f7bca0db68a8cc29053}{SDL\+\_\+\+Has\+Primary\+Selection\+Text}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Include file for SDL clipboard handling 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_abbe260fcf16ab844d6626e0bd83587d1}\label{_s_d_l__clipboard_8h_abbe260fcf16ab844d6626e0bd83587d1}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_GetClipboardText@{SDL\_GetClipboardText}}
+\index{SDL\_GetClipboardText@{SDL\_GetClipboardText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_GetClipboardText()}{SDL\_GetClipboardText()}}
+{\footnotesize\ttfamily DECLSPEC char$\ast$ SDLCALL SDL\+\_\+\+Get\+Clipboard\+Text (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get UTF-\/8 text from the clipboard, which must be freed with SDL\+\_\+free().
+
+This functions returns empty string if there was not enough memory left for a copy of the clipboard\textquotesingle{}s content.
+
+\begin{DoxyReturn}{Returns}
+the clipboard text on success or an empty string on failure; call \mbox{\hyperlink{_s_d_l__error_8h_ac88e1aa404a8f94aaee4ad6b94547647}{SDL\+\_\+\+Get\+Error()}} for more information. Caller must call SDL\+\_\+free() on the returned pointer when done with it (even if there was an error).
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a415fa85de093cf6117626a9415394509}{SDL\+\_\+\+Has\+Clipboard\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a36d97ed867cc1a6a4f015aaa5972ed46}{SDL\+\_\+\+Set\+Clipboard\+Text}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_a06f24652fdaad6603849c258590ae458}\label{_s_d_l__clipboard_8h_a06f24652fdaad6603849c258590ae458}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_GetPrimarySelectionText@{SDL\_GetPrimarySelectionText}}
+\index{SDL\_GetPrimarySelectionText@{SDL\_GetPrimarySelectionText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_GetPrimarySelectionText()}{SDL\_GetPrimarySelectionText()}}
+{\footnotesize\ttfamily DECLSPEC char$\ast$ SDLCALL SDL\+\_\+\+Get\+Primary\+Selection\+Text (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get UTF-\/8 text from the primary selection, which must be freed with SDL\+\_\+free().
+
+This functions returns empty string if there was not enough memory left for a copy of the primary selection\textquotesingle{}s content.
+
+\begin{DoxyReturn}{Returns}
+the primary selection text on success or an empty string on failure; call \mbox{\hyperlink{_s_d_l__error_8h_ac88e1aa404a8f94aaee4ad6b94547647}{SDL\+\_\+\+Get\+Error()}} for more information. Caller must call SDL\+\_\+free() on the returned pointer when done with it (even if there was an error).
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+26.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_af5987d27a6c48f7bca0db68a8cc29053}{SDL\+\_\+\+Has\+Primary\+Selection\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_abef47ca01857a805daa2a125b1b6ab5d}{SDL\+\_\+\+Set\+Primary\+Selection\+Text}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_a415fa85de093cf6117626a9415394509}\label{_s_d_l__clipboard_8h_a415fa85de093cf6117626a9415394509}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_HasClipboardText@{SDL\_HasClipboardText}}
+\index{SDL\_HasClipboardText@{SDL\_HasClipboardText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_HasClipboardText()}{SDL\_HasClipboardText()}}
+{\footnotesize\ttfamily DECLSPEC SDL\+\_\+bool SDLCALL SDL\+\_\+\+Has\+Clipboard\+Text (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Query whether the clipboard exists and contains a non-\/empty text string.
+
+\begin{DoxyReturn}{Returns}
+SDL\+\_\+\+TRUE if the clipboard has text, or SDL\+\_\+\+FALSE if it does not.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_abbe260fcf16ab844d6626e0bd83587d1}{SDL\+\_\+\+Get\+Clipboard\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a36d97ed867cc1a6a4f015aaa5972ed46}{SDL\+\_\+\+Set\+Clipboard\+Text}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_af5987d27a6c48f7bca0db68a8cc29053}\label{_s_d_l__clipboard_8h_af5987d27a6c48f7bca0db68a8cc29053}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_HasPrimarySelectionText@{SDL\_HasPrimarySelectionText}}
+\index{SDL\_HasPrimarySelectionText@{SDL\_HasPrimarySelectionText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_HasPrimarySelectionText()}{SDL\_HasPrimarySelectionText()}}
+{\footnotesize\ttfamily DECLSPEC SDL\+\_\+bool SDLCALL SDL\+\_\+\+Has\+Primary\+Selection\+Text (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Query whether the primary selection exists and contains a non-\/empty text string.
+
+\begin{DoxyReturn}{Returns}
+SDL\+\_\+\+TRUE if the primary selection has text, or SDL\+\_\+\+FALSE if it does not.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+26.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a06f24652fdaad6603849c258590ae458}{SDL\+\_\+\+Get\+Primary\+Selection\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_abef47ca01857a805daa2a125b1b6ab5d}{SDL\+\_\+\+Set\+Primary\+Selection\+Text}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_a36d97ed867cc1a6a4f015aaa5972ed46}\label{_s_d_l__clipboard_8h_a36d97ed867cc1a6a4f015aaa5972ed46}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_SetClipboardText@{SDL\_SetClipboardText}}
+\index{SDL\_SetClipboardText@{SDL\_SetClipboardText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_SetClipboardText()}{SDL\_SetClipboardText()}}
+{\footnotesize\ttfamily DECLSPEC int SDLCALL SDL\+\_\+\+Set\+Clipboard\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+Put UTF-\/8 text into the clipboard.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & the text to store in the clipboard \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or a negative error code on failure; call \mbox{\hyperlink{_s_d_l__error_8h_ac88e1aa404a8f94aaee4ad6b94547647}{SDL\+\_\+\+Get\+Error()}} for more information.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_abbe260fcf16ab844d6626e0bd83587d1}{SDL\+\_\+\+Get\+Clipboard\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a415fa85de093cf6117626a9415394509}{SDL\+\_\+\+Has\+Clipboard\+Text}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{_s_d_l__clipboard_8h_abef47ca01857a805daa2a125b1b6ab5d}\label{_s_d_l__clipboard_8h_abef47ca01857a805daa2a125b1b6ab5d}} 
+\index{SDL\_clipboard.h@{SDL\_clipboard.h}!SDL\_SetPrimarySelectionText@{SDL\_SetPrimarySelectionText}}
+\index{SDL\_SetPrimarySelectionText@{SDL\_SetPrimarySelectionText}!SDL\_clipboard.h@{SDL\_clipboard.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_SetPrimarySelectionText()}{SDL\_SetPrimarySelectionText()}}
+{\footnotesize\ttfamily DECLSPEC int SDLCALL SDL\+\_\+\+Set\+Primary\+Selection\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+Put UTF-\/8 text into the primary selection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & the text to store in the primary selection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or a negative error code on failure; call \mbox{\hyperlink{_s_d_l__error_8h_ac88e1aa404a8f94aaee4ad6b94547647}{SDL\+\_\+\+Get\+Error()}} for more information.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+26.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_s_d_l__clipboard_8h_a06f24652fdaad6603849c258590ae458}{SDL\+\_\+\+Get\+Primary\+Selection\+Text}} 
+
+\mbox{\hyperlink{_s_d_l__clipboard_8h_af5987d27a6c48f7bca0db68a8cc29053}{SDL\+\_\+\+Has\+Primary\+Selection\+Text}} 
+\end{DoxySeeAlso}

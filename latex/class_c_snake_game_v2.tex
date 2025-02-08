@@ -1,0 +1,237 @@
+\hypertarget{class_c_snake_game_v2}{}\doxysection{CSnake\+Game\+V2 Class Reference}
+\label{class_c_snake_game_v2}\index{CSnakeGameV2@{CSnakeGameV2}}
+
+
+Snake Game V2.  
+
+
+
+
+{\ttfamily \#include $<$CSnake\+Game\+V2.\+h$>$}
+
+Inheritance diagram for CSnake\+Game\+V2\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_snake_game_v2}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_snake_game_v2_acb1ba0c302144c94b529056149b51dea}{CSnake\+Game\+V2}} (cv\+::\+Size size)
+\begin{DoxyCompactList}\small\item\em Initializes members and auto-\/initializes COM port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a779d4a9069f0e569cbe3670900509f2a}\label{class_c_snake_game_v2_a779d4a9069f0e569cbe3670900509f2a}} 
+\mbox{\hyperlink{class_c_snake_game_v2_a779d4a9069f0e569cbe3670900509f2a}{$\sim$\+CSnake\+Game\+V2}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_snake_game}{CSnake\+Game}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_a64f141150ea063c3a55e4e2d726e255f}{run}} ()
+\begin{DoxyCompactList}\small\item\em Starts gpio, update, and draw threads and waits for command to quit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_afbf048cdf0e59c32f6bce054c8362c13}{gpio\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}{gpio()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_a735d1727160d3fbd7e5169357f1e9eaf}{update\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{update()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_ad57c9135fb7af0b0a1d16e485fd7cbd0}{draw\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{draw()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}{gpio}} ()
+\begin{DoxyCompactList}\small\item\em Changes snake direction and colour and may reset game based on controller input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates game objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws game objects and UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}\label{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}} 
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}{\+\_\+snake}}
+\begin{DoxyCompactList}\small\item\em Segments of snake. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}\label{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}} 
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}{\+\_\+apples}}
+\begin{DoxyCompactList}\small\item\em Apple points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}\label{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}{\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em Direction of snake. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a33f84c6ec60bb65f2b0240a645b688f1}\label{class_c_snake_game_v2_a33f84c6ec60bb65f2b0240a645b688f1}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_a33f84c6ec60bb65f2b0240a645b688f1}{\+\_\+colour}}
+\begin{DoxyCompactList}\small\item\em Colour of snake. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}\label{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}{\+\_\+score}}
+\begin{DoxyCompactList}\small\item\em Player score. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}\label{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}{\+\_\+reset\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to reset game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a7a7d5943a54b44ee1c0b6d65472f5a11}\label{class_c_snake_game_v2_a7a7d5943a54b44ee1c0b6d65472f5a11}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a7a7d5943a54b44ee1c0b6d65472f5a11}{\+\_\+exit\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to exit game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a57e2f2d8ff586e789bc4828ffb1f7629}\label{class_c_snake_game_v2_a57e2f2d8ff586e789bc4828ffb1f7629}} 
+std\+::mutex \mbox{\hyperlink{class_c_snake_game_v2_a57e2f2d8ff586e789bc4828ffb1f7629}{\+\_\+snake\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex to make snake vector thread-\/safe. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_ad31ac6ba83e6d3363163e0a5af824401}\label{class_c_snake_game_v2_ad31ac6ba83e6d3363163e0a5af824401}} 
+cv\+::\+Size \mbox{\hyperlink{class_c_snake_game_v2_ad31ac6ba83e6d3363163e0a5af824401}{\+\_\+canvas\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the canvas. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a616a34c365b7d7eb2115ce56ed8a203f}\label{class_c_snake_game_v2_a616a34c365b7d7eb2115ce56ed8a203f}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_a616a34c365b7d7eb2115ce56ed8a203f}{\+\_\+snake\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Number of pixels per snake step. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_aa6185a9f5a5e64af35bed6661dece90e}\label{class_c_snake_game_v2_aa6185a9f5a5e64af35bed6661dece90e}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_aa6185a9f5a5e64af35bed6661dece90e}{\+\_\+snake\+\_\+speed}}
+\begin{DoxyCompactList}\small\item\em Number of ms for each snake update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a7cb294d9397ad3e385211b17c9745b39}\label{class_c_snake_game_v2_a7cb294d9397ad3e385211b17c9745b39}} 
+double \mbox{\hyperlink{class_c_snake_game_v2_a7cb294d9397ad3e385211b17c9745b39}{\+\_\+last\+\_\+update\+\_\+tick}}
+\begin{DoxyCompactList}\small\item\em Number of ticks when the snake was most recently updated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}\label{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}} 
+double \mbox{\hyperlink{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}{\+\_\+last\+\_\+frame\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Time it took for the last frame to draw. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}\label{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}} 
+double \mbox{\hyperlink{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}{\+\_\+last\+\_\+apple\+\_\+tick}}
+\begin{DoxyCompactList}\small\item\em Number of ticks when the last apple spawned. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}\label{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}{\+\_\+fps}}
+\begin{DoxyCompactList}\small\item\em Frames per second (updated at the same rate as the snake) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a9b18d417d72c5becb8fd0a03f87fec31}\label{class_c_snake_game_v2_a9b18d417d72c5becb8fd0a03f87fec31}} 
+bool {\bfseries \+\_\+game\+\_\+over}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Snake Game V2. 
+
+This class runs the game Snake by inheriting from CBase4618\+Threaded. Version 2 improves on version 1 by adding colisions, variable snake speed and size, and a fixed frame rate.
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_snake_game_v2_acb1ba0c302144c94b529056149b51dea}\label{class_c_snake_game_v2_acb1ba0c302144c94b529056149b51dea}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!CSnakeGameV2@{CSnakeGameV2}}
+\index{CSnakeGameV2@{CSnakeGameV2}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{CSnakeGameV2()}{CSnakeGameV2()}}
+{\footnotesize\ttfamily CSnake\+Game\+V2\+::\+CSnake\+Game\+V2 (\begin{DoxyParamCaption}\item[{cv\+::\+Size}]{size }\end{DoxyParamCaption})}
+
+
+
+Initializes members and auto-\/initializes COM port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of canvas \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}\label{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!draw@{draw}}
+\index{draw@{draw}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Draws game objects and UI. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_snake_game_v2_ad57c9135fb7af0b0a1d16e485fd7cbd0}\label{class_c_snake_game_v2_ad57c9135fb7af0b0a1d16e485fd7cbd0}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!draw\_thread@{draw\_thread}}
+\index{draw\_thread@{draw\_thread}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{draw\_thread()}{draw\_thread()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::draw\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{draw()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}\label{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!gpio@{gpio}}
+\index{gpio@{gpio}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::gpio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Changes snake direction and colour and may reset game based on controller input. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_snake_game_v2_afbf048cdf0e59c32f6bce054c8362c13}\label{class_c_snake_game_v2_afbf048cdf0e59c32f6bce054c8362c13}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!gpio\_thread@{gpio\_thread}}
+\index{gpio\_thread@{gpio\_thread}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{gpio\_thread()}{gpio\_thread()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::gpio\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}{gpio()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_snake_game_v2_a64f141150ea063c3a55e4e2d726e255f}\label{class_c_snake_game_v2_a64f141150ea063c3a55e4e2d726e255f}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!run@{run}}
+\index{run@{run}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Starts gpio, update, and draw threads and waits for command to quit. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}\label{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!update@{update}}
+\index{update@{update}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Updates game objects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_snake_game_v2_a735d1727160d3fbd7e5169357f1e9eaf}\label{class_c_snake_game_v2_a735d1727160d3fbd7e5169357f1e9eaf}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!update\_thread@{update\_thread}}
+\index{update\_thread@{update\_thread}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{update\_thread()}{update\_thread()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::update\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{update()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab5/CSnake\+Game\+V2.\+h\end{DoxyCompactItemize}

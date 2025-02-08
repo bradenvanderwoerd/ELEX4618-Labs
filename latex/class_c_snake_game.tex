@@ -28,15 +28,17 @@ Inheritance diagram for CSnake\+Game\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_c_snake_game_a96364879bacad0be7c62ea148ef87349}\label{class_c_snake_game_a96364879bacad0be7c62ea148ef87349}} 
 \mbox{\hyperlink{class_c_snake_game_a96364879bacad0be7c62ea148ef87349}{$\sim$\+CSnake\+Game}} ()
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_snake_game}{CSnake\+Game}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_aed6ffa91d5668b39b3a4f4f45dbb43a0}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs game code in a loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
 void \mbox{\hyperlink{class_c_snake_game_a81e5ef979dd35a6cfdc62461c1959f6b}{gpio}} ()
 \begin{DoxyCompactList}\small\item\em Changes \+\_\+direction based on joystick input. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_a34614fecfbf367f6bf62db84e3d20b4a}{update}} ()
 \begin{DoxyCompactList}\small\item\em Advances snake to next location. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_a698c033f63c64fa684b9a70b22b1b607}{draw}} ()
-\begin{DoxyCompactList}\small\item\em Draws snake in new location. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
+\begin{DoxyCompactList}\small\item\em Draws snake in new location. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_aae59ac38033d3a1fe7156271decc7aa1}{reset}} ()
 \begin{DoxyCompactList}\small\item\em Resets the snake to the middle of the canvas. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -47,13 +49,19 @@ std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_c_snake_game_ae1848341
 \begin{DoxyCompactList}\small\item\em Segments of snake. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_af242ff0d67385d43547c29e971c91b22}\label{class_c_snake_game_af242ff0d67385d43547c29e971c91b22}} 
 int \mbox{\hyperlink{class_c_snake_game_af242ff0d67385d43547c29e971c91b22}{\+\_\+direction}}
-\begin{DoxyCompactList}\small\item\em Direction of snake. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Current direction of snake. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_ac62facefc4c8724ac382c7886906dfab}\label{class_c_snake_game_ac62facefc4c8724ac382c7886906dfab}} 
+int \mbox{\hyperlink{class_c_snake_game_ac62facefc4c8724ac382c7886906dfab}{\+\_\+previous\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em True if joystick returned to center. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_a530b9d7608e03786a7854dfcc86252fe}\label{class_c_snake_game_a530b9d7608e03786a7854dfcc86252fe}} 
 int \mbox{\hyperlink{class_c_snake_game_a530b9d7608e03786a7854dfcc86252fe}{\+\_\+colour}}
 \begin{DoxyCompactList}\small\item\em Colour of snake. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_c_snake_game_a617f5ad3aba76c7065a7cf6602e2eed6}\label{class_c_snake_game_a617f5ad3aba76c7065a7cf6602e2eed6}} 
-int \mbox{\hyperlink{class_c_snake_game_a617f5ad3aba76c7065a7cf6602e2eed6}{\+\_\+reset\+\_\+flag}}
-\begin{DoxyCompactList}\small\item\em Flag to reset game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{class_c_snake_game_ac764661e0d65771edbb221e3a31c0726}\label{class_c_snake_game_ac764661e0d65771edbb221e3a31c0726}} 
+bool \mbox{\hyperlink{class_c_snake_game_ac764661e0d65771edbb221e3a31c0726}{\+\_\+reset\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to reset game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_a1af284e157baf095e9baed9818097827}\label{class_c_snake_game_a1af284e157baf095e9baed9818097827}} 
+bool \mbox{\hyperlink{class_c_snake_game_a1af284e157baf095e9baed9818097827}{\+\_\+exit\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to exit program. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -107,7 +115,7 @@ Initializes canvas to 600x600 and auto-\/initializes COM port.
 \index{CSnakeGame@{CSnakeGame}!draw@{draw}}
 \index{draw@{draw}!CSnakeGame@{CSnakeGame}}
 \doxysubsubsection{\texorpdfstring{draw()}{draw()}}
-{\footnotesize\ttfamily void CSnake\+Game\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void CSnake\+Game\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
 
 
 
@@ -124,7 +132,7 @@ Implements \mbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{
 \index{CSnakeGame@{CSnakeGame}!gpio@{gpio}}
 \index{gpio@{gpio}!CSnakeGame@{CSnakeGame}}
 \doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
-{\footnotesize\ttfamily void CSnake\+Game\+::gpio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void CSnake\+Game\+::gpio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
 
 
 
@@ -150,11 +158,28 @@ Resets the snake to the middle of the canvas.
 \begin{DoxyReturn}{Returns}
 nothing to return 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_c_snake_game_aed6ffa91d5668b39b3a4f4f45dbb43a0}\label{class_c_snake_game_aed6ffa91d5668b39b3a4f4f45dbb43a0}} 
+\index{CSnakeGame@{CSnakeGame}!run@{run}}
+\index{run@{run}!CSnakeGame@{CSnakeGame}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void CSnake\+Game\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Runs game code in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}{CBase4618}}.
+
 \mbox{\Hypertarget{class_c_snake_game_a34614fecfbf367f6bf62db84e3d20b4a}\label{class_c_snake_game_a34614fecfbf367f6bf62db84e3d20b4a}} 
 \index{CSnakeGame@{CSnakeGame}!update@{update}}
 \index{update@{update}!CSnakeGame@{CSnakeGame}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void CSnake\+Game\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void CSnake\+Game\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
 
 
 

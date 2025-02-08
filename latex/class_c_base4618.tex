@@ -24,7 +24,7 @@ Inheritance diagram for CBase4618\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_c_base4618_a22c0de299cef06c4ef49ace3a5b0be52}\label{class_c_base4618_a22c0de299cef06c4ef49ace3a5b0be52}} 
 \mbox{\hyperlink{class_c_base4618_a22c0de299cef06c4ef49ace3a5b0be52}{$\sim$\+CBase4618}} ()
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_base4618}{CBase4618}} destrcutor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_c_base4618_a535e816d735d10d6048dd39cd893d393}{run}} ()
+virtual void \mbox{\hyperlink{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}{run}} ()=0
 \begin{DoxyCompactList}\small\item\em Calls \mbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{gpio()}}, \mbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{update()}}, and \mbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{draw()}} and terminates when key is pressed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -43,10 +43,7 @@ virtual void \mbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315
 \begin{DoxyCompactList}\small\item\em Enables communication on COM port. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_base4618_a1b925f757247b33ca2072f777f24582d}\label{class_c_base4618_a1b925f757247b33ca2072f777f24582d}} 
 cv\+::\+Mat \mbox{\hyperlink{class_c_base4618_a1b925f757247b33ca2072f777f24582d}{\+\_\+canvas}}
-\begin{DoxyCompactList}\small\item\em Image to display. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_c_base4618_aa090d71d84f76bdbcc17b53604a1a370}\label{class_c_base4618_aa090d71d84f76bdbcc17b53604a1a370}} 
-bool \mbox{\hyperlink{class_c_base4618_aa090d71d84f76bdbcc17b53604a1a370}{\+\_\+exit\+\_\+flag}}
-\begin{DoxyCompactList}\small\item\em Flag to exit program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Image to display. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -75,7 +72,7 @@ True if program is to quit before next frame
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_c_snake_game_a698c033f63c64fa684b9a70b22b1b607}{CSnake\+Game}}.
+Implemented in \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{CSnake\+Game\+V2}}, and \mbox{\hyperlink{class_c_snake_game_a698c033f63c64fa684b9a70b22b1b607}{CSnake\+Game}}.
 
 \mbox{\Hypertarget{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}\label{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}} 
 \index{CBase4618@{CBase4618}!gpio@{gpio}}
@@ -92,13 +89,13 @@ nothing to return
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_c_snake_game_a81e5ef979dd35a6cfdc62461c1959f6b}{CSnake\+Game}}.
+Implemented in \mbox{\hyperlink{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}{CSnake\+Game\+V2}}, and \mbox{\hyperlink{class_c_snake_game_a81e5ef979dd35a6cfdc62461c1959f6b}{CSnake\+Game}}.
 
-\mbox{\Hypertarget{class_c_base4618_a535e816d735d10d6048dd39cd893d393}\label{class_c_base4618_a535e816d735d10d6048dd39cd893d393}} 
+\mbox{\Hypertarget{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}\label{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}} 
 \index{CBase4618@{CBase4618}!run@{run}}
 \index{run@{run}!CBase4618@{CBase4618}}
 \doxysubsubsection{\texorpdfstring{run()}{run()}}
-{\footnotesize\ttfamily void CBase4618\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily virtual void CBase4618\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -107,6 +104,10 @@ Calls \mbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{gpio(
 \begin{DoxyReturn}{Returns}
 nothing to return 
 \end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_c_snake_game_v2_a64f141150ea063c3a55e4e2d726e255f}{CSnake\+Game\+V2}}, and \mbox{\hyperlink{class_c_snake_game_aed6ffa91d5668b39b3a4f4f45dbb43a0}{CSnake\+Game}}.
+
 \mbox{\Hypertarget{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}\label{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}} 
 \index{CBase4618@{CBase4618}!update@{update}}
 \index{update@{update}!CBase4618@{CBase4618}}
@@ -122,7 +123,7 @@ nothing to return
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_c_snake_game_a34614fecfbf367f6bf62db84e3d20b4a}{CSnake\+Game}}.
+Implemented in \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{CSnake\+Game\+V2}}, and \mbox{\hyperlink{class_c_snake_game_a34614fecfbf367f6bf62db84e3d20b4a}{CSnake\+Game}}.
 
 
 
