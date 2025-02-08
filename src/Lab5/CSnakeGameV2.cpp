@@ -63,7 +63,7 @@ void CSnakeGameV2::run() {
 	draw_thread.detach();
 
 	do {
-		
+		Sleep(10);
 	} while (!_exit_flag);
 }
 
