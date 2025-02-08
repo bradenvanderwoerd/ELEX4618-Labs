@@ -47,6 +47,10 @@ class CSnakeGameV2 : public CBase4618 {
 
 		bool _game_over;
 
+		cv::Mat _crt_mask;
+
+		bool _do_crt;
+
 		/** @brief Runs gpio() in a loop
 		*
 		* @return nothing to return

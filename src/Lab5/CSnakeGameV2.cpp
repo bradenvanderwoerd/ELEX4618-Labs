@@ -29,7 +29,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_colour = RED;
 	_score = 0;
 
-	_snake_size = 20;
+	_snake_size = 27;
 	_snake_speed = 70;
 
 	_last_update_tick = cv::getTickCount();
@@ -38,6 +38,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_fps = 30;
 
 	_game_over = false;
+	_do_crt = true;
 
 	for (int x_pos = (_canvas_size.width - X_OFFSET) / 2 / _snake_size; x_pos < (_canvas_size.width - X_OFFSET) / 2 / _snake_size + STARTING_SEGMENTS; x_pos++) {
 		cv::Point current_point(x_pos, _canvas_size.height / 2 / _snake_size);
@@ -82,6 +83,14 @@ void CSnakeGameV2::update_thread() {
 void CSnakeGameV2::draw_thread() {
 	cvui::init(CANVAS_NAME);
 	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
+
+	cv::Mat colour_pattern(_canvas_size.height, 3, CV_8UC3);
+	colour_pattern.col(0) = cv::Scalar(1, 0, 0);
+	colour_pattern.col(1) = cv::Scalar(0, 1, 0);
+	colour_pattern.col(2) = cv::Scalar(0, 0, 1);
+	cv::repeat(colour_pattern, 1, _canvas_size.width / 3 + 1, _crt_mask);
+	if (_canvas_size.width % 3 != 0)
+		_crt_mask = _crt_mask.colRange(0, _canvas_size.width);
 
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
@@ -148,6 +157,9 @@ void CSnakeGameV2::gpio() {
 	int do_reset = _ctrl.get_button(BUTTON2);
 	if (do_reset == 0)
 		_reset_flag = true;
+
+	if (!_ctrl.get_button(31))
+		_do_crt = !_do_crt;
 }
 
 void CSnakeGameV2::update() {
@@ -219,7 +231,7 @@ void CSnakeGameV2::update() {
 
 		do {
 			new_apple = cv::Point(rand() % ((_canvas_size.width - X_OFFSET) / _snake_size - 1) + 1, rand() % (_canvas_size.height / _snake_size - 1) + 1);
-			_snake_mutex.lock();
+			_snake_mutex.lock(); // error here?
 			for (cv::Point segment : _snake) {
 				if (new_apple.x == segment.x && new_apple.y == segment.y) {
 					point_is_valid = false;
@@ -283,27 +295,31 @@ void CSnakeGameV2::draw() {
 	gui_position += cv::Point(5, 25);
 	cv::Scalar colour_tuple;
 	cv::Scalar depth_tuple;
+	int colour_offset;
 	if (_colour == RED) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: RED");
-		colour_tuple = cv::Scalar(0, 0, 255);
-		depth_tuple = cv::Scalar(0, 0, 155);
+		colour_tuple = cv::Scalar(50, 60, 230);
+		depth_tuple = cv::Scalar(15, 20, 110);
+		colour_offset = 0;
 	}
 	else if (_colour == GREEN) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: GREEN");
-		colour_tuple = cv::Scalar(0, 255, 0);
-		depth_tuple = cv::Scalar(0, 155, 0);
+		colour_tuple = cv::Scalar(60, 180, 60);
+		depth_tuple = cv::Scalar(20, 80, 20);
+		colour_offset = 1;
 	}
 	else if (_colour == BLUE) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: BLUE");
 		colour_tuple = cv::Scalar(255, 170, 50);
 		depth_tuple = cv::Scalar(155, 85, 25);
+		colour_offset = -1;
 	}
 
 	gui_position += cv::Point(0, 25);
 	cvui::text(_canvas, gui_position.x, gui_position.y, "Score: " + std::to_string(_score));
 
 	gui_position += cv::Point(0, 25);
-	cvui::trackbar(_canvas, gui_position.x, gui_position.y, 210, &_snake_size, 1, 20);
+	cvui::trackbar(_canvas, gui_position.x, gui_position.y, 210, &_snake_size, 1, 30);
 
 	gui_position += cv::Point(0, 50);
 	cvui::trackbar(_canvas, gui_position.x, gui_position.y, 210, &_snake_speed, 10, 500);
@@ -339,9 +355,10 @@ void CSnakeGameV2::draw() {
 	int offset;
 	if (_snake_size > SIMPLE_RENDER_SIZE)
 		offset = _snake_size / 2 - 1;
-	else
+	else if (_snake_size < 24)
 		offset = _snake_size - 1;
-
+	else
+		offset = _snake_size - 2;
 
 	_snake_mutex.lock();
 	for (int index = 0; index < _snake.size() && _snake_size > SIMPLE_RENDER_SIZE; index++) {
@@ -349,12 +366,12 @@ void CSnakeGameV2::draw() {
 		cv::Point current_point = _snake.at(index) * _snake_size;
 		
 		std::vector<cv::Point> depth_shape;
-		depth_shape.push_back(current_point + cv::Point(-offset + X_OFFSET, offset));
-		depth_shape.push_back(current_point + cv::Point(-offset + _snake_size / 2 + X_OFFSET, offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET, offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET, -offset + _snake_size / 2));
-		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET, -offset));
-		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET, offset));
+		depth_shape.push_back(current_point + cv::Point(-offset + X_OFFSET + colour_offset, offset));
+		depth_shape.push_back(current_point + cv::Point(-offset + _snake_size / 2 + X_OFFSET + colour_offset, offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET + colour_offset, offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + _snake_size / 2 + X_OFFSET + colour_offset, -offset + _snake_size / 2));
+		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET + colour_offset, -offset));
+		depth_shape.push_back(current_point + cv::Point(offset + X_OFFSET + colour_offset, offset));
 
 		cv::fillPoly(_canvas, depth_shape, depth_tuple);
 	}
@@ -366,14 +383,22 @@ void CSnakeGameV2::draw() {
 		cv::Point current_point = _snake.at(index) * _snake_size;
 
 		cv::rectangle(_canvas,
-					  current_point - cv::Point(offset - X_OFFSET, offset),
-					  current_point + cv::Point(offset + X_OFFSET, offset),
+					  current_point - cv::Point(offset - X_OFFSET - colour_offset, offset),
+					  current_point + cv::Point(offset + X_OFFSET + colour_offset, offset),
 				      colour_tuple, -1);
 	}
 	_snake_mutex.unlock();
 
 	if (_game_over)
 		cvui::text(_canvas, _canvas_size.width / 2, _canvas_size.height / 2, "GAME OVER", 1);
+
+	if (_do_crt) {
+		_canvas = _canvas.mul(_crt_mask);
+		_canvas.convertTo(_canvas, -1, 1.5, 10);
+
+		for (int row = 0; row < _canvas_size.height; row += 3)
+			_canvas.row(row) *= 0.8;
+	}
 
 	// Update
 	cvui::update();
