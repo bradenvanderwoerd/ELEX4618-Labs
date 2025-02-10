@@ -19,13 +19,15 @@ class CSnakeGameV2 : public CBase4618 {
 
 		std::vector<cv::Point> _snake; ///< Segments of snake
 
-		std::vector<cv::Point> _apples; ///< Apple points
+		cv::Point _apple; ///< Apple point
 
 		int _direction; ///< Direction of snake
 
 		int _colour; ///< Colour of snake
 
 		int _score; ///< Player score
+
+		int _high_score;
 
 		bool _reset_flag; ///< Flag to reset game
 
@@ -42,8 +44,6 @@ class CSnakeGameV2 : public CBase4618 {
 		double _last_update_tick; ///< Number of ticks when the snake was most recently updated
 
 		double _last_frame_time; ///< Time it took for the last frame to draw
-
-		double _last_apple_tick; ///< Number of ticks when the last apple spawned
 
 		int _fps; ///< Frames per second (updated at the same rate as the snake)
 
@@ -66,6 +66,8 @@ class CSnakeGameV2 : public CBase4618 {
 		Mix_Chunk* _upgrade_sound; ///< Upgrade sound file
 
 		Mix_Chunk* _game_over_sound; ///< Game over sound file
+
+		bool _play_snake_music; ///< Flag to signal snake music
 
 		bool _play_upgrade_sound; ///< Flag to signal upgrade sound
 
