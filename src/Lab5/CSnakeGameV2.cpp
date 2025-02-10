@@ -373,7 +373,7 @@ void CSnakeGameV2::draw() {
 	else if (_colour == GREEN) {
 		colour_tuple = cv::Scalar(60, 180, 60);
 		depth_tuple = cv::Scalar(20, 80, 20);
-		colour_offset = 1;
+		colour_offset = 0;
 	}
 	else if (_colour == BLUE) {
 		colour_tuple = cv::Scalar(255, 170, 50);
