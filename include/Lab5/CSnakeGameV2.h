@@ -1,5 +1,7 @@
 #pragma once
 #include "Lab4\\CBase4618.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 /**
 *
@@ -45,11 +47,31 @@ class CSnakeGameV2 : public CBase4618 {
 
 		int _fps; ///< Frames per second (updated at the same rate as the snake)
 
-		bool _game_over;
+		bool _game_over; ///< Flag to end game
 
-		cv::Mat _crt_mask;
+		cv::Mat _crt_mask; ///< Mask for CRT effect
 
-		bool _do_crt;
+		cv::Mat _barrel_x; ///< Barrel transformation for x
+
+		cv::Mat _barrel_y; ///< Barrel transformation for y
+
+		bool _do_crt; ///< Controls if CRT effect is rendered
+
+		bool _show_start_text; ///< Flag to control start text on menu
+
+		bool _start_game; ///< Flag to control game start
+
+		Mix_Music* _music; ///< Music file
+
+		Mix_Chunk* _upgrade_sound; ///< Upgrade sound file
+
+		Mix_Chunk* _game_over_sound; ///< Game over sound file
+
+		bool _play_upgrade_sound; ///< Flag to signal upgrade sound
+
+		bool _play_game_over_sound; ///< Flag to signal game over sound
+
+		int _upgrade_channel; ///< Upgrade sound channel
 
 		/** @brief Runs gpio() in a loop
 		*
@@ -69,6 +91,12 @@ class CSnakeGameV2 : public CBase4618 {
 		*/
 		void draw_thread();
 
+		/** @brief Runs sound() in a loop
+		*
+		* @return nothing to return
+		*/
+		void sound_thread();
+
 		/** @brief Changes snake direction and colour and may reset game based on controller input
 		*
 		* @return nothing to return
@@ -86,6 +114,18 @@ class CSnakeGameV2 : public CBase4618 {
 		* @return nothing to return
 		*/
 		void draw();
+
+		/** @brief Plays sound effects
+		*
+		* @return nothing to return
+		*/
+		void sound();
+
+		/** @brief Applies crt effect to Mat object
+		*
+		* @return Mat with crt effect applied
+		*/
+		cv::Mat crt(cv::Mat input);
 
 	public:
 

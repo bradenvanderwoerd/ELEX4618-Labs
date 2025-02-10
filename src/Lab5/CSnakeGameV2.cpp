@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "cvui.h"
 #include "Lab5/CSnakeGameV2.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
 
 #define CVUI_IMPLEMENTATION
+
 #define DEADZONE_PERCENT 40
 #define STARTING_SEGMENTS 10
 #define CANVAS_NAME "SSSSSNAKE"
@@ -12,10 +11,12 @@
 #define SIMPLE_RENDER_SIZE 3
 #define APPLE_SPAWN_RATE 5
 #define X_OFFSET 220
+#define CURVATURE 0.05
+#define MENU_SPEED 500
 
 
 enum { UP = 0, RIGHT, DOWN, LEFT };
-enum { RED = 0, GREEN, BLUE};
+enum { RED = 0, GREEN, BLUE };
 
 CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_canvas_size = canvas_size;
@@ -30,7 +31,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_score = 0;
 
 	_snake_size = 27;
-	_snake_speed = 70;
+	_snake_speed = 100;
 
 	_last_update_tick = cv::getTickCount();
 	_last_frame_time = 1;
@@ -40,6 +41,9 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_game_over = false;
 	_do_crt = true;
 
+	_show_start_text = false;
+	_start_game = false;
+
 	for (int x_pos = (_canvas_size.width - X_OFFSET) / 2 / _snake_size; x_pos < (_canvas_size.width - X_OFFSET) / 2 / _snake_size + STARTING_SEGMENTS; x_pos++) {
 		cv::Point current_point(x_pos, _canvas_size.height / 2 / _snake_size);
 		_snake.push_back(current_point);
@@ -48,6 +52,36 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	srand(time(0));
 	cv::Point new_apple(rand() % ((_canvas_size.width - X_OFFSET) / _snake_size - 1) + 1, rand() % (_canvas_size.height / _snake_size - 1) + 1);
 	_apples.push_back(new_apple);
+
+	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
+
+	cv::Mat colour_pattern(_canvas_size.height, 3, CV_8UC3);
+	colour_pattern.col(0) = cv::Scalar(1, 0, 0);
+	colour_pattern.col(1) = cv::Scalar(0, 1, 0);
+	colour_pattern.col(2) = cv::Scalar(0, 0, 1);
+	cv::repeat(colour_pattern, 1, _canvas_size.width / 3 + 1, _crt_mask);
+	if (_canvas_size.width % 3 != 0)
+		_crt_mask = _crt_mask.colRange(0, _canvas_size.width);
+
+	_barrel_x.create(_canvas_size.height, _canvas_size.width, CV_32FC1);
+	_barrel_y.create(_canvas_size.height, _canvas_size.width, CV_32FC1);
+
+	float cx = _canvas_size.width / 2.0f, cy = _canvas_size.height / 2.0f;
+	float max_dist = std::sqrt(cx * cx + cy * cy);
+
+	for (int y = 0; y < _canvas_size.height; y++) {
+		for (int x = 0; x < _canvas_size.width; x++) {
+			// Barrel Distortion
+			float dx = (x - cx) / cx;
+			float dy = (y - cy) / cy;
+			float r2 = dx * dx + dy * dy;
+			float scale = 1 + CURVATURE * r2;
+			_barrel_x.at<float>(y, x) = cx + dx * cx * scale;
+			_barrel_y.at<float>(y, x) = cy + dy * cy * scale;
+		}
+	}
+
+	_upgrade_channel = -1;
 }
 
 CSnakeGameV2::~CSnakeGameV2() {
@@ -58,10 +92,12 @@ void CSnakeGameV2::run() {
 	std::thread gpio_thread(&CSnakeGameV2::gpio_thread, this);
 	std::thread update_thread(&CSnakeGameV2::update_thread, this);
 	std::thread draw_thread(&CSnakeGameV2::draw_thread, this);
+	std::thread sound_thread(&CSnakeGameV2::sound_thread, this);
 
 	gpio_thread.detach();
 	update_thread.detach();
 	draw_thread.detach();
+	sound_thread.detach();
 
 	do {
 		Sleep(10);
@@ -82,20 +118,6 @@ void CSnakeGameV2::update_thread() {
 
 void CSnakeGameV2::draw_thread() {
 	cvui::init(CANVAS_NAME);
-	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
-
-	cv::Mat colour_pattern(_canvas_size.height, 3, CV_8UC3);
-	colour_pattern.col(0) = cv::Scalar(1, 0, 0);
-	colour_pattern.col(1) = cv::Scalar(0, 1, 0);
-	colour_pattern.col(2) = cv::Scalar(0, 0, 1);
-	cv::repeat(colour_pattern, 1, _canvas_size.width / 3 + 1, _crt_mask);
-	if (_canvas_size.width % 3 != 0)
-		_crt_mask = _crt_mask.colRange(0, _canvas_size.width);
-
-	SDL_Init(SDL_INIT_AUDIO);
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	Mix_Music* music = Mix_LoadMUS("sounds/snake.wav");
-	Mix_PlayMusic(music, -1);
 
 	char key = ' ';
 
@@ -116,13 +138,43 @@ void CSnakeGameV2::draw_thread() {
 		_last_frame_time = (cv::getTickCount() - start_ticks) / cv::getTickFrequency();
 
 	} while (_exit_flag == false);
+}
 
-	Mix_FreeMusic(music);
+void CSnakeGameV2::sound_thread() {
+
+	// Move to sound thread
+	SDL_Init(SDL_INIT_AUDIO);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+	_music = Mix_LoadMUS("sounds/snake.wav");
+	_upgrade_sound = Mix_LoadWAV("sounds/upgrade.wav");
+
+	Mix_PlayMusic(_music, -1);
+
+	do {
+		sound();
+	} while (_exit_flag == false);
+
+	// Change to have start in sound(), pause when game over
+	Mix_FreeMusic(_music);
 	Mix_CloseAudio();
 	SDL_Quit();
 }
 
 void CSnakeGameV2::gpio() {
+	int dummy;
+	if (!_ctrl.get_data(DIGITAL, BUTTON1, dummy))
+		_ctrl.init_com();
+	
+	if (!_start_game) {
+		_start_game = _ctrl.get_button(LOWER_BUTTON1) == 0 ||
+					  _ctrl.get_button(LOWER_BUTTON2) == 0 ||
+					  _ctrl.get_button(BUTTON1) == 0 ||
+					  _ctrl.get_button(BUTTON2) == 0;
+		
+		return;
+	}
+	
 	float right_left = _ctrl.get_analog(JOY_X);
 	float up_down = _ctrl.get_analog(JOY_Y);
 
@@ -158,7 +210,7 @@ void CSnakeGameV2::gpio() {
 	if (do_reset == 0)
 		_reset_flag = true;
 
-	if (!_ctrl.get_button(31))
+	if (!_ctrl.get_button(LOWER_BUTTON1))
 		_do_crt = !_do_crt;
 }
 
@@ -167,6 +219,12 @@ void CSnakeGameV2::update() {
 
 	double elapsed = 1000 * (cv::getTickCount() - _last_update_tick) / cv::getTickFrequency();
 	if (elapsed > _snake_speed && !_game_over) {
+
+		if (!_start_game) {
+			_show_start_text = !_show_start_text;
+
+			return;
+		}
 
 		if (_direction == UP) {
 			new_point.x = _snake[_snake.size() - 1].x;
@@ -218,6 +276,7 @@ void CSnakeGameV2::update() {
 		if ((_snake.at(_snake.size() - 1).x == _apples.at(index).x || _snake.at(_snake.size() - 1).x + 1 == _apples.at(index).x) &&
 			(_snake.at(_snake.size() - 1).y == _apples.at(index).y || _snake.at(_snake.size() - 1).y + 1 == _apples.at(index).y)) {
 			_score++;
+			_play_upgrade_sound = true;
 			_apples.erase(_apples.begin() + index);
 			_snake_mutex.unlock();
 			break;
@@ -283,6 +342,19 @@ void CSnakeGameV2::draw() {
 	// Reset canvas
 	_canvas.setTo(cv::Scalar(0, 0, 0));
 
+	if (!_start_game) {
+		if (_show_start_text)
+			_canvas = cv::imread("images/menu_start.png");
+		else
+			_canvas = cv::imread("images/menu_no_start.png");
+
+		_canvas = crt(_canvas);
+
+		cv::imshow(CANVAS_NAME, _canvas);
+
+		return;
+	}
+
 	// CVUI window
 	cv::Point gui_position(0, 0);
 	_snake_mutex.lock();
@@ -295,7 +367,7 @@ void CSnakeGameV2::draw() {
 	gui_position += cv::Point(5, 25);
 	cv::Scalar colour_tuple;
 	cv::Scalar depth_tuple;
-	int colour_offset;
+	int colour_offset = 0;
 	if (_colour == RED) {
 		cvui::text(_canvas, gui_position.x, gui_position.y, "Colour: RED");
 		colour_tuple = cv::Scalar(50, 60, 230);
@@ -393,11 +465,7 @@ void CSnakeGameV2::draw() {
 		cvui::text(_canvas, _canvas_size.width / 2, _canvas_size.height / 2, "GAME OVER", 1);
 
 	if (_do_crt) {
-		_canvas = _canvas.mul(_crt_mask);
-		_canvas.convertTo(_canvas, -1, 1.5, 10);
-
-		for (int row = 0; row < _canvas_size.height; row += 3)
-			_canvas.row(row) *= 0.8;
+		_canvas = crt(_canvas);
 	}
 
 	// Update
@@ -410,4 +478,29 @@ void CSnakeGameV2::draw() {
 	}
 	else
 		cv::imshow(CANVAS_NAME, _canvas);
+}
+
+void CSnakeGameV2::sound() {
+	if (_play_upgrade_sound && !Mix_Playing(_upgrade_channel)) {
+		if (_upgrade_channel == -1)
+			_upgrade_channel = Mix_PlayChannel(-1, _upgrade_sound, 0);
+		else {
+			Mix_HaltChannel(_upgrade_channel);
+			_upgrade_channel = -1;
+			_play_upgrade_sound = false;
+		}
+	}
+}
+
+cv::Mat CSnakeGameV2::crt(cv::Mat input) {
+	input = input.mul(_crt_mask);
+	input.convertTo(input, -1, 1.5, 10);
+
+	for (int row = 0; row < _canvas_size.height; row += 3)
+		input.row(row) *= 0.8;
+
+	// Need to speed this up
+	cv::remap(input, input, _barrel_x, _barrel_y, cv::INTER_NEAREST, cv::BORDER_CONSTANT);
+	
+	return input;
 }
