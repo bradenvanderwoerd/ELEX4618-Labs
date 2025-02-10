@@ -73,6 +73,8 @@ class CSnakeGameV2 : public CBase4618 {
 
 		int _upgrade_channel; ///< Upgrade sound channel
 
+		int _game_over_channel; ///< Game over sound channel
+
 		/** @brief Runs gpio() in a loop
 		*
 		* @return nothing to return

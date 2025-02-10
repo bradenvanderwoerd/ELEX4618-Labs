@@ -81,7 +81,13 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 		}
 	}
 
+	_music = Mix_LoadMUS("sounds/snake.wav");
+	_upgrade_sound = Mix_LoadWAV("sounds/upgrade.wav");
+	//_game_over_sound = Mix_LoadWAV("sounds/game_over.wav");
+
 	_upgrade_channel = -1;
+	_game_over_channel = -1;
+
 }
 
 CSnakeGameV2::~CSnakeGameV2() {
@@ -145,9 +151,6 @@ void CSnakeGameV2::sound_thread() {
 	// Move to sound thread
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-
-	_music = Mix_LoadMUS("sounds/snake.wav");
-	_upgrade_sound = Mix_LoadWAV("sounds/upgrade.wav");
 
 	Mix_PlayMusic(_music, -1);
 
@@ -490,6 +493,16 @@ void CSnakeGameV2::sound() {
 			_play_upgrade_sound = false;
 		}
 	}
+
+	/*if (_play_game_over_sound && !Mix_Playing(_game_over_channel)) {
+		if (_game_over_channel == -1)
+			_game_over_channel = Mix_PlayChannel(-1, _game_over_sound, 0);
+		else {
+			Mix_HaltChannel(_game_over_channel);
+			_game_over_channel = -1;
+			_play_game_over_sound = false;
+		}
+	}*/
 }
 
 cv::Mat CSnakeGameV2::crt(cv::Mat input) {
