@@ -78,7 +78,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	if (DO_SESSION_HIGH_SCORE == 1)
 		_high_score = 0;
 	else {
-		std::ifstream infile("high_score.txt");
+		std::ifstream infile("resources/high_score.txt");
 		infile >> _high_score;
 		infile.close();
 	}
@@ -86,7 +86,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 
 CSnakeGameV2::~CSnakeGameV2() {
 	if (_score > _high_score) {
-		std::ofstream outfile("high_score.txt", std::ios::trunc);
+		std::ofstream outfile("resources/high_score.txt", std::ios::trunc);
 		outfile << _score;
 		outfile.close();
 	}
@@ -152,9 +152,9 @@ void CSnakeGameV2::sound_thread() {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-	_music = Mix_LoadMUS("sounds/snake.wav");
-	_upgrade_sound = Mix_LoadWAV("sounds/upgrade.wav");
-	_game_over_sound = Mix_LoadWAV("sounds/game_over.wav");
+	_music = Mix_LoadMUS("resources/snake.wav");
+	_upgrade_sound = Mix_LoadWAV("resources/upgrade.wav");
+	_game_over_sound = Mix_LoadWAV("resources/game_over.wav");
 
 	do {
 		sound();
@@ -228,7 +228,7 @@ void CSnakeGameV2::update() {
 		_colour = RED;
 
 		if (_score > _high_score) {
-			std::ofstream outfile("high_score.txt", std::ios::trunc);
+			std::ofstream outfile("resources/high_score.txt", std::ios::trunc);
 			outfile << _score;
 			_high_score = _score;
 			outfile.close();
@@ -351,9 +351,9 @@ void CSnakeGameV2::draw() {
 
 	if (!_start_game) {
 		if (_show_start_text)
-			_canvas = cv::imread("images/menu_start.png");
+			_canvas = cv::imread("resources/menu_start.png");
 		else
-			_canvas = cv::imread("images/menu_no_start.png");
+			_canvas = cv::imread("resources/menu_no_start.png");
 
 		_canvas = crt(_canvas);
 
