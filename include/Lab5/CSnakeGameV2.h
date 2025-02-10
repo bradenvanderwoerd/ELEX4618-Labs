@@ -77,6 +77,8 @@ class CSnakeGameV2 : public CBase4618 {
 
 		int _game_over_channel; ///< Game over sound channel
 
+		bool _last_update_complete; ///< Flag to control if last direction change has been completed
+
 		/** @brief Runs gpio() in a loop
 		*
 		* @return nothing to return

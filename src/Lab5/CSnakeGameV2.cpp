@@ -82,6 +82,8 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 		infile >> _high_score;
 		infile.close();
 	}
+
+	_last_update_complete = true;
 }
 
 CSnakeGameV2::~CSnakeGameV2() {
@@ -181,15 +183,25 @@ void CSnakeGameV2::gpio() {
 	
 	float right_left = _ctrl.get_analog(JOY_X);
 	float up_down = _ctrl.get_analog(JOY_Y);
-
-	if (up_down > 50 + DEADZONE_PERCENT / 2 && up_down > right_left && up_down > 100 - right_left && _direction != DOWN)
-		_direction = UP;
-	else if (right_left > 50 + DEADZONE_PERCENT / 2 && right_left > up_down && right_left > 100 - up_down && _direction != LEFT)
-		_direction = RIGHT;
-	else if (up_down < 50 - DEADZONE_PERCENT / 2 && up_down < right_left && up_down < 100 - right_left && _direction != UP)
-		_direction = DOWN;
-	else if (right_left < 50 - DEADZONE_PERCENT / 2 && right_left < up_down && right_left < 100 - up_down && _direction != RIGHT)
-		_direction = LEFT;
+	
+	if (_last_update_complete) {
+		if (up_down > 50 + DEADZONE_PERCENT / 2 && up_down > right_left && up_down > 100 - right_left && _direction != DOWN) {
+			_direction = UP;
+			_last_update_complete = false;
+		}
+		else if (right_left > 50 + DEADZONE_PERCENT / 2 && right_left > up_down && right_left > 100 - up_down && _direction != LEFT) {
+			_direction = RIGHT;
+			_last_update_complete = false;
+		}
+		else if (up_down < 50 - DEADZONE_PERCENT / 2 && up_down < right_left && up_down < 100 - right_left && _direction != UP) {
+			_direction = DOWN;
+			_last_update_complete = false;
+		}
+		else if (right_left < 50 - DEADZONE_PERCENT / 2 && right_left < up_down && right_left < 100 - up_down && _direction != RIGHT) {
+			_direction = LEFT;
+			_last_update_complete = false;
+		}
+	}
 
 	int switch_colour = _ctrl.get_button(BUTTON1);
 	// Change to start with LED on
@@ -315,6 +327,8 @@ void CSnakeGameV2::update() {
 		_last_update_tick = cv::getTickCount();
 
 		_fps = 1 / _last_frame_time;
+
+		_last_update_complete = true;
 	}
 
 	_snake_mutex.lock();
