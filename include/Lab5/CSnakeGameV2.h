@@ -27,7 +27,7 @@ class CSnakeGameV2 : public CBase4618 {
 
 		int _score; ///< Player score
 
-		int _high_score;
+		int _high_score; ///< Highest score achieved
 
 		bool _reset_flag; ///< Flag to reset game
 
@@ -127,6 +127,7 @@ class CSnakeGameV2 : public CBase4618 {
 
 		/** @brief Applies crt effect to Mat object
 		*
+		* @param Mat on which crt effect is to be applied
 		* @return Mat with crt effect applied
 		*/
 		cv::Mat crt(cv::Mat input);

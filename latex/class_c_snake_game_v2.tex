@@ -34,21 +34,27 @@ void \mbox{\hyperlink{class_c_snake_game_v2_a735d1727160d3fbd7e5169357f1e9eaf}{u
 \begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{update()}} in a loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_v2_ad57c9135fb7af0b0a1d16e485fd7cbd0}{draw\+\_\+thread}} ()
 \begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{draw()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_a8118501dadd1443d8d9a43f9978f5873}{sound\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_snake_game_v2_a82e37e90acf4415e00c582a1b0a3d34b}{sound()}} in a loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_v2_ae6e489b7d27b1166b4181b98e70a980b}{gpio}} ()
 \begin{DoxyCompactList}\small\item\em Changes snake direction and colour and may reset game based on controller input. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}{update}} ()
 \begin{DoxyCompactList}\small\item\em Updates game objects. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}{draw}} ()
-\begin{DoxyCompactList}\small\item\em Draws game objects and UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Draws game objects and UI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_snake_game_v2_a82e37e90acf4415e00c582a1b0a3d34b}{sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays sound effects. \end{DoxyCompactList}\item 
+cv\+::\+Mat \mbox{\hyperlink{class_c_snake_game_v2_ad979fa99eac68377364ed88b7b6847c2}{crt}} (cv\+::\+Mat input)
+\begin{DoxyCompactList}\small\item\em Applies crt effect to Mat object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}\label{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}} 
 std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_c_snake_game_v2_ae615ad31861ae514764d962cef20762d}{\+\_\+snake}}
 \begin{DoxyCompactList}\small\item\em Segments of snake. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}\label{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}} 
-std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_c_snake_game_v2_a333c3793ace1a9447105d2877136586a}{\+\_\+apples}}
-\begin{DoxyCompactList}\small\item\em Apple points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a01a6c0eb01b857ebf40c8318bc69cf25}\label{class_c_snake_game_v2_a01a6c0eb01b857ebf40c8318bc69cf25}} 
+cv\+::\+Point \mbox{\hyperlink{class_c_snake_game_v2_a01a6c0eb01b857ebf40c8318bc69cf25}{\+\_\+apple}}
+\begin{DoxyCompactList}\small\item\em Apple point. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}\label{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}} 
 int \mbox{\hyperlink{class_c_snake_game_v2_acd14a73fd3171fa25c40392ab6b73443}{\+\_\+direction}}
 \begin{DoxyCompactList}\small\item\em Direction of snake. \end{DoxyCompactList}\item 
@@ -58,6 +64,9 @@ int \mbox{\hyperlink{class_c_snake_game_v2_a33f84c6ec60bb65f2b0240a645b688f1}{\+
 \mbox{\Hypertarget{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}\label{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}} 
 int \mbox{\hyperlink{class_c_snake_game_v2_af6440edfb449f14cb6003e9d737387c7}{\+\_\+score}}
 \begin{DoxyCompactList}\small\item\em Player score. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a130353275006b6520230f80adc542280}\label{class_c_snake_game_v2_a130353275006b6520230f80adc542280}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_a130353275006b6520230f80adc542280}{\+\_\+high\+\_\+score}}
+\begin{DoxyCompactList}\small\item\em Highest score achieved. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}\label{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}} 
 bool \mbox{\hyperlink{class_c_snake_game_v2_a40aa6ed29c2cf74c92b0e1cfc79021ea}{\+\_\+reset\+\_\+flag}}
 \begin{DoxyCompactList}\small\item\em Flag to reset game. \end{DoxyCompactList}\item 
@@ -82,15 +91,54 @@ double \mbox{\hyperlink{class_c_snake_game_v2_a7cb294d9397ad3e385211b17c9745b39}
 \mbox{\Hypertarget{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}\label{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}} 
 double \mbox{\hyperlink{class_c_snake_game_v2_ab8e16c994ff51fb2df7be88ba3f9f0ab}{\+\_\+last\+\_\+frame\+\_\+time}}
 \begin{DoxyCompactList}\small\item\em Time it took for the last frame to draw. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}\label{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}} 
-double \mbox{\hyperlink{class_c_snake_game_v2_a3bc6b387b30c9d223897d9ab4ec1da0c}{\+\_\+last\+\_\+apple\+\_\+tick}}
-\begin{DoxyCompactList}\small\item\em Number of ticks when the last apple spawned. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}\label{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}} 
 int \mbox{\hyperlink{class_c_snake_game_v2_a6b594f932ebd4f46f222ab55b71e2158}{\+\_\+fps}}
 \begin{DoxyCompactList}\small\item\em Frames per second (updated at the same rate as the snake) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_c_snake_game_v2_a9b18d417d72c5becb8fd0a03f87fec31}\label{class_c_snake_game_v2_a9b18d417d72c5becb8fd0a03f87fec31}} 
-bool {\bfseries \+\_\+game\+\_\+over}
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_c_snake_game_v2_a9b18d417d72c5becb8fd0a03f87fec31}{\+\_\+game\+\_\+over}}
+\begin{DoxyCompactList}\small\item\em Flag to end game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a350f07b10623c0b9e64855f5976e1a62}\label{class_c_snake_game_v2_a350f07b10623c0b9e64855f5976e1a62}} 
+cv\+::\+Mat \mbox{\hyperlink{class_c_snake_game_v2_a350f07b10623c0b9e64855f5976e1a62}{\+\_\+crt\+\_\+mask}}
+\begin{DoxyCompactList}\small\item\em Mask for CRT effect. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a777f75fed3d872e2bd634482c4d84ec7}\label{class_c_snake_game_v2_a777f75fed3d872e2bd634482c4d84ec7}} 
+cv\+::\+Mat \mbox{\hyperlink{class_c_snake_game_v2_a777f75fed3d872e2bd634482c4d84ec7}{\+\_\+barrel\+\_\+x}}
+\begin{DoxyCompactList}\small\item\em Barrel transformation for x. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_aa5e3b0038a574b6aedbea41c9df1c04d}\label{class_c_snake_game_v2_aa5e3b0038a574b6aedbea41c9df1c04d}} 
+cv\+::\+Mat \mbox{\hyperlink{class_c_snake_game_v2_aa5e3b0038a574b6aedbea41c9df1c04d}{\+\_\+barrel\+\_\+y}}
+\begin{DoxyCompactList}\small\item\em Barrel transformation for y. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_af270e7abd0358908d1f8ce84ee36f380}\label{class_c_snake_game_v2_af270e7abd0358908d1f8ce84ee36f380}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_af270e7abd0358908d1f8ce84ee36f380}{\+\_\+do\+\_\+crt}}
+\begin{DoxyCompactList}\small\item\em Controls if CRT effect is rendered. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a4b403cf5a1fd940888f5ae53be0f8871}\label{class_c_snake_game_v2_a4b403cf5a1fd940888f5ae53be0f8871}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a4b403cf5a1fd940888f5ae53be0f8871}{\+\_\+show\+\_\+start\+\_\+text}}
+\begin{DoxyCompactList}\small\item\em Flag to control start text on menu. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a55058c7c10164c92d02e307dbce659b1}\label{class_c_snake_game_v2_a55058c7c10164c92d02e307dbce659b1}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a55058c7c10164c92d02e307dbce659b1}{\+\_\+start\+\_\+game}}
+\begin{DoxyCompactList}\small\item\em Flag to control game start. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a0e54d45e920214bfff4934618e364fb8}\label{class_c_snake_game_v2_a0e54d45e920214bfff4934618e364fb8}} 
+Mix\+\_\+\+Music $\ast$ \mbox{\hyperlink{class_c_snake_game_v2_a0e54d45e920214bfff4934618e364fb8}{\+\_\+music}}
+\begin{DoxyCompactList}\small\item\em Music file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a5afcbe9b576a5db637838842a128818a}\label{class_c_snake_game_v2_a5afcbe9b576a5db637838842a128818a}} 
+Mix\+\_\+\+Chunk $\ast$ \mbox{\hyperlink{class_c_snake_game_v2_a5afcbe9b576a5db637838842a128818a}{\+\_\+upgrade\+\_\+sound}}
+\begin{DoxyCompactList}\small\item\em Upgrade sound file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a5447194af797edb8e26c04b5d9a13670}\label{class_c_snake_game_v2_a5447194af797edb8e26c04b5d9a13670}} 
+Mix\+\_\+\+Chunk $\ast$ \mbox{\hyperlink{class_c_snake_game_v2_a5447194af797edb8e26c04b5d9a13670}{\+\_\+game\+\_\+over\+\_\+sound}}
+\begin{DoxyCompactList}\small\item\em Game over sound file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_aa0944b10429ae1fa1d9438974a17d3aa}\label{class_c_snake_game_v2_aa0944b10429ae1fa1d9438974a17d3aa}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_aa0944b10429ae1fa1d9438974a17d3aa}{\+\_\+play\+\_\+snake\+\_\+music}}
+\begin{DoxyCompactList}\small\item\em Flag to signal snake music. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a9efa56c49e1e42248ec5c41413524fdc}\label{class_c_snake_game_v2_a9efa56c49e1e42248ec5c41413524fdc}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a9efa56c49e1e42248ec5c41413524fdc}{\+\_\+play\+\_\+upgrade\+\_\+sound}}
+\begin{DoxyCompactList}\small\item\em Flag to signal upgrade sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a28ab64c7c26f5aee0bb8a81a889dd590}\label{class_c_snake_game_v2_a28ab64c7c26f5aee0bb8a81a889dd590}} 
+bool \mbox{\hyperlink{class_c_snake_game_v2_a28ab64c7c26f5aee0bb8a81a889dd590}{\+\_\+play\+\_\+game\+\_\+over\+\_\+sound}}
+\begin{DoxyCompactList}\small\item\em Flag to signal game over sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_aeae85371d020d2011e2c167e50cc2e18}\label{class_c_snake_game_v2_aeae85371d020d2011e2c167e50cc2e18}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_aeae85371d020d2011e2c167e50cc2e18}{\+\_\+upgrade\+\_\+channel}}
+\begin{DoxyCompactList}\small\item\em Upgrade sound channel. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_snake_game_v2_a9e9b51aac2092145312698f2a351b438}\label{class_c_snake_game_v2_a9e9b51aac2092145312698f2a351b438}} 
+int \mbox{\hyperlink{class_c_snake_game_v2_a9e9b51aac2092145312698f2a351b438}{\+\_\+game\+\_\+over\+\_\+channel}}
+\begin{DoxyCompactList}\small\item\em Game over sound channel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -123,6 +171,24 @@ Initializes members and auto-\/initializes COM port.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_snake_game_v2_ad979fa99eac68377364ed88b7b6847c2}\label{class_c_snake_game_v2_ad979fa99eac68377364ed88b7b6847c2}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!crt@{crt}}
+\index{crt@{crt}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{crt()}{crt()}}
+{\footnotesize\ttfamily cv\+::\+Mat CSnake\+Game\+V2\+::crt (\begin{DoxyParamCaption}\item[{cv\+::\+Mat}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Applies crt effect to Mat object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mat} & on which crt effect is to be applied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat with crt effect applied 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}\label{class_c_snake_game_v2_aeeeb8e5bbabf8fa27ad7aaf80412e2cf}} 
 \index{CSnakeGameV2@{CSnakeGameV2}!draw@{draw}}
 \index{draw@{draw}!CSnakeGameV2@{CSnakeGameV2}}
@@ -200,6 +266,32 @@ nothing to return
 
 Implements \mbox{\hyperlink{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}{CBase4618}}.
 
+\mbox{\Hypertarget{class_c_snake_game_v2_a82e37e90acf4415e00c582a1b0a3d34b}\label{class_c_snake_game_v2_a82e37e90acf4415e00c582a1b0a3d34b}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!sound@{sound}}
+\index{sound@{sound}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{sound()}{sound()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Plays sound effects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_snake_game_v2_a8118501dadd1443d8d9a43f9978f5873}\label{class_c_snake_game_v2_a8118501dadd1443d8d9a43f9978f5873}} 
+\index{CSnakeGameV2@{CSnakeGameV2}!sound\_thread@{sound\_thread}}
+\index{sound\_thread@{sound\_thread}!CSnakeGameV2@{CSnakeGameV2}}
+\doxysubsubsection{\texorpdfstring{sound\_thread()}{sound\_thread()}}
+{\footnotesize\ttfamily void CSnake\+Game\+V2\+::sound\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_snake_game_v2_a82e37e90acf4415e00c582a1b0a3d34b}{sound()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}\label{class_c_snake_game_v2_a9bb872a2fce0892ffcbd8a8ff5d11903}} 
 \index{CSnakeGameV2@{CSnakeGameV2}!update@{update}}
 \index{update@{update}!CSnakeGameV2@{CSnakeGameV2}}
