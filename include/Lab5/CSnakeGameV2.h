@@ -57,6 +57,10 @@ class CSnakeGameV2 : public CBase4618 {
 
 		bool _do_crt; ///< Controls if CRT effect is rendered
 
+		cv::Mat _menu_no_start_text; ///< Menu image without start text
+
+		cv::Mat _menu_start_text; ///< Menu image with start text
+
 		bool _show_start_text; ///< Flag to control start text on menu
 
 		bool _start_game; ///< Flag to control game start

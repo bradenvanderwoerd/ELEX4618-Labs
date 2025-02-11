@@ -43,9 +43,9 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
 
 	cv::Mat colour_pattern(_canvas_size.height, 3, CV_8UC3);
-	colour_pattern.col(0) = cv::Scalar(1, 0, 0);
-	colour_pattern.col(1) = cv::Scalar(0, 1, 0);
-	colour_pattern.col(2) = cv::Scalar(0, 0, 1);
+	colour_pattern.col(0) = cv::Scalar(2, 0, 0);
+	colour_pattern.col(1) = cv::Scalar(0, 2, 0);
+	colour_pattern.col(2) = cv::Scalar(0, 0, 2);
 	cv::repeat(colour_pattern, 1, _canvas_size.width / 3 + 1, _crt_mask);
 	if (_canvas_size.width % 3 != 0)
 		_crt_mask = _crt_mask.colRange(0, _canvas_size.width);
@@ -67,6 +67,9 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 			_barrel_y.at<float>(y, x) = cy + dy * cy * scale;
 		}
 	}
+
+	_menu_no_start_text = cv::imread("resources/menu_start.png");
+	_menu_start_text = cv::imread("resources/menu_no_start.png");
 
 	_play_snake_music = false;
 	_play_upgrade_sound = false;
@@ -365,9 +368,9 @@ void CSnakeGameV2::draw() {
 
 	if (!_start_game) {
 		if (_show_start_text)
-			_canvas = cv::imread("resources/menu_start.png");
+			_menu_start_text.copyTo(_canvas);
 		else
-			_canvas = cv::imread("resources/menu_no_start.png");
+			_menu_no_start_text.copyTo(_canvas);
 
 		_canvas = crt(_canvas);
 
@@ -453,11 +456,11 @@ void CSnakeGameV2::draw() {
 	_snake_mutex.unlock();
 
 	if (_game_over)
-		cvui::text(_canvas, _canvas_size.width / 2 - 90, _canvas_size.height / 2 - 10, "GAME OVER", 1);
+		cvui::text(_canvas, _canvas_size.width / 2 - 80, _canvas_size.height / 2 - 10, "GAME OVER", 1);
 
-	cvui::text(_canvas, 420, 25, "Score: " + std::to_string(_score), 1);
+	cvui::text(_canvas, 370, 25, "Score: " + std::to_string(_score) + "  FPS: " + std::to_string(_fps), 1);
 	if (_score <= _high_score)
-		cvui::text(_canvas, 375, 55, "High Score: " + std::to_string(_high_score), 1);
+		cvui::text(_canvas, 390, 55, "High Score: " + std::to_string(_high_score), 1);
 	else
 		cvui::text(_canvas, 375, 55, "New High Score!", 1);
 
@@ -468,6 +471,10 @@ void CSnakeGameV2::draw() {
 
 	if (_do_crt) {
 		_canvas = crt(_canvas);
+	}
+	else {
+		cvui::trackbar(_canvas, 20, 380, 210, &_snake_size, 1, 30);
+		cvui::trackbar(_canvas, 20, 420, 210, &_snake_speed, 10, 200);
 	}
 
 	// Update
@@ -501,13 +508,12 @@ void CSnakeGameV2::sound() {
 }
 
 cv::Mat CSnakeGameV2::crt(cv::Mat input) {
+
 	input = input.mul(_crt_mask);
-	input.convertTo(input, -1, 1.5, 10);
 
 	for (int row = 0; row < _canvas_size.height; row += 3)
 		input.row(row) *= 0.8;
 
-	// Need to speed this up
 	cv::remap(input, input, _barrel_x, _barrel_y, cv::INTER_NEAREST, cv::BORDER_CONSTANT);
 	
 	return input;
