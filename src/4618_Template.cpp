@@ -311,5 +311,5 @@ int main(int argc, char* argv[])
 		}
 	} while (cmd != 0);
 
-    return 1;
+    return 0;
 }
