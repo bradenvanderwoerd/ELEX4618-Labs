@@ -118,6 +118,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:ad57c9135fb7af0b0a1d16e485fd7cbd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#ad57c9135fb7af0b0a1d16e485fd7cbd0">draw_thread</a> ()</td></tr>
 <tr class="memdesc:ad57c9135fb7af0b0a1d16e485fd7cbd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs <a class="el" href="class_c_snake_game_v2.html#aeeeb8e5bbabf8fa27ad7aaf80412e2cf" title="Draws game objects and UI.">draw()</a> in a loop.  <a href="class_c_snake_game_v2.html#ad57c9135fb7af0b0a1d16e485fd7cbd0">More...</a><br /></td></tr>
 <tr class="separator:ad57c9135fb7af0b0a1d16e485fd7cbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8118501dadd1443d8d9a43f9978f5873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a8118501dadd1443d8d9a43f9978f5873">sound_thread</a> ()</td></tr>
+<tr class="memdesc:a8118501dadd1443d8d9a43f9978f5873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs <a class="el" href="class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b" title="Plays sound effects.">sound()</a> in a loop.  <a href="class_c_snake_game_v2.html#a8118501dadd1443d8d9a43f9978f5873">More...</a><br /></td></tr>
+<tr class="separator:a8118501dadd1443d8d9a43f9978f5873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6e489b7d27b1166b4181b98e70a980b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#ae6e489b7d27b1166b4181b98e70a980b">gpio</a> ()</td></tr>
 <tr class="memdesc:ae6e489b7d27b1166b4181b98e70a980b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes snake direction and colour and may reset game based on controller input.  <a href="class_c_snake_game_v2.html#ae6e489b7d27b1166b4181b98e70a980b">More...</a><br /></td></tr>
 <tr class="separator:ae6e489b7d27b1166b4181b98e70a980b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,6 +130,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aeeeb8e5bbabf8fa27ad7aaf80412e2cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#aeeeb8e5bbabf8fa27ad7aaf80412e2cf">draw</a> ()</td></tr>
 <tr class="memdesc:aeeeb8e5bbabf8fa27ad7aaf80412e2cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws game objects and UI.  <a href="class_c_snake_game_v2.html#aeeeb8e5bbabf8fa27ad7aaf80412e2cf">More...</a><br /></td></tr>
 <tr class="separator:aeeeb8e5bbabf8fa27ad7aaf80412e2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82e37e90acf4415e00c582a1b0a3d34b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b">sound</a> ()</td></tr>
+<tr class="memdesc:a82e37e90acf4415e00c582a1b0a3d34b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays sound effects.  <a href="class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b">More...</a><br /></td></tr>
+<tr class="separator:a82e37e90acf4415e00c582a1b0a3d34b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad979fa99eac68377364ed88b7b6847c2"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#ad979fa99eac68377364ed88b7b6847c2">crt</a> (cv::Mat input)</td></tr>
+<tr class="memdesc:ad979fa99eac68377364ed88b7b6847c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies crt effect to Mat object.  <a href="class_c_snake_game_v2.html#ad979fa99eac68377364ed88b7b6847c2">More...</a><br /></td></tr>
+<tr class="separator:ad979fa99eac68377364ed88b7b6847c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -134,10 +143,10 @@ Private Attributes</h2></td></tr>
 std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#ae615ad31861ae514764d962cef20762d">_snake</a></td></tr>
 <tr class="memdesc:ae615ad31861ae514764d962cef20762d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Segments of snake. <br /></td></tr>
 <tr class="separator:ae615ad31861ae514764d962cef20762d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a333c3793ace1a9447105d2877136586a"><td class="memItemLeft" align="right" valign="top"><a id="a333c3793ace1a9447105d2877136586a"></a>
-std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a333c3793ace1a9447105d2877136586a">_apples</a></td></tr>
-<tr class="memdesc:a333c3793ace1a9447105d2877136586a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apple points. <br /></td></tr>
-<tr class="separator:a333c3793ace1a9447105d2877136586a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a6c0eb01b857ebf40c8318bc69cf25"><td class="memItemLeft" align="right" valign="top"><a id="a01a6c0eb01b857ebf40c8318bc69cf25"></a>
+cv::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a01a6c0eb01b857ebf40c8318bc69cf25">_apple</a></td></tr>
+<tr class="memdesc:a01a6c0eb01b857ebf40c8318bc69cf25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apple point. <br /></td></tr>
+<tr class="separator:a01a6c0eb01b857ebf40c8318bc69cf25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd14a73fd3171fa25c40392ab6b73443"><td class="memItemLeft" align="right" valign="top"><a id="acd14a73fd3171fa25c40392ab6b73443"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#acd14a73fd3171fa25c40392ab6b73443">_direction</a></td></tr>
 <tr class="memdesc:acd14a73fd3171fa25c40392ab6b73443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direction of snake. <br /></td></tr>
@@ -150,6 +159,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#af6440edfb449f14cb6003e9d737387c7">_score</a></td></tr>
 <tr class="memdesc:af6440edfb449f14cb6003e9d737387c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Player score. <br /></td></tr>
 <tr class="separator:af6440edfb449f14cb6003e9d737387c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130353275006b6520230f80adc542280"><td class="memItemLeft" align="right" valign="top"><a id="a130353275006b6520230f80adc542280"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a130353275006b6520230f80adc542280">_high_score</a></td></tr>
+<tr class="memdesc:a130353275006b6520230f80adc542280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Highest score achieved. <br /></td></tr>
+<tr class="separator:a130353275006b6520230f80adc542280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40aa6ed29c2cf74c92b0e1cfc79021ea"><td class="memItemLeft" align="right" valign="top"><a id="a40aa6ed29c2cf74c92b0e1cfc79021ea"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a40aa6ed29c2cf74c92b0e1cfc79021ea">_reset_flag</a></td></tr>
 <tr class="memdesc:a40aa6ed29c2cf74c92b0e1cfc79021ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to reset game. <br /></td></tr>
@@ -182,17 +195,82 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#ab8e16c994ff51fb2df7be88ba3f9f0ab">_last_frame_time</a></td></tr>
 <tr class="memdesc:ab8e16c994ff51fb2df7be88ba3f9f0ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time it took for the last frame to draw. <br /></td></tr>
 <tr class="separator:ab8e16c994ff51fb2df7be88ba3f9f0ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bc6b387b30c9d223897d9ab4ec1da0c"><td class="memItemLeft" align="right" valign="top"><a id="a3bc6b387b30c9d223897d9ab4ec1da0c"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a3bc6b387b30c9d223897d9ab4ec1da0c">_last_apple_tick</a></td></tr>
-<tr class="memdesc:a3bc6b387b30c9d223897d9ab4ec1da0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of ticks when the last apple spawned. <br /></td></tr>
-<tr class="separator:a3bc6b387b30c9d223897d9ab4ec1da0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b594f932ebd4f46f222ab55b71e2158"><td class="memItemLeft" align="right" valign="top"><a id="a6b594f932ebd4f46f222ab55b71e2158"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a6b594f932ebd4f46f222ab55b71e2158">_fps</a></td></tr>
 <tr class="memdesc:a6b594f932ebd4f46f222ab55b71e2158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frames per second (updated at the same rate as the snake) <br /></td></tr>
 <tr class="separator:a6b594f932ebd4f46f222ab55b71e2158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b18d417d72c5becb8fd0a03f87fec31"><td class="memItemLeft" align="right" valign="top"><a id="a9b18d417d72c5becb8fd0a03f87fec31"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_game_over</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a9b18d417d72c5becb8fd0a03f87fec31">_game_over</a></td></tr>
+<tr class="memdesc:a9b18d417d72c5becb8fd0a03f87fec31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to end game. <br /></td></tr>
 <tr class="separator:a9b18d417d72c5becb8fd0a03f87fec31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a350f07b10623c0b9e64855f5976e1a62"><td class="memItemLeft" align="right" valign="top"><a id="a350f07b10623c0b9e64855f5976e1a62"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a350f07b10623c0b9e64855f5976e1a62">_crt_mask</a></td></tr>
+<tr class="memdesc:a350f07b10623c0b9e64855f5976e1a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask for CRT effect. <br /></td></tr>
+<tr class="separator:a350f07b10623c0b9e64855f5976e1a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a777f75fed3d872e2bd634482c4d84ec7"><td class="memItemLeft" align="right" valign="top"><a id="a777f75fed3d872e2bd634482c4d84ec7"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a777f75fed3d872e2bd634482c4d84ec7">_barrel_x</a></td></tr>
+<tr class="memdesc:a777f75fed3d872e2bd634482c4d84ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barrel transformation for x. <br /></td></tr>
+<tr class="separator:a777f75fed3d872e2bd634482c4d84ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e3b0038a574b6aedbea41c9df1c04d"><td class="memItemLeft" align="right" valign="top"><a id="aa5e3b0038a574b6aedbea41c9df1c04d"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#aa5e3b0038a574b6aedbea41c9df1c04d">_barrel_y</a></td></tr>
+<tr class="memdesc:aa5e3b0038a574b6aedbea41c9df1c04d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barrel transformation for y. <br /></td></tr>
+<tr class="separator:aa5e3b0038a574b6aedbea41c9df1c04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af270e7abd0358908d1f8ce84ee36f380"><td class="memItemLeft" align="right" valign="top"><a id="af270e7abd0358908d1f8ce84ee36f380"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#af270e7abd0358908d1f8ce84ee36f380">_do_crt</a></td></tr>
+<tr class="memdesc:af270e7abd0358908d1f8ce84ee36f380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls if CRT effect is rendered. <br /></td></tr>
+<tr class="separator:af270e7abd0358908d1f8ce84ee36f380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d76dd7d3fb8393e756857139dcf939"><td class="memItemLeft" align="right" valign="top"><a id="a44d76dd7d3fb8393e756857139dcf939"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a44d76dd7d3fb8393e756857139dcf939">_menu_no_start_text</a></td></tr>
+<tr class="memdesc:a44d76dd7d3fb8393e756857139dcf939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu image without start text. <br /></td></tr>
+<tr class="separator:a44d76dd7d3fb8393e756857139dcf939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b7954990f909f73b05e0d0aa1b99147"><td class="memItemLeft" align="right" valign="top"><a id="a1b7954990f909f73b05e0d0aa1b99147"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a1b7954990f909f73b05e0d0aa1b99147">_menu_start_text</a></td></tr>
+<tr class="memdesc:a1b7954990f909f73b05e0d0aa1b99147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu image with start text. <br /></td></tr>
+<tr class="separator:a1b7954990f909f73b05e0d0aa1b99147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b403cf5a1fd940888f5ae53be0f8871"><td class="memItemLeft" align="right" valign="top"><a id="a4b403cf5a1fd940888f5ae53be0f8871"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a4b403cf5a1fd940888f5ae53be0f8871">_show_start_text</a></td></tr>
+<tr class="memdesc:a4b403cf5a1fd940888f5ae53be0f8871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to control start text on menu. <br /></td></tr>
+<tr class="separator:a4b403cf5a1fd940888f5ae53be0f8871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55058c7c10164c92d02e307dbce659b1"><td class="memItemLeft" align="right" valign="top"><a id="a55058c7c10164c92d02e307dbce659b1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a55058c7c10164c92d02e307dbce659b1">_start_game</a></td></tr>
+<tr class="memdesc:a55058c7c10164c92d02e307dbce659b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to control game start. <br /></td></tr>
+<tr class="separator:a55058c7c10164c92d02e307dbce659b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e54d45e920214bfff4934618e364fb8"><td class="memItemLeft" align="right" valign="top"><a id="a0e54d45e920214bfff4934618e364fb8"></a>
+Mix_Music *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a0e54d45e920214bfff4934618e364fb8">_music</a></td></tr>
+<tr class="memdesc:a0e54d45e920214bfff4934618e364fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Music file. <br /></td></tr>
+<tr class="separator:a0e54d45e920214bfff4934618e364fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afcbe9b576a5db637838842a128818a"><td class="memItemLeft" align="right" valign="top"><a id="a5afcbe9b576a5db637838842a128818a"></a>
+Mix_Chunk *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a5afcbe9b576a5db637838842a128818a">_upgrade_sound</a></td></tr>
+<tr class="memdesc:a5afcbe9b576a5db637838842a128818a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upgrade sound file. <br /></td></tr>
+<tr class="separator:a5afcbe9b576a5db637838842a128818a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5447194af797edb8e26c04b5d9a13670"><td class="memItemLeft" align="right" valign="top"><a id="a5447194af797edb8e26c04b5d9a13670"></a>
+Mix_Chunk *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a5447194af797edb8e26c04b5d9a13670">_game_over_sound</a></td></tr>
+<tr class="memdesc:a5447194af797edb8e26c04b5d9a13670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game over sound file. <br /></td></tr>
+<tr class="separator:a5447194af797edb8e26c04b5d9a13670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0944b10429ae1fa1d9438974a17d3aa"><td class="memItemLeft" align="right" valign="top"><a id="aa0944b10429ae1fa1d9438974a17d3aa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#aa0944b10429ae1fa1d9438974a17d3aa">_play_snake_music</a></td></tr>
+<tr class="memdesc:aa0944b10429ae1fa1d9438974a17d3aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to signal snake music. <br /></td></tr>
+<tr class="separator:aa0944b10429ae1fa1d9438974a17d3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9efa56c49e1e42248ec5c41413524fdc"><td class="memItemLeft" align="right" valign="top"><a id="a9efa56c49e1e42248ec5c41413524fdc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a9efa56c49e1e42248ec5c41413524fdc">_play_upgrade_sound</a></td></tr>
+<tr class="memdesc:a9efa56c49e1e42248ec5c41413524fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to signal upgrade sound. <br /></td></tr>
+<tr class="separator:a9efa56c49e1e42248ec5c41413524fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ab64c7c26f5aee0bb8a81a889dd590"><td class="memItemLeft" align="right" valign="top"><a id="a28ab64c7c26f5aee0bb8a81a889dd590"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a28ab64c7c26f5aee0bb8a81a889dd590">_play_game_over_sound</a></td></tr>
+<tr class="memdesc:a28ab64c7c26f5aee0bb8a81a889dd590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to signal game over sound. <br /></td></tr>
+<tr class="separator:a28ab64c7c26f5aee0bb8a81a889dd590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeae85371d020d2011e2c167e50cc2e18"><td class="memItemLeft" align="right" valign="top"><a id="aeae85371d020d2011e2c167e50cc2e18"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#aeae85371d020d2011e2c167e50cc2e18">_upgrade_channel</a></td></tr>
+<tr class="memdesc:aeae85371d020d2011e2c167e50cc2e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upgrade sound channel. <br /></td></tr>
+<tr class="separator:aeae85371d020d2011e2c167e50cc2e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e9b51aac2092145312698f2a351b438"><td class="memItemLeft" align="right" valign="top"><a id="a9e9b51aac2092145312698f2a351b438"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a9e9b51aac2092145312698f2a351b438">_game_over_channel</a></td></tr>
+<tr class="memdesc:a9e9b51aac2092145312698f2a351b438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game over sound channel. <br /></td></tr>
+<tr class="separator:a9e9b51aac2092145312698f2a351b438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97175003c6c0843fe0d50bfab1663dd0"><td class="memItemLeft" align="right" valign="top"><a id="a97175003c6c0843fe0d50bfab1663dd0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_snake_game_v2.html#a97175003c6c0843fe0d50bfab1663dd0">_last_update_complete</a></td></tr>
+<tr class="memdesc:a97175003c6c0843fe0d50bfab1663dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to control if last direction change has been completed. <br /></td></tr>
+<tr class="separator:a97175003c6c0843fe0d50bfab1663dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -238,6 +316,41 @@ cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad979fa99eac68377364ed88b7b6847c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad979fa99eac68377364ed88b7b6847c2">&#9670;&nbsp;</a></span>crt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat CSnakeGameV2::crt </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Applies crt effect to Mat object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Mat</td><td>on which crt effect is to be applied </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mat with crt effect applied </dd></dl>
+
+</div>
+</div>
 <a id="aeeeb8e5bbabf8fa27ad7aaf80412e2cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeeeb8e5bbabf8fa27ad7aaf80412e2cf">&#9670;&nbsp;</a></span>draw()</h2>
 
@@ -381,6 +494,62 @@ cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="section return"><dt>Returns</dt><dd>nothing to return </dd></dl>
 
 <p>Implements <a class="el" href="class_c_base4618.html#a988cdbb83863a0f3f48fed28677bfa40">CBase4618</a>.</p>
+
+</div>
+</div>
+<a id="a82e37e90acf4415e00c582a1b0a3d34b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82e37e90acf4415e00c582a1b0a3d34b">&#9670;&nbsp;</a></span>sound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CSnakeGameV2::sound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Plays sound effects. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing to return </dd></dl>
+
+</div>
+</div>
+<a id="a8118501dadd1443d8d9a43f9978f5873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8118501dadd1443d8d9a43f9978f5873">&#9670;&nbsp;</a></span>sound_thread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CSnakeGameV2::sound_thread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs <a class="el" href="class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b" title="Plays sound effects.">sound()</a> in a loop. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing to return </dd></dl>
 
 </div>
 </div>

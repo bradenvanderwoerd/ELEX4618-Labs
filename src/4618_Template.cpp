@@ -310,4 +310,6 @@ int main(int argc, char* argv[])
             case 12: do_video(); break;
 		}
 	} while (cmd != 0);
+
+    return 0;
 }

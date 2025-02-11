@@ -4,8 +4,12 @@
 
 #define JOY_X 11
 #define JOY_Y 4
+
 #define BUTTON1 33
 #define BUTTON2 32
+#define LOWER_BUTTON1 31
+#define LOWER_BUTTON2 17
+
 #define RED_LED 39
 #define GREEN_LED 38
 #define BLUE_LED 37
