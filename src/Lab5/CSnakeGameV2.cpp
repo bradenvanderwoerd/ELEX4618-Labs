@@ -465,7 +465,7 @@ void CSnakeGameV2::draw() {
 		cvui::text(_canvas, 375, 55, "New High Score!", 1);
 
 	cvui::text(_canvas, 290, 750, "RESET", 1);
-	cvui::text(_canvas, 650, 750, "Quit", 1);
+	cvui::text(_canvas, 650, 750, "QUIT", 1);
 
 	cv::rectangle(_canvas, cv::Rect(10, 10, _canvas_size.width - 5, _canvas_size.height - 20), cv::Scalar(200, 200, 200), 5);
 
