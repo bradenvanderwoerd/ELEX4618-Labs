@@ -22,9 +22,9 @@
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h"
 
-#include "Lab3\\Lab3.h"
-#include "Lab4\\CSnakeGame.h"
-#include "Lab5\\CSnakeGameV2.h"
+#include "Lab3/Lab3.h"
+#include "Lab4/CSnakeGame.h"
+#include "Lab5/CSnakeGameV2.h"
 
 #define CANVAS_NAME "Display Image"
 
