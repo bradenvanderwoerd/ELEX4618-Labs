@@ -14,7 +14,7 @@
 #define X_OFFSET 0
 #define CURVATURE 0.09
 #define MENU_SPEED 500
-#define DO_SESSION_HIGH_SCORE 0
+#define DO_SESSION_HIGH_SCORE false
 
 
 enum { UP = 0, RIGHT, DOWN, LEFT };
@@ -490,7 +490,7 @@ void CSnakeGameV2::draw() {
 }
 
 void CSnakeGameV2::sound() {
-	if (_play_snake_music && _start_game) {
+	if (_play_snake_music && _start_game && !Mix_Playing(_game_over_channel)) {
 		Mix_PlayMusic(_music, -1);
 		_play_snake_music = !_play_snake_music;
 	}
