@@ -1,27 +1,39 @@
+#include "glad.h"
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "Lab6/CShip.h"
 
+CShip::CShip(GLuint program_id, cv::Size window_size) {
+    _program_id = program_id;
 
-CShip::CShip() {
-    std::vector<glm::vec3> shipVertices = {
-            { 0.0f,  0.5f,  0.0f}, { 0.5f, -0.5f,  0.5f},
-            {-0.5f, -0.5f,  0.5f}, { 0.0f, -0.5f, -0.5f}
+    _rotation = glm::vec3(-20, 0, 0);
+
+    _window_size = window_size;
+    
+    _vertices = {
+        +0.0f, +0.3f, +0.0f,
+        +1.0f, +0.0f, +0.0f,
+
+        +0.5f, +0.0f, +0.25f,
+        +0.0f, +1.0f, +0.0f,
+
+        -0.5f, +0.0f, +0.25f,
+        +0.0f, +0.0f, +1.0f,
+
+        +0.0f, +0.0f, -1.0f,
+        +1.0f, +1.0f, +0.0f,
     };
 
-    std::vector<unsigned int> shipEdges = {
-            0, 1,  0, 2,  0, 3,  1, 2,  2, 3,  3, 1
+    _indices = {
+        0, 1, 2,
+        0, 2, 3,
+        0, 3, 1,
+        1, 3, 2 
     };
 
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-
+    create_gl_objects();
 }
 
 CShip::~CShip() {
-
-}
-
-void CShip::draw() {
 
 }

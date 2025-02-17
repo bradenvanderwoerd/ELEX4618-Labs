@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "SDL_mixer.h"
 #include "stdafx.h"
+#include <mutex>
 
 /**
 *
@@ -19,96 +20,128 @@
 *
 */
 class CAsteroidGame : public CBase4618 {
-private:
 
-	GLFWwindow* _window;
+	private:
 
-	cv::Size _window_size;
+		GLFWwindow* _window;
 
-	std::vector<CGameObject> objects; ///< Game objects
+		cv::Size _window_size;
 
-	bool _exit_flag; ///< Flag to exit game
+		std::vector<CGameObject*> _game_objects; ///< Game objects
 
-	/** @brief Runs gpio() in a loop
-	*
-	* @return nothing to return
-	*/
-	void gpio_thread();
+		double _last_update_time;
 
-	/** @brief Runs update() in a loop
-	*
-	* @return nothing to return
-	*/
-	void update_thread();
+		bool _exit_flag; ///< Flag to exit game
 
-	/** @brief Runs draw() in a loop
-	*
-	* @return nothing to return
-	*/
-	void draw_thread();
+		std::mutex _game_mutex; ///< Mutex to protect game attributes across threads
 
-	/** @brief Runs sound() in a loop
-	*
-	* @return nothing to return
-	*/
-	void sound_thread();
+		/** @brief Runs gpio() in a loop
+		*
+		* @return nothing to return
+		*/
+		void gpio_thread();
 
-	/** @brief Changes snake direction and colour and may reset game based on controller input
-	*
-	* @return nothing to return
-	*/
-	void gpio();
+		/** @brief Runs update() in a loop
+		*
+		* @return nothing to return
+		*/
+		void update_thread();
 
-	/** @brief Updates game objects
-	*
-	* @return nothing to return
-	*/
-	void update();
+		/** @brief Runs draw() in a loop
+		*
+		* @return nothing to return
+		*/
+		void draw_thread();
 
-	/** @brief Draws game objects and UI
-	*
-	* @return nothing to return
-	*/
-	void draw();
+		/** @brief Runs sound() in a loop
+		*
+		* @return nothing to return
+		*/
+		void sound_thread();
 
-	/** @brief Plays sound effects
-	*
-	* @return nothing to return
-	*/
-	void sound();
+		/** @brief Changes snake direction and colour and may reset game based on controller input
+		*
+		* @return nothing to return
+		*/
+		void gpio();
 
-	/** @brief Applies crt effect to Mat object
-	*
-	* @param Mat on which crt effect is to be applied
-	* @return Mat with crt effect applied
-	*/
-	cv::Mat crt(cv::Mat input);
+		/** @brief Updates game objects
+		*
+		* @return nothing to return
+		*/
+		void update();
 
-	/** @brief Calls close_game when key is pressed
-	*
-	* @return nothing to return
-	*/
-	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		/** @brief Draws game objects and UI
+		*
+		* @return nothing to return
+		*/
+		void draw();
 
-public:
-	/** @brief Initializes members and auto-initializes COM port
-	*
-	* @param size Size of canvas
-	*/
-	CAsteroidGame(cv::Size size);
+		/** @brief Plays sound effects
+		*
+		* @return nothing to return
+		*/
+		void sound();
 
-	/** @brief CSnakeGame deconstructor */
-	~CAsteroidGame();
+		/** @brief Applies crt effect to Mat object
+		*
+		* @param Mat on which crt effect is to be applied
+		* @return Mat with crt effect applied
+		*/
+		cv::Mat crt(cv::Mat input);
 
-	/** @brief Ends game
-	*
-	* @return nothing to return
-	*/
-	void close_game();
+		/** @brief Calls close_game when key is pressed
+		*
+		* @return nothing to return
+		*/
+		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-	/** @brief Starts gpio, update, and draw threads and waits for command to quit
-	*
-	* @return nothing to return
-	*/
-	void run();
+		/** @brief Compiles and links shaders
+		*
+		* @return program ID
+		*/
+		static GLuint install_shaders();
+
+		/** @brief Reads code from glsl file for shader
+		*
+		* @param file_name Path of glsl file
+		* @return Shader code as a string
+		*/
+		static std::string read_shader_code(std::string file_name);
+
+		/** @brief Checks if shader compiled
+		*
+		* @param shader_id ID of shader
+		* @return True if shader compiledwithout error
+		*/
+		static bool check_shader_status(GLuint shader_id);
+
+		/** @brief Checks if program linked
+		*
+		* @param program_id ID of program
+		* @return True if program linked without error
+		*/
+		static bool check_program_status(GLuint program_id);
+
+	public:
+		/** @brief Initializes members and auto-initializes COM port
+		*
+		* @param size Size of canvas
+		*/
+		CAsteroidGame(cv::Size size);
+
+		/** @brief CSnakeGame deconstructor */
+		~CAsteroidGame();
+
+		/** @brief Ends game
+		*
+		* @return nothing to return
+		*/
+		void close_game();
+
+		/** @brief Starts gpio, update, and draw threads and waits for command to quit
+		*
+		* @return nothing to return
+		*/
+		void run();
 };

@@ -1,17 +1,35 @@
 #pragma once
+#include "glad.h"
+#include <glm/glm.hpp>
 #include "stdafx.h"
 
 
 class CGameObject {
 	protected:
 
+		cv::Size _window_size;
+
 		cv::Point3f _position;
 
 		cv::Point3f _velocity;
 
+		glm::vec3 _rotation;
+
 		int _radius;
 
 		int _lives;
+
+		GLuint VAO, VBO, EBO;
+
+		GLuint _program_id;
+
+		std::vector<GLfloat> _vertices;
+
+		std::vector<GLuint> _indices;
+
+		glm::mat4 _mvp_matrix;
+
+		void create_gl_objects();
 
 	public:
 
@@ -31,6 +49,12 @@ class CGameObject {
 
 		cv::Point3f get_pos() { return _position; }
 
-		virtual void draw(cv::Mat& im) = 0;
+		void set_rotation(glm::vec3 rot) { _rotation = rot; }
+
+		glm::vec3 get_rotation() { return _rotation; }
+
+		void draw();
+
+		void update();
 };
 

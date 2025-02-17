@@ -1,14 +1,11 @@
 #pragma once
-#include "glad.h"
 #include "Lab6/CGameObject.h"
 
 class CShip : public CGameObject {
 	
 	private:
-		GLuint VAO, VBO, EBO;
 
 	public:
-		CShip();
+		CShip(GLuint program_id, cv::Size window_size);
 		~CShip();
-		void draw();
 };
