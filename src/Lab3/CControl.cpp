@@ -4,7 +4,7 @@
 #include <iostream>
 
 #define DEBOUNCE_TIME 200
-#define TIMEOUT_TIME 1000
+#define TIMEOUT_TIME 500
 
 CControl::CControl() {
 
@@ -22,40 +22,29 @@ void CControl::init_com(int comport) {
 }
 
 void CControl::init_com() {
-	int result;
 	int comport = 4;
-	bool port_detected = false;
+	int dummy = 1;
+	bool connected = false;
 
-	std::cout << "Attempting communication on COM" << comport << std::endl;
 	_com.open("COM" + std::to_string(comport));
-	_com.flush();
-	port_detected = get_data(DIGITAL, 0, result);
+	connected = get_data(DIGITAL, 1, dummy);
 
-	if (port_detected) {
-		std::cout << "Successfully established communication on COM" << comport << std::endl;
-		return;
-	}
+	std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
 
-	comport = -1;
-
-	while (!port_detected && comport < 10) {
+	if (!connected) comport = 0;
+	while (!connected && comport < 6) {
 		comport++;
-		std::cout << "Attempting communication on COM" << comport << std::endl;
 		_com.open("COM" + std::to_string(comport));
-		_com.flush();
-		port_detected = get_data(DIGITAL, 0, result);
+		connected = get_data(DIGITAL, 1, dummy);
+		std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
 	}
-	
-	if (port_detected)
-		std::cout << "Successfully established communication on COM" << comport << std::endl;
+
+	if (connected){
+		std::cout << "Connected on COM" + std::to_string(comport) << std::endl;
+		_com.flush();
+	}
 	else {
-		std::cout << "Auto-detection failed. Enter COM number or (r) to retry: ";
-		char cmd = ' ';
-		std::cin >> cmd;
-		if (cmd == 'r' || cmd == 'R')
-			init_com();
-		else
-			init_com(cmd);
+		std::cout << "Auto-connect failed" << std::endl;
 	}
 }
 

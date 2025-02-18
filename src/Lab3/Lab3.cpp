@@ -13,8 +13,11 @@ Lab3::~Lab3() {
 }
 
 void Lab3::lab3main() {
-    _ctrl.init_com();
-    
+    int dummy = 1;
+    do {
+        _ctrl.init_com();
+    } while (!_ctrl.get_data(DIGITAL, 1, dummy));
+
     int cmd = -1;
     do
     {
