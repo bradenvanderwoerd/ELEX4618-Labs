@@ -197,8 +197,11 @@
     <ClInclude Include="include\Lab4\CBase4618.h" />
     <ClInclude Include="include\Lab4\CSnakeGame.h" />
     <ClInclude Include="include\Lab5\CSnakeGameV2.h" />
+    <ClInclude Include="include\Lab6\CAsteroid.h" />
     <ClInclude Include="include\Lab6\CAsteroidGame.h" />
+    <ClInclude Include="include\Lab6\CCamera.h" />
     <ClInclude Include="include\Lab6\CGameObject.h" />
+    <ClInclude Include="include\Lab6\CPlanet.h" />
     <ClInclude Include="include\Lab6\CShip.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\Serial.h" />
@@ -212,8 +215,11 @@
     <ClCompile Include="src\Lab4\CBase4618.cpp" />
     <ClCompile Include="src\Lab4\CSnakeGame.cpp" />
     <ClCompile Include="src\Lab5\CSnakeGameV2.cpp" />
+    <ClCompile Include="src\Lab6\CAsteroid.cpp" />
     <ClCompile Include="src\Lab6\CAsteroidGame.cpp" />
+    <ClCompile Include="src\Lab6\CCamera.cpp" />
     <ClCompile Include="src\Lab6\CGameObject.cpp" />
+    <ClCompile Include="src\Lab6\CPlanet.cpp" />
     <ClCompile Include="src\Lab6\CShip.cpp" />
     <ClCompile Include="src\Serial.cpp" />
     <ClCompile Include="src\stdafx.cpp" />

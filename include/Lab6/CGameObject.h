@@ -1,19 +1,30 @@
 #pragma once
 #include "glad.h"
 #include <glm/glm.hpp>
+#include "glm/gtc/matrix_transform.hpp"
 #include "stdafx.h"
+#include "Lab6/CCamera.h"
 
+#define FOV 60.0f
+#define NEAR_PLANE 0.1f
+#define FAR_PLANE 100.0f
 
 class CGameObject {
 	protected:
 
 		cv::Size _window_size;
 
-		cv::Point3f _position;
+		glm::vec3 _position;
 
-		cv::Point3f _velocity;
+		GLfloat _orbit_distance;
+
+		glm::vec3 _velocity;
+		
+		glm::vec3 _direction;
 
 		glm::vec3 _rotation;
+
+		glm::vec3 _scale;
 
 		int _radius;
 
@@ -29,11 +40,13 @@ class CGameObject {
 
 		glm::mat4 _mvp_matrix;
 
-		void create_gl_objects();
-
 	public:
 
-		void move();
+		CGameObject();
+
+		~CGameObject();
+
+		virtual void move() = 0;
 
 		bool collide(CGameObject& obj);
 
@@ -45,16 +58,26 @@ class CGameObject {
 
 		void set_lives(int lives) { _lives = lives; }
 
-		void set_pos(cv::Point3f pos) { _position = pos; }
+		void set_pos(glm::vec3 pos) { _position = pos; }
 
-		cv::Point3f get_pos() { return _position; }
+		glm::vec3 get_pos() { return _position; }
+
+		void set_vel(glm::vec3 vel) { _velocity = vel; }
+
+		glm::vec3 get_vel() { return _velocity; }
+		
+		void set_dir(glm::vec3 dir) { _direction = dir; }
+
+		glm::vec3 get_dir() { return _direction; }
 
 		void set_rotation(glm::vec3 rot) { _rotation = rot; }
 
 		glm::vec3 get_rotation() { return _rotation; }
 
+		void create_gl_objects();
+
 		void draw();
 
-		void update();
+		virtual void update_scene(CCamera camera);
 };
 

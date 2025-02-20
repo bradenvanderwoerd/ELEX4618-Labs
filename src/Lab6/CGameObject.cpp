@@ -1,28 +1,32 @@
 #include "Lab6/CGameObject.h"
 #include "stdafx.h"
-#include "glm/gtc/matrix_transform.hpp"
 
-#define DTIME 1
-#define FOV 60.0f
+#define DTIME 0.01f
+#define THRUST_FORCE 1.0f
+#define DRAG_FORCE 0.1f
 
-void CGameObject::move() {
-	_position += _velocity * DTIME;
+CGameObject::CGameObject() {
+	
+}
+
+CGameObject::~CGameObject() {
+
 }
 
 bool CGameObject::collide(CGameObject& obj) {
-	cv::Point3f objPos = obj.get_pos();
+	/*cv::Point3f objPos = obj.get_pos();
 	if (abs(_position.x - objPos.x) <= _radius &&
 		abs(_position.y - objPos.y) <= _radius &&
 		abs(_position.z - objPos.z) <= _radius)
-		return true;
+		return true;*/
 
 	return false;
 }
 
 bool CGameObject::collide_wall(cv::Size board) {
-	if (_position.x <= 0 || _position.x >= board.width ||
+	/*if (_position.x <= 0 || _position.x >= board.width ||
 		_position.y <= 0 || _position.x >= board.height)
-		return true;
+		return true;*/
 
 	return false;
 }
@@ -52,36 +56,39 @@ void CGameObject::create_gl_objects() {
 	glBindVertexArray(0);
 }
 
-
 void CGameObject::draw() {
 	GLint matLoc = glGetUniformLocation(_program_id, "mvp"); // change to full mvp
 	glUniformMatrix4fv(matLoc, 1, GL_FALSE, &_mvp_matrix[0][0]);
 	
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Wireframe
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Back to normal
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Filled faces
 
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 
-void CGameObject::update() {
+void CGameObject::update_scene(CCamera camera) {
 	glm::mat4 model_matrix = glm::mat4(1.0f);
 
-	model_matrix = glm::rotate(model_matrix, glm::radians(_rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	model_matrix = glm::rotate(model_matrix, glm::radians(_rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	model_matrix = glm::rotate(model_matrix, glm::radians(_rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+	glm::vec3 normal_position = glm::vec3(0);
+	if (glm::length(_position) != 0)
+		normal_position = glm::normalize(_position);
 
-	glm::mat4 projection_matrix = glm::perspective(FOV, (float)_window_size.width / _window_size.height, 0.1f, 10.0f);
+	glm::vec3 n_axis = glm::cross(glm::vec3(0, 1.0f, 0), normal_position);
+	float alpha = glm::acos(glm::dot(glm::vec3(0, 0, 1.0f), n_axis));
+	float beta = glm::acos(glm::dot(glm::vec3(0, 1.0f, 0), normal_position));
+	float gamma = glm::acos(glm::dot(n_axis, -_direction));
 
-	_mvp_matrix = projection_matrix * model_matrix;
-
-	/*for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++)
-			std::cout << model_matrix[i][j] << ", ";
-		std::cout << std::endl;
+	model_matrix = glm::translate(model_matrix, _position);
+	if (glm::length(normal_position) != 0) {
+		model_matrix = glm::rotate(model_matrix, gamma, normal_position);
+		model_matrix = glm::rotate(model_matrix, beta, n_axis);
+		model_matrix = glm::rotate(model_matrix, alpha, glm::vec3(0.0f, 1.0f, 0));
 	}
-	std::cout << "****" << std::endl;
+	model_matrix = glm::scale(model_matrix, _scale);
 
-	std::cout << _rotation.y << std::endl;*/
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(FOV), (float) _window_size.width / (float) _window_size.height, NEAR_PLANE, FAR_PLANE);
+
+	_mvp_matrix = projection_matrix * camera.get_view_matrix() * model_matrix;
 }

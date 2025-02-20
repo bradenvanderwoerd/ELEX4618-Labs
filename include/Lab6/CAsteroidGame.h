@@ -2,6 +2,7 @@
 
 #include "Lab4/CBase4618.h"
 #include "Lab6/CGameObject.h"
+#include "Lab6/CCamera.h"
 
 #include <GLFW/glfw3.h>
 #include "SDL.h"
@@ -29,11 +30,29 @@ class CAsteroidGame : public CBase4618 {
 
 		std::vector<CGameObject*> _game_objects; ///< Game objects
 
+		int _create_gl_objects_index;
+
+		CCamera _camera;
+
+		float _turn_input;
+
+		bool _thrust;
+
+		bool _fire;
+
 		double _last_update_time;
+
+		double _last_spawn_time;
+
+		bool _free_cam_enabled;
 
 		bool _exit_flag; ///< Flag to exit game
 
+		bool _reset_flag;
+
 		std::mutex _game_mutex; ///< Mutex to protect game attributes across threads
+
+		GLuint _program_id;
 
 		/** @brief Runs gpio() in a loop
 		*
@@ -83,6 +102,12 @@ class CAsteroidGame : public CBase4618 {
 		*/
 		void sound();
 
+		/** @brief Sets or resets all game objects
+		*
+		* @return nothing to return
+		*/
+		void setup_game();
+
 		/** @brief Applies crt effect to Mat object
 		*
 		* @param Mat on which crt effect is to be applied
@@ -90,11 +115,17 @@ class CAsteroidGame : public CBase4618 {
 		*/
 		cv::Mat crt(cv::Mat input);
 
-		/** @brief Calls close_game when key is pressed
+		/** @brief Handles key presses
 		*
 		* @return nothing to return
 		*/
 		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+		/** @brief Handles mouse movements
+		*
+		* @return nothing to return
+		*/
+		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 		/** @brief Compiles and links shaders
 		*
@@ -133,11 +164,29 @@ class CAsteroidGame : public CBase4618 {
 		/** @brief CSnakeGame deconstructor */
 		~CAsteroidGame();
 
+		/** @brief Gets CCamera object
+		* 
+		* @return CCamera object
+		*/
+		CCamera* get_camera() { return &_camera; }
+
+		/** @brief Determines if mouse should updates camera
+		*
+		* @return Value of _do_camera_mouse_updates
+		*/
+		bool free_cam_enabled() { return _free_cam_enabled; }
+
 		/** @brief Ends game
 		*
 		* @return nothing to return
 		*/
 		void close_game();
+
+		/** @brief Toggles mouse camera updates
+		*
+		* @return nothing to return
+		*/
+		void toggle_free_cam();
 
 		/** @brief Starts gpio, update, and draw threads and waits for command to quit
 		*

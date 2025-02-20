@@ -77,6 +77,15 @@
     <ClInclude Include="include\khrplatform.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab6\CPlanet.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CCamera.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CAsteroid.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -114,6 +123,15 @@
     </ClCompile>
     <ClCompile Include="src\glad.c">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CPlanet.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CCamera.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CAsteroid.cpp">
+      <Filter>src\Lab6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
