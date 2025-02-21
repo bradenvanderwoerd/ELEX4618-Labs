@@ -1,7 +1,7 @@
 #include "Lab6/CTextRenderer.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
+//#include "stb_image_write.h"
 
 #include <iostream>
 #include <glm/glm.hpp>
@@ -40,7 +40,7 @@ CTextRenderer::CTextRenderer(const std::string& fontPath) {
         glBindTexture(GL_TEXTURE_2D, texture);
 
         // Save the font texture to a debug file
-        stbi_write_png("font_debug.png", width, height, 1, textureData, width);
+        //stbi_write_png("font_debug.png", width, height, 1, textureData, width);
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RED,
             face->glyph->bitmap.width, face->glyph->bitmap.rows,
