@@ -43,6 +43,12 @@ class CAsteroidGame : public CBase4618 {
 
 		bool _fire;
 
+		int _score;
+
+		int _num_asteroids;
+
+		int _num_missles;
+
 		double _last_update_time;
 
 		double _last_spawn_time;
