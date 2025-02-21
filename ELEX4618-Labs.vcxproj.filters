@@ -89,6 +89,9 @@
     <ClInclude Include="include\Lab6\CTextRenderer.h">
       <Filter>include\Lab6</Filter>
     </ClInclude>
+    <ClInclude Include="include\stb_image_write.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
