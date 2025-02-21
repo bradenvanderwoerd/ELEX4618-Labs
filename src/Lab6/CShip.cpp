@@ -8,12 +8,12 @@
 #define THRUST_FORCE 5.0f
 #define DRAG_FORCE 0.5f
 
-CShip::CShip(GLuint program_id, cv::Size window_size, GLfloat orbit_distance) {
-    _program_id = program_id;
+CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
+    _program_id = -1;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
-    _position = glm::vec3(0, _orbit_distance, 0);
+    _position = glm::vec3(0.1f, _orbit_distance, 0);
     _velocity = glm::vec3(0);
     _direction = glm::vec3(0, 0, 1.0f);
     _rotation = glm::vec3(0);

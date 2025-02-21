@@ -8,7 +8,7 @@ class CShip : public CGameObject {
 		bool _thrust;
 
 	public:
-		CShip(GLuint program_id, cv::Size window_size, GLfloat orbit_distance);
+		CShip(cv::Size window_size, GLfloat orbit_distance);
 		~CShip();
 		void move();
 		void update_input(float turn_input, bool thrust);

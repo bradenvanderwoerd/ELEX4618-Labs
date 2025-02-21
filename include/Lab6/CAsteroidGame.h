@@ -3,6 +3,7 @@
 #include "Lab4/CBase4618.h"
 #include "Lab6/CGameObject.h"
 #include "Lab6/CCamera.h"
+#include "Lab6/CTextRenderer.h"
 
 #include <GLFW/glfw3.h>
 #include "SDL.h"
@@ -27,6 +28,8 @@ class CAsteroidGame : public CBase4618 {
 		GLFWwindow* _window;
 
 		cv::Size _window_size;
+
+		CTextRenderer* _text_renderer;
 
 		std::vector<CGameObject*> _game_objects; ///< Game objects
 
@@ -53,6 +56,16 @@ class CAsteroidGame : public CBase4618 {
 		std::mutex _game_mutex; ///< Mutex to protect game attributes across threads
 
 		GLuint _program_id;
+
+		GLuint _text_program_id;
+
+		std::thread _gpio_thread;
+					
+		std::thread _update_thread;
+					
+		std::thread _draw_thread;
+					
+		std::thread _sound_thread;
 
 		/** @brief Runs gpio() in a loop
 		*
@@ -132,6 +145,12 @@ class CAsteroidGame : public CBase4618 {
 		* @return program ID
 		*/
 		static GLuint install_shaders();
+
+		/** @brief Compiles and links text shaders
+		*
+		* @return text program ID
+		*/
+		static GLuint install_text_shaders();
 
 		/** @brief Reads code from glsl file for shader
 		*

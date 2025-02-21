@@ -45,6 +45,8 @@ void CCamera::follow_ship(glm::vec3 ship_position, glm::vec3 ship_direction) {
 }
 
 void CCamera::mouse_update(glm::vec2 new_mouse_position) {
+	_relative_up = glm::vec3(0, 1.0f, 0);
+
 	glm::vec2 mouse_delta = new_mouse_position - _old_mouse_position;
 
 	if (glm::length(mouse_delta) > 800.0f) {

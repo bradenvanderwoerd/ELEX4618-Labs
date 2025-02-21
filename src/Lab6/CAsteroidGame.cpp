@@ -17,7 +17,7 @@
 #define DEADZONE_PERCENT 20
 
 #define UPDATE_TIME 20
-#define SPAWN_TIME 2000
+#define SPAWN_TIME 200
 
 CAsteroidGame::CAsteroidGame(cv::Size size) {
 
@@ -36,17 +36,40 @@ CAsteroidGame::CAsteroidGame(cv::Size size) {
 	_thrust = false;
 	_fire = false;
 
-	_program_id = -1;
-
 	setup_game();
 }
 
 CAsteroidGame::~CAsteroidGame() {
+
+	_exit_flag = true;
+
+	if (_gpio_thread.joinable()) {
+		std::cout << "Joining GPIO thread..." << std::endl;
+		_gpio_thread.join();
+		std::cout << "GPIO thread exited." << std::endl;
+	}
+	if (_update_thread.joinable()) {
+		std::cout << "Joining Update thread..." << std::endl;
+		_update_thread.join();
+		std::cout << "Update thread exited." << std::endl;
+	}
+	if (_draw_thread.joinable()) {
+		std::cout << "Joining Draw thread..." << std::endl;
+		_draw_thread.join();
+		std::cout << "Draw thread exited." << std::endl;
+	}
+	if (_sound_thread.joinable()) {
+		std::cout << "Joining Sound thread..." << std::endl;
+		_sound_thread.join();
+		std::cout << "Sound thread exited." << std::endl;
+	}
+
 	for (auto obj : _game_objects) {
 		delete obj;
 	}
-	
+
 	if (_window) {
+		glfwMakeContextCurrent(nullptr);  // Ensure no context is active
 		glfwDestroyWindow(_window);
 	}
 	glfwTerminate();
@@ -67,18 +90,13 @@ void CAsteroidGame::toggle_free_cam() {
 void CAsteroidGame::run() {
 	
 	// Create threads
-	std::thread t1(&CAsteroidGame::gpio_thread, this);
-	std::thread t2(&CAsteroidGame::update_thread, this);
-	std::thread t3(&CAsteroidGame::draw_thread, this);
-	std::thread t4(&CAsteroidGame::sound_thread, this);
-
-	t1.detach();
-	t2.detach();
-	t3.detach();
-	t4.detach();
+	_gpio_thread = std::thread(&CAsteroidGame::gpio_thread, this);
+	_update_thread = std::thread(&CAsteroidGame::update_thread, this);
+	_draw_thread = std::thread(&CAsteroidGame::draw_thread, this);
+	_sound_thread = std::thread(&CAsteroidGame::sound_thread, this);
 
 	do {
-		Sleep(10);
+		Sleep(1);
 	} while (!_exit_flag);
 }
 
@@ -134,9 +152,12 @@ void CAsteroidGame::draw_thread() {
 	glEnable(GL_DEPTH_TEST);
 
 	_program_id = install_shaders();
+	_text_renderer = new CTextRenderer("fonts/Arial.ttf");
+	_text_program_id = install_text_shaders();
 
-	// Create GL objects!!
-
+	for (CGameObject* obj : _game_objects)
+		obj->set_program_id(_program_id);
+	
 	do {
 		double start_ticks = cv::getTickCount();
 		//auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(LOOP_PERIOD);
@@ -223,14 +244,17 @@ void CAsteroidGame::update() {
 		_last_update_time = cv::getTickCount();
 	}
 
-	if (_game_objects.size() > 0 && 1000 * (cv::getTickCount() - _last_spawn_time) / cv::getTickFrequency() > SPAWN_TIME) {
+	if (_game_objects.size() > 0 && _create_gl_objects_index != -1 && 1000 * (cv::getTickCount() - _last_spawn_time) / cv::getTickFrequency() > SPAWN_TIME) {
 		// Add ship distance
-		CGameObject* asteroid = new CAsteroid(_program_id, _window_size, ORBIT_DISTANCE);
-		
+		CGameObject* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE);
+
 		_game_mutex.lock();
 		_create_gl_objects_index = _game_objects.size();
 		_game_objects.push_back(asteroid);
 		_game_mutex.unlock();
+
+		asteroid->set_program_id(_program_id);
+		asteroid->update_scene(_camera);
 
 		_last_spawn_time = cv::getTickCount();
 	}
@@ -256,10 +280,12 @@ void CAsteroidGame::draw() {
 		_game_objects.at(_create_gl_objects_index)->create_gl_objects();
 
 	for (auto obj : _game_objects) {
-		if (_create_gl_objects_index = -1)
+		if (_create_gl_objects_index == -1)
 			obj->create_gl_objects();
 		obj->draw();
 	}
+
+	_text_renderer->render_text(_text_program_id, "Hello, OpenGL!", 25.0f, 50.0f, 1.0f, glm::vec3(1.0, 1.0, 1.0));
 
 	_create_gl_objects_index = -2;
 
@@ -275,14 +301,14 @@ void CAsteroidGame::draw() {
 }
 
 void CAsteroidGame::sound() {
-	Sleep(10);
+	Sleep(1);
 }
 
 void CAsteroidGame::setup_game() {
-	CGameObject* ship = new CShip(_program_id, _window_size, ORBIT_DISTANCE);
+	CGameObject* ship = new CShip(_window_size, ORBIT_DISTANCE);
 	_game_objects.push_back(ship);
 
-	CGameObject* planet = new CPlanet(_program_id, _window_size, ORBIT_DISTANCE);
+	CGameObject* planet = new CPlanet(_window_size, ORBIT_DISTANCE);
 	_game_objects.push_back(planet);
 
 	_create_gl_objects_index = -1;
@@ -331,14 +357,14 @@ GLuint CAsteroidGame::install_shaders() {
 	GLuint vertex_shader_id = glad_glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragment_shader_id = glad_glCreateShader(GL_FRAGMENT_SHADER);
 
-	std::string vertexCode = read_shader_code("shaders/vertex_shader.glsl");
-	std::string fragmentCode = read_shader_code("shaders/fragment_shader.glsl");
+	std::string vertex_code = read_shader_code("shaders/vertex_shader.glsl");
+	std::string fragment_code = read_shader_code("shaders/fragment_shader.glsl");
 
-	const GLchar* vertexSource = vertexCode.c_str();
-	const GLchar* fragmentSource = fragmentCode.c_str();
+	const GLchar* vertex_source = vertex_code.c_str();
+	const GLchar* fragment_source = fragment_code.c_str();
 
-	glShaderSource(vertex_shader_id, 1, &vertexSource, 0);
-	glShaderSource(fragment_shader_id, 1, &fragmentSource, 0);
+	glShaderSource(vertex_shader_id, 1, &vertex_source, 0);
+	glShaderSource(fragment_shader_id, 1, &fragment_source, 0);
 
 	glCompileShader(vertex_shader_id);
 	glCompileShader(fragment_shader_id);
@@ -356,6 +382,41 @@ GLuint CAsteroidGame::install_shaders() {
 
 	glDeleteShader(vertex_shader_id);
 	glDeleteShader(fragment_shader_id);
+
+	glUseProgram(program_id);
+
+	return program_id;
+}
+
+GLuint CAsteroidGame::install_text_shaders() {
+	GLuint text_vertex_id = glad_glCreateShader(GL_VERTEX_SHADER);
+	GLuint text_fragment_id = glad_glCreateShader(GL_FRAGMENT_SHADER);
+
+	std::string text_vertex_code = read_shader_code("shaders/text_vertex.glsl");
+	std::string text_fragment_code = read_shader_code("shaders/text_fragment.glsl");
+
+	const GLchar* text_vertex_source = text_vertex_code.c_str();
+	const GLchar* text_fragment_source = text_fragment_code.c_str();
+	 
+	glShaderSource(text_vertex_id, 1, &text_vertex_source, 0);
+	glShaderSource(text_fragment_id, 1, &text_fragment_source, 0);
+
+	glCompileShader(text_vertex_id);
+	glCompileShader(text_fragment_id);
+
+	if (!check_shader_status(text_vertex_id) || !check_shader_status(text_fragment_id))
+		return -1;
+
+	GLuint program_id = glCreateProgram();
+	glAttachShader(program_id, text_vertex_id);
+	glAttachShader(program_id, text_fragment_id);
+	glLinkProgram(program_id);
+
+	if (!check_program_status(program_id))
+		return -1;
+
+	glDeleteShader(text_vertex_id);
+	glDeleteShader(text_fragment_id);
 
 	glUseProgram(program_id);
 

@@ -1,28 +1,33 @@
 #include "glad.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/random.hpp>
+#include <random>
 #include "Lab6/CAsteroid.h"
 
-CAsteroid::CAsteroid(GLuint program_id, cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_position) {
-    _program_id = program_id;
+#define DTIME 0.1f
+#define ROTATE_SPEED 5.0f
+#define ASTEROID_SPEED 2.0f
+#define DRAG_FORCE 0.5f
+
+CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_position) {
+    _program_id = -1;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
     _position = glm::vec3(0);
     srand(time(0));
     if (glm::length(ship_position) == 0)
-        set_position_on_sphere();
+        _position = _orbit_distance * random_vec3();
     else
         set_position_on_hemi(ship_position);
 
-    std::cout << "Asteroid Generated! Position:  X:" << _position.x
-        << "  Y: " << _position.y
-        << "  Z: " << _position.z << std::endl;
-
-    _velocity = glm::vec3(0);
-    _direction = glm::vec3(0, 1.0f, 0);
     _rotation = glm::vec3(0);
     _scale = glm::vec3(1);
+
+    _direction = glm::normalize(glm::cross(random_vec3(), _position));
+
+    _velocity = _direction * ASTEROID_SPEED;
 
     const float PHI = (1.0f + sqrt(5.0f)) / 2.0f;  // Golden ratio
     const float SIZE = 1 / PHI;  // Scale factor
@@ -80,18 +85,34 @@ CAsteroid::~CAsteroid() {
 }
 
 void CAsteroid::move() {
+    // Change position based on velocity, project onto surface
+    _position += _velocity * DTIME;
+    _position = glm::normalize(_position) * _orbit_distance;  // Re-project
 
-}
+    // Change direction based on input, project onto tangent, normalize
+    _direction -= glm::dot(_direction, glm::normalize(_position)) * glm::normalize(_position);
+    _direction = normalize(_direction);
 
-void CAsteroid::set_position_on_sphere() {
-    float theta = ((float)rand() / RAND_MAX) * 2.0 * glm::pi<float>();
-    float phi = acos(1.0 - 2.0 * ((float)rand() / RAND_MAX));
-
-    _position.x = _orbit_distance * sin(phi) * cos(theta);
-    _position.y = _orbit_distance * sin(phi) * sin(theta);
-    _position.z = _orbit_distance * cos(phi);
+    _velocity = _direction * ASTEROID_SPEED;
 }
 
 void CAsteroid::set_position_on_hemi(glm::vec3 ship_position) {
     
+}
+
+glm::vec3 CAsteroid::random_vec3() {
+    // Random number generator
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-1.0f, 1.0f);  // Uniform [-1, 1]
+
+    // Generate a random point
+    glm::vec3 pos(dist(gen), dist(gen), dist(gen));
+
+    // Ensure non-zero position before normalizing
+    while (glm::length(pos) < 0.0001f) {  // Avoid division by zero
+        pos = glm::vec3(dist(gen), dist(gen), dist(gen));
+    }
+
+    return glm::normalize(pos);
 }

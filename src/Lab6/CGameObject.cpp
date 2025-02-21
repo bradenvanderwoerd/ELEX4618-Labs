@@ -10,7 +10,9 @@ CGameObject::CGameObject() {
 }
 
 CGameObject::~CGameObject() {
-
+	glDeleteBuffers(1, &_VBO);
+	glDeleteBuffers(1, &_EBO);
+	glDeleteVertexArrays(1, &_VAO);
 }
 
 bool CGameObject::collide(CGameObject& obj) {
@@ -36,16 +38,16 @@ void CGameObject::hit() {
 }
 
 void CGameObject::create_gl_objects() {
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
+	glGenVertexArrays(1, &_VAO);
+	glGenBuffers(1, &_VBO);
+	glGenBuffers(1, &_EBO);
 
-	glBindVertexArray(VAO);
+	glBindVertexArray(_VAO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 	glBufferData(GL_ARRAY_BUFFER, _vertices.size() * sizeof(GLfloat), _vertices.data(), GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.size() * sizeof(GLuint), _indices.data(), GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)0);
@@ -57,13 +59,14 @@ void CGameObject::create_gl_objects() {
 }
 
 void CGameObject::draw() {
+	glUseProgram(_program_id);
 	GLint matLoc = glGetUniformLocation(_program_id, "mvp"); // change to full mvp
 	glUniformMatrix4fv(matLoc, 1, GL_FALSE, &_mvp_matrix[0][0]);
 	
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Wireframe
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Filled faces
 
-	glBindVertexArray(VAO);
+	glBindVertexArray(_VAO);
 	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

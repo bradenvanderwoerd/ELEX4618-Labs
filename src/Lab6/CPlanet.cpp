@@ -3,8 +3,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Lab6/CPlanet.h"
 
-CPlanet::CPlanet(GLuint program_id, cv::Size window_size, GLfloat orbit_distance) {
-    _program_id = program_id;
+CPlanet::CPlanet(cv::Size window_size, GLfloat orbit_distance) {
+    _program_id = -1;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 

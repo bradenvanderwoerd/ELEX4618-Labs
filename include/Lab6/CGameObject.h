@@ -30,7 +30,7 @@ class CGameObject {
 
 		int _lives;
 
-		GLuint VAO, VBO, EBO;
+		GLuint _VAO, _VBO, _EBO;
 
 		GLuint _program_id;
 
@@ -74,10 +74,12 @@ class CGameObject {
 
 		glm::vec3 get_rotation() { return _rotation; }
 
-		void create_gl_objects();
-
 		void draw();
 
 		virtual void update_scene(CCamera camera);
+
+		void create_gl_objects();
+
+		void set_program_id(GLuint program_id) { _program_id = program_id; }
 };
 
