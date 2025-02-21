@@ -86,6 +86,9 @@
     <ClInclude Include="include\Lab6\CAsteroid.h">
       <Filter>include\Lab6</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab6\CTextRenderer.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -131,6 +134,9 @@
       <Filter>src\Lab6</Filter>
     </ClCompile>
     <ClCompile Include="src\Lab6\CAsteroid.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CTextRenderer.cpp">
       <Filter>src\Lab6</Filter>
     </ClCompile>
   </ItemGroup>

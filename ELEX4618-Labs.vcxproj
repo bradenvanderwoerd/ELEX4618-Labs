@@ -203,6 +203,7 @@
     <ClInclude Include="include\Lab6\CGameObject.h" />
     <ClInclude Include="include\Lab6\CPlanet.h" />
     <ClInclude Include="include\Lab6\CShip.h" />
+    <ClInclude Include="include\Lab6\CTextRenderer.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\Serial.h" />
     <ClInclude Include="include\stdafx.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="src\Lab6\CGameObject.cpp" />
     <ClCompile Include="src\Lab6\CPlanet.cpp" />
     <ClCompile Include="src\Lab6\CShip.cpp" />
+    <ClCompile Include="src\Lab6\CTextRenderer.cpp" />
     <ClCompile Include="src\Serial.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>
