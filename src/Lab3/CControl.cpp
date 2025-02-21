@@ -53,16 +53,19 @@ bool CControl::get_data(int type, int channel, int& result) {
 	std::string rx_str = "";
 
 	_com.write(tx_str.c_str(), tx_str.length());
-	Sleep(10);
+	Sleep(1);
 
 	char buff[2];
 	buff[0] = 0;
 
 	float timer = cv::getTickCount();
 
-	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME)
-		if (_com.read(buff, 1) > 0)
-			rx_str = rx_str + buff[0];
+	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME) {
+		if (_com.read(buff, 1) >= 0)
+			rx_str += buff[0];
+		else
+			break;
+	}
 	
 	std::regex result_exp("(\\d+)$");
 	std::smatch match;
@@ -89,9 +92,12 @@ bool CControl::set_data(int type, int channel, int val) {
 
 	float timer = cv::getTickCount();
 
-	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME)
-		if (_com.read(buff, 1) > 0)
-			rx_str = rx_str + buff[0];
+	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME) {
+		if (_com.read(buff, 1) >= 0)
+			rx_str += buff[0];
+		else
+			break;
+	}
 
 	if (rx_str == "A " + std::to_string(type) + " " + std::to_string(channel) + " " + std::to_string(val) + "\n")
 		return true;

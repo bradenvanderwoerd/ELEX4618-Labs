@@ -38,7 +38,7 @@ bool Serial::open(string commPortName, int bitRate)
 
 	std::wstring wideCommPortName = std::wstring(commPortName.begin(), commPortName.end());
 
-	commHandle = CreateFileW(wideCommPortName.c_str(), GENERIC_READ|GENERIC_WRITE, 0,NULL, OPEN_EXISTING, 0, NULL);
+	commHandle = CreateFileW(s2ws(commPortName).c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 
 	if(commHandle == INVALID_HANDLE_VALUE) 
 	{
@@ -48,7 +48,7 @@ bool Serial::open(string commPortName, int bitRate)
 	else 
 	{
 		// set timeouts
-		COMMTIMEOUTS cto = { MAXDWORD, 0, 0, 0, 0};
+		COMMTIMEOUTS cto = { 50, 50, 10, 50, 10 };
 		DCB dcb;
 		if(!SetCommTimeouts(commHandle,&cto))
 		{
@@ -69,11 +69,19 @@ bool Serial::open(string commPortName, int bitRate)
 		dcb.StopBits = ONESTOPBIT;
 		dcb.ByteSize = 8;
 
+		HANDLE testHandle = CreateFileW(wideCommPortName.c_str(), GENERIC_READ | GENERIC_WRITE,
+			0, NULL, OPEN_EXISTING, 0, NULL);
+		if (testHandle == INVALID_HANDLE_VALUE) {
+			//std::cerr << "Error: COM port is already in use!" << std::endl;
+			return false;
+		}
+		CloseHandle(testHandle);
+
 		if(!SetCommState(commHandle,&dcb))
 		{
 			Serial::~Serial();
 			//throw("ERROR: Could not set com port parameters");
-      return false;
+			return false;
 		}
 	}
 
