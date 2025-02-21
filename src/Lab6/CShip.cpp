@@ -21,6 +21,8 @@ CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
 
     _turn_input = 0;
     _thrust = false;
+
+    _lives = 5;
     
     _vertices = {
         +0.0f, +0.3f, +0.0f,

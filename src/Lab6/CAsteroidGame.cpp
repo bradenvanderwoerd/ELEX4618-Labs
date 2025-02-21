@@ -36,6 +36,10 @@ CAsteroidGame::CAsteroidGame(cv::Size size) {
 	_thrust = false;
 	_fire = false;
 
+	_score = 0;
+	_num_asteroids = 0;
+	_num_missles = 0;
+
 	setup_game();
 }
 
@@ -248,13 +252,15 @@ void CAsteroidGame::update() {
 		// Add ship distance
 		CGameObject* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE);
 
+		asteroid->set_program_id(_program_id);
+		asteroid->update_scene(_camera);
+
 		_game_mutex.lock();
 		_create_gl_objects_index = _game_objects.size();
 		_game_objects.push_back(asteroid);
 		_game_mutex.unlock();
 
-		asteroid->set_program_id(_program_id);
-		asteroid->update_scene(_camera);
+		_num_asteroids++;
 
 		_last_spawn_time = cv::getTickCount();
 	}
@@ -285,7 +291,11 @@ void CAsteroidGame::draw() {
 		obj->draw();
 	}
 
-	_text_renderer->render_text(_text_program_id, "Hello, OpenGL!", 25.0f, 50.0f, 1.0f, glm::vec3(1.0, 1.0, 1.0));
+	CGameObject* ship = _game_objects.at(SHIP_INDEX);
+	std::string hud_text = "Score: " + std::to_string(_score) +
+						 "  Lives: " + std::to_string(ship->get_lives()) + 
+						 "  Asteroids: " + std::to_string(_num_asteroids);
+	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.8f, glm::vec3(1));
 
 	_create_gl_objects_index = -2;
 
