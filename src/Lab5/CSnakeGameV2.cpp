@@ -68,8 +68,8 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 		}
 	}
 
-	_menu_no_start_text = cv::imread("resources/menu_start.png");
-	_menu_start_text = cv::imread("resources/menu_no_start.png");
+	//_menu_no_start_text = cv::imread("resources/menu_no_start.png");
+	//_menu_start_text = cv::imread("resources/menu_start.png");
 
 	_play_snake_music = false;
 	_play_upgrade_sound = false;
@@ -367,10 +367,10 @@ void CSnakeGameV2::draw() {
 	_canvas.setTo(cv::Scalar(0, 0, 0));
 
 	if (!_start_game) {
-		if (_show_start_text)
+		/*if (_show_start_text)
 			_menu_start_text.copyTo(_canvas);
 		else
-			_menu_no_start_text.copyTo(_canvas);
+			_menu_no_start_text.copyTo(_canvas);*/
 
 		_canvas = crt(_canvas);
 
