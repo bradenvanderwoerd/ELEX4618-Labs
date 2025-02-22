@@ -8,6 +8,7 @@
 #define FOV 60.0f
 #define NEAR_PLANE 0.1f
 #define FAR_PLANE 100.0f
+#define DTIME 0.02f
 
 class CGameObject {
 	protected:
@@ -26,7 +27,7 @@ class CGameObject {
 
 		glm::vec3 _scale;
 
-		int _radius;
+		float _radius;
 
 		int _lives;
 
@@ -57,6 +58,8 @@ class CGameObject {
 		int get_lives() { return _lives; }
 
 		void set_lives(int lives) { _lives = lives; }
+
+		float get_radius() { return _radius; }
 
 		void set_pos(glm::vec3 pos) { _position = pos; }
 

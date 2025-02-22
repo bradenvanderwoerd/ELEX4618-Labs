@@ -1,7 +1,7 @@
 #include "Lab6/CGameObject.h"
 #include "stdafx.h"
+#include <cmath>
 
-#define DTIME 0.01f
 #define THRUST_FORCE 1.0f
 #define DRAG_FORCE 0.1f
 
@@ -16,10 +16,7 @@ CGameObject::~CGameObject() {
 }
 
 bool CGameObject::collide(CGameObject& obj) {
-	/*cv::Point3f objPos = obj.get_pos();
-	if (abs(_position.x - objPos.x) <= _radius &&
-		abs(_position.y - objPos.y) <= _radius &&
-		abs(_position.z - objPos.z) <= _radius)
+	/*if (glm::distance(_position, obj.get_pos()) < _radius + obj.get_radius())
 		return true;*/
 
 	return false;
@@ -73,25 +70,43 @@ void CGameObject::draw() {
 
 void CGameObject::update_scene(CCamera camera) {
 	glm::mat4 model_matrix = glm::mat4(1.0f);
+	glm::mat4 rotation_matrix = glm::mat4(1.0f);
 
-	glm::vec3 normal_position = glm::vec3(0);
-	if (glm::length(_position) != 0)
-		normal_position = glm::normalize(_position);
+	// If the object is at the origin, skip rotation adjustments
+	if (_position != glm::vec3(0.0f)) {
+		// 1. Compute the new Up vector (normal at the sphere)
+		glm::vec3 new_up = glm::normalize(_position);
 
-	glm::vec3 n_axis = glm::cross(glm::vec3(0, 1.0f, 0), normal_position);
-	float alpha = glm::acos(glm::dot(glm::vec3(0, 0, 1.0f), n_axis));
-	float beta = glm::acos(glm::dot(glm::vec3(0, 1.0f, 0), normal_position));
-	float gamma = glm::acos(glm::dot(n_axis, -_direction));
+		// 2. Compute the new Forward direction (opposite of _direction)
+		glm::vec3 new_forward = glm::normalize(_direction);
 
-	model_matrix = glm::translate(model_matrix, _position);
-	if (glm::length(normal_position) != 0) {
-		model_matrix = glm::rotate(model_matrix, gamma, normal_position);
-		model_matrix = glm::rotate(model_matrix, beta, n_axis);
-		model_matrix = glm::rotate(model_matrix, alpha, glm::vec3(0.0f, 1.0f, 0));
+		// 3. Compute the new Right vector (perpendicular to Up & Forward)
+		glm::vec3 new_right = glm::normalize(glm::cross(new_up, new_forward));
+
+		// 4. Recalculate Up to ensure orthogonality
+		new_up = glm::cross(new_forward, new_right);
+
+		// 5. Create the rotation matrix from the new basis vectors
+		rotation_matrix[0] = glm::vec4(new_right, 0.0f);  // X-axis
+		rotation_matrix[1] = glm::vec4(new_up, 0.0f);     // Y-axis
+		rotation_matrix[2] = glm::vec4(new_forward, 0.0f); // Z-axis
+
+		glm::mat4 pitch_matrix = glm::rotate(_rotation.x, new_right);
+		glm::mat4 yaw_matrix = glm::rotate(_rotation.y, new_up);
+		glm::mat4 roll_matrix = glm::rotate(_rotation.y, new_forward);
+
+		rotation_matrix = roll_matrix * pitch_matrix * yaw_matrix * rotation_matrix;
 	}
+
+	// 6. Apply translation and scaling
+	model_matrix = glm::translate(model_matrix, _position);
+	model_matrix *= rotation_matrix;
 	model_matrix = glm::scale(model_matrix, _scale);
 
-	glm::mat4 projection_matrix = glm::perspective(glm::radians(FOV), (float) _window_size.width / (float) _window_size.height, NEAR_PLANE, FAR_PLANE);
+	// 7. Compute the final MVP matrix
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(FOV),
+		(float)_window_size.width / (float)_window_size.height,
+		NEAR_PLANE, FAR_PLANE);
 
 	_mvp_matrix = projection_matrix * camera.get_view_matrix() * model_matrix;
 }

@@ -3,21 +3,22 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Lab6/CShip.h"
 
-#define DTIME 0.1f
-#define ROTATE_SPEED 5.0f
-#define THRUST_FORCE 5.0f
-#define DRAG_FORCE 0.5f
+#define ROTATE_SPEED 1.5f
+#define THRUST_FORCE 4.0f
+#define DRAG_FORCE 0.3f
 
 CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
     _program_id = -1;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
+    _radius = 0.6;
+
     _position = glm::vec3(0.1f, _orbit_distance, 0);
     _velocity = glm::vec3(0);
     _direction = glm::vec3(0, 0, 1.0f);
     _rotation = glm::vec3(0);
-    _scale = glm::vec3(1);
+    _scale = glm::vec3(_radius);
 
     _turn_input = 0;
     _thrust = false;
@@ -69,6 +70,10 @@ void CShip::move() {
     _direction = glm::mat3(glm::rotate(-glm::radians(_turn_input * ROTATE_SPEED), normal)) * _direction;
     _direction -= glm::dot(_direction, normal) * normal;
     _direction = normalize(_direction);
+
+    _rotation.x = _turn_input * _turn_input / 10;
+    _rotation.y = -_turn_input / 2;
+    _rotation.z = _turn_input / 4;
 }
 
 void CShip::update_input(float turn_input, bool thrust) {

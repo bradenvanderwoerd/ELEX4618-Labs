@@ -5,10 +5,8 @@
 #include <random>
 #include "Lab6/CAsteroid.h"
 
-#define DTIME 0.1f
 #define ROTATE_SPEED 5.0f
 #define ASTEROID_SPEED 2.0f
-#define DRAG_FORCE 0.5f
 
 CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_position) {
     _program_id = -1;
@@ -23,7 +21,8 @@ CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, glm::vec3 shi
         set_position_on_hemi(ship_position);
 
     _rotation = glm::vec3(0);
-    _scale = glm::vec3(1);
+    _radius = 1;
+    _scale = glm::vec3(_radius);
 
     _direction = glm::normalize(glm::cross(random_vec3(), _position));
 

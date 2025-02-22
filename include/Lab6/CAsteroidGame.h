@@ -12,210 +12,174 @@
 #include <mutex>
 
 /**
-*
+* @class CAsteroidGame
 * @brief Asteroids Game
 *
 * This class runs the game Asteroids by inheriting from CBase4618.
 * The user controls a ship that can shoot and destroy incoming asteroids.
 *
 * @author Braden Vanderwoerd
-*
 */
 class CAsteroidGame : public CBase4618 {
 
-	private:
+private:
 
-		GLFWwindow* _window;
+	GLFWwindow* _window; ///< Pointer to GLFW window
 
-		cv::Size _window_size;
+	cv::Size _window_size; ///< Size of the game window
 
-		CTextRenderer* _text_renderer;
+	CTextRenderer* _text_renderer; ///< Pointer to text renderer
 
-		std::vector<CGameObject*> _game_objects; ///< Game objects
+	std::vector<CGameObject*> _game_objects; ///< Vector containing game objects
 
-		int _create_gl_objects_index;
+	int _create_gl_objects_index; ///< Index for tracking OpenGL object creation
 
-		CCamera _camera;
+	CCamera _camera; ///< Camera object for handling view
 
-		float _turn_input;
+	float _turn_input; ///< Player turn input
 
-		bool _thrust;
+	bool _thrust; ///< Flag indicating if thrust is active
 
-		bool _fire;
+	bool _fire; ///< Flag indicating if fire is active
 
-		int _score;
+	int _score; ///< Player score
 
-		int _num_asteroids;
+	int _num_asteroids; ///< Number of asteroids in the game
 
-		int _num_missles;
+	int _num_missiles; ///< Number of missiles in the game
 
-		double _last_update_time;
+	double _last_update_time; ///< Last update time for game loop
 
-		double _last_spawn_time;
+	double _last_asteroid_spawn_time; ///< Last time an asteroid was spawned
 
-		bool _free_cam_enabled;
+	double _last_missile_spawn_time; ///< Last time a missile was spawned
 
-		bool _exit_flag; ///< Flag to exit game
+	bool _free_cam_enabled; ///< Flag indicating if free camera mode is enabled
 
-		bool _reset_flag;
+	bool _exit_flag; ///< Flag to exit game
 
-		std::mutex _game_mutex; ///< Mutex to protect game attributes across threads
+	bool _reset_flag; ///< Flag to reset game
 
-		GLuint _program_id;
+	std::mutex _game_mutex; ///< Mutex to protect game attributes across threads
 
-		GLuint _text_program_id;
+	GLuint _program_id; ///< OpenGL program ID
 
-		std::thread _gpio_thread;
-					
-		std::thread _update_thread;
-					
-		std::thread _draw_thread;
-					
-		std::thread _sound_thread;
+	GLuint _text_program_id; ///< OpenGL text program ID
 
-		/** @brief Runs gpio() in a loop
-		*
-		* @return nothing to return
-		*/
-		void gpio_thread();
+	std::thread _gpio_thread; ///< Thread for handling GPIO inputs
 
-		/** @brief Runs update() in a loop
-		*
-		* @return nothing to return
-		*/
-		void update_thread();
+	std::thread _update_thread; ///< Thread for handling game updates
 
-		/** @brief Runs draw() in a loop
-		*
-		* @return nothing to return
-		*/
-		void draw_thread();
+	std::thread _draw_thread; ///< Thread for handling rendering
 
-		/** @brief Runs sound() in a loop
-		*
-		* @return nothing to return
-		*/
-		void sound_thread();
+	std::thread _sound_thread; ///< Thread for handling sound effects
 
-		/** @brief Changes snake direction and colour and may reset game based on controller input
-		*
-		* @return nothing to return
-		*/
-		void gpio();
+	/** @brief Runs gpio() in a loop */
+	void gpio_thread();
 
-		/** @brief Updates game objects
-		*
-		* @return nothing to return
-		*/
-		void update();
+	/** @brief Runs update() in a loop */
+	void update_thread();
 
-		/** @brief Draws game objects and UI
-		*
-		* @return nothing to return
-		*/
-		void draw();
+	/** @brief Runs draw() in a loop */
+	void draw_thread();
 
-		/** @brief Plays sound effects
-		*
-		* @return nothing to return
-		*/
-		void sound();
+	/** @brief Runs sound() in a loop */
+	void sound_thread();
 
-		/** @brief Sets or resets all game objects
-		*
-		* @return nothing to return
-		*/
-		void setup_game();
+	/** @brief Changes ship direction and may reset game based on controller input */
+	void gpio();
 
-		/** @brief Applies crt effect to Mat object
-		*
-		* @param Mat on which crt effect is to be applied
-		* @return Mat with crt effect applied
-		*/
-		cv::Mat crt(cv::Mat input);
+	/** @brief Updates game objects */
+	void update();
 
-		/** @brief Handles key presses
-		*
-		* @return nothing to return
-		*/
-		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	/** @brief Draws game objects and UI */
+	void draw();
 
-		/** @brief Handles mouse movements
-		*
-		* @return nothing to return
-		*/
-		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+	/** @brief Plays sound effects */
+	void sound();
 
-		/** @brief Compiles and links shaders
-		*
-		* @return program ID
-		*/
-		static GLuint install_shaders();
+	/** @brief Sets or resets all game objects */
+	void setup_game();
 
-		/** @brief Compiles and links text shaders
-		*
-		* @return text program ID
-		*/
-		static GLuint install_text_shaders();
+	/**
+	* @brief Applies CRT effect to a Mat object
+	*
+	* @param input Mat on which CRT effect is to be applied
+	* @return Mat with CRT effect applied
+	*/
+	cv::Mat crt(cv::Mat input);
 
-		/** @brief Reads code from glsl file for shader
-		*
-		* @param file_name Path of glsl file
-		* @return Shader code as a string
-		*/
-		static std::string read_shader_code(std::string file_name);
+	/** @brief Handles key presses */
+	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-		/** @brief Checks if shader compiled
-		*
-		* @param shader_id ID of shader
-		* @return True if shader compiledwithout error
-		*/
-		static bool check_shader_status(GLuint shader_id);
+	/** @brief Handles mouse movements */
+	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
-		/** @brief Checks if program linked
-		*
-		* @param program_id ID of program
-		* @return True if program linked without error
-		*/
-		static bool check_program_status(GLuint program_id);
+	/** @brief Compiles and links shaders
+	*  @return Program ID
+	*/
+	static GLuint install_shaders();
 
-	public:
-		/** @brief Initializes members and auto-initializes COM port
-		*
-		* @param size Size of canvas
-		*/
-		CAsteroidGame(cv::Size size);
+	/** @brief Compiles and links text shaders
+	*  @return Text program ID
+	*/
+	static GLuint install_text_shaders();
 
-		/** @brief CSnakeGame deconstructor */
-		~CAsteroidGame();
+	/**
+	* @brief Reads code from GLSL file for shader
+	*
+	* @param file_name Path of GLSL file
+	* @return Shader code as a string
+	*/
+	static std::string read_shader_code(std::string file_name);
 
-		/** @brief Gets CCamera object
-		* 
-		* @return CCamera object
-		*/
-		CCamera* get_camera() { return &_camera; }
+	/**
+	* @brief Checks if shader compiled successfully
+	*
+	* @param shader_id ID of shader
+	* @return True if shader compiled without error
+	*/
+	static bool check_shader_status(GLuint shader_id);
 
-		/** @brief Determines if mouse should updates camera
-		*
-		* @return Value of _do_camera_mouse_updates
-		*/
-		bool free_cam_enabled() { return _free_cam_enabled; }
+	/**
+	* @brief Checks if program linked successfully
+	*
+	* @param program_id ID of program
+	* @return True if program linked without error
+	*/
+	static bool check_program_status(GLuint program_id);
 
-		/** @brief Ends game
-		*
-		* @return nothing to return
-		*/
-		void close_game();
+public:
+	/**
+	* @brief Initializes members and auto-initializes COM port
+	*
+	* @param size Size of canvas
+	*/
+	CAsteroidGame(cv::Size size);
 
-		/** @brief Toggles mouse camera updates
-		*
-		* @return nothing to return
-		*/
-		void toggle_free_cam();
+	/** @brief CAsteroidGame destructor */
+	~CAsteroidGame();
 
-		/** @brief Starts gpio, update, and draw threads and waits for command to quit
-		*
-		* @return nothing to return
-		*/
-		void run();
+	/**
+	* @brief Gets CCamera object
+	*
+	* @return Pointer to CCamera object
+	*/
+	CCamera* get_camera() { return &_camera; }
+
+	/**
+	* @brief Determines if mouse should update camera
+	*
+	* @return Value of _free_cam_enabled flag
+	*/
+	bool free_cam_enabled() { return _free_cam_enabled; }
+
+	/** @brief Ends game */
+	void close_game();
+
+	/** @brief Toggles free camera mode */
+	void toggle_free_cam();
+
+	/** @brief Starts gpio, update, draw, and sound threads and waits for command to quit */
+	void run();
 };

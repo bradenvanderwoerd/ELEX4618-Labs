@@ -116,12 +116,6 @@ void CTextRenderer::render_text(GLuint shader, std::string text, float x, float 
             { xpos + w, ypos + h, 1.0f, 0.0f }
         };
 
-        std::cout << "Character: " << c
-            << " Texture ID: " << ch.TextureID
-            << " Size: " << ch.Size.x << ", " << ch.Size.y
-            << " Bearing: " << ch.Bearing.x << ", " << ch.Bearing.y
-            << " Advance: " << ch.Advance << std::endl;
-
         glBindTexture(GL_TEXTURE_2D, ch.TextureID);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
