@@ -2,19 +2,19 @@
 
 #define MISSILE_SPEED 15.0f
 
-CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_position, glm::vec3 ship_direction) {
-    _program_id = -1;
+CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, CShip* ship, GLuint program_id) {
+    _program_id = program_id;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
-
-    _position = ship_position;
 
     _rotation = glm::vec3(0);
     _radius = 0.1f;
     _scale = glm::vec3(_radius);
 
-    _direction = ship_direction;
-    _velocity = _direction * MISSILE_SPEED;
+    _direction = ship->get_dir();
+    _velocity = _direction * (MISSILE_SPEED + glm::length(ship->get_vel()));
+
+    _position = ship->get_pos() +0.3f * _direction;
 
     _vertices = {
         +1.0f, +0.0f, -0.707f,
@@ -36,6 +36,8 @@ CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_
         0, 3, 1,
         1, 3, 2 
     };
+
+    create_gl_objects();
 }
 
 CMissile::~CMissile() {

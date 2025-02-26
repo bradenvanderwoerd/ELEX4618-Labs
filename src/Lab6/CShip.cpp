@@ -9,8 +9,8 @@
 
 CShip::CShip() {}
 
-CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
-    _program_id = -1;
+CShip::CShip(cv::Size window_size, GLfloat orbit_distance, GLuint program_id) {
+    _program_id = program_id;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
@@ -47,6 +47,8 @@ CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
         0, 3, 1,
         1, 3, 2 
     };
+
+    create_gl_objects();
 }
 
 CShip::~CShip() {
@@ -64,7 +66,7 @@ void CShip::move() {
     _velocity -= glm::dot(_velocity, normal) * normal;
 
     // Change position based on velocity, project onto surface
-    _position -= _velocity * DTIME;
+    _position += _velocity * DTIME;
     normal = normalize(_position);
     _position = normal * _orbit_distance;
 
