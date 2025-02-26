@@ -65,6 +65,9 @@ bool CControl::get_data(int type, int channel, int& result) {
 		else
 			break;
 	}
+
+	if (rx_str == " ")
+		return false;
 	
 	std::regex result_exp("(\\d+)$");
 	std::smatch match;
