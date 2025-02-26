@@ -41,15 +41,19 @@ private:
 
 	std::vector<CMissile*> _missiles;
 
-	bool _game_started;
-
 	int _create_new_asteroid;
 
 	int _create_new_missile;
 
+	std::vector<int> _asteroids_to_remove;
+
+	std::vector<int> _missiles_to_remove;
+
 	CCamera _camera; ///< Camera object for handling view
 
 	bool _controller_connected;
+
+	bool _game_started;
 
 	float _turn_input; ///< Player turn input
 

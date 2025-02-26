@@ -11,10 +11,13 @@
 #define PLANET_INDEX 1
 
 #define STARTING_ASTEROID_COUNT 50
+#define MAX_ASTEROIDS 50
+
 #define ORBIT_DISTANCE 30.0f
 #define DEADZONE_PERCENT 20
 
 #define UPDATE_TIME 5
+#define LOOP_PERIOD 10
 #define ASTEROID_SPAWN_TIME 200
 #define MISSILE_SPAWN_TIME 150
 
@@ -167,11 +170,11 @@ void CAsteroidGame::draw_thread() {
 	
 	do {
 		double start_ticks = cv::getTickCount();
-		//auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(LOOP_PERIOD);
+		auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(LOOP_PERIOD);
 
 		draw();
 
-		//std::this_thread::sleep_until(end_time);
+		std::this_thread::sleep_until(end_time);
 
 		//_last_frame_time = (cv::getTickCount() - start_ticks) / cv::getTickFrequency();
 
@@ -202,11 +205,11 @@ void CAsteroidGame::sound_thread() {
 }
 
 void CAsteroidGame::gpio() {
-	// Implement auto connection
-	int dummy = 1;
-	if (!_ctrl.get_data(DIGITAL, 1, dummy)) {
+	// Implement auto connection!
+	int dummy = -1;
+	_controller_connected = _ctrl.get_data(DIGITAL, 0, dummy);
+	if (!_controller_connected) {
 		_ctrl.init_com();
-		return;
 	}
 
 	float joy_x = _ctrl.get_analog(JOY_X);
@@ -265,7 +268,7 @@ void CAsteroidGame::update() {
 		_last_update_time = cv::getTickCount();
 	}
 
-	if (1000 * (cv::getTickCount() - _last_asteroid_spawn_time) / cv::getTickFrequency() > ASTEROID_SPAWN_TIME) {
+	if (1000 * (cv::getTickCount() - _last_asteroid_spawn_time) / cv::getTickFrequency() > ASTEROID_SPAWN_TIME && _asteroids.size() < MAX_ASTEROIDS) {
 		// Add ship distance
 		_create_new_asteroid++;
 		_last_asteroid_spawn_time = cv::getTickCount();
@@ -279,6 +282,47 @@ void CAsteroidGame::update() {
 
 	if (_reset_flag) {
 		std::cout << "Game reset!" << std::endl;
+	}
+
+	CShip* ship_copy;
+	std::vector<CAsteroid*> asteroids_copy;
+	std::vector<CMissile*> missiles_copy;
+
+	_game_mutex.lock();
+
+	ship_copy = _ship;
+	asteroids_copy = _asteroids;
+	missiles_copy = _missiles;
+
+	_asteroids_to_remove.clear();
+	_missiles_to_remove.clear();
+
+	_game_mutex.unlock();
+
+	for (int asteroid_index = 0; asteroid_index < asteroids_copy.size(); asteroid_index++) {
+		if (ship_copy->collide(*asteroids_copy.at(asteroid_index))) {
+
+			asteroids_copy.at(asteroid_index)->hit();
+
+			_game_mutex.lock();
+			_asteroids_to_remove.push_back(asteroid_index);
+			_game_mutex.unlock();
+		}
+
+		for (int missile_index = 0; missile_index < missiles_copy.size(); missile_index++) {
+			if (asteroids_copy.at(asteroid_index)->collide(*missiles_copy.at(missile_index))) {
+				asteroids_copy.at(asteroid_index)->hit();
+				_asteroids_to_remove.push_back(asteroid_index);
+
+				missiles_copy.at(missile_index)->hit();
+
+				_game_mutex.lock();
+				_missiles_to_remove.push_back(missile_index);
+				_game_mutex.unlock();
+
+				break;
+			}
+		}
 	}
 }
 
@@ -299,6 +343,35 @@ void CAsteroidGame::draw() {
 		_missiles.push_back(missile);
 		_create_new_missile--;
 	}
+
+	// Sort indices in descending order to avoid shifting issues
+	if (_asteroids_to_remove.size() > 1)
+		std::sort(_asteroids_to_remove.rbegin(), _asteroids_to_remove.rend());
+	if (_missiles_to_remove.size() > 1)
+		std::sort(_missiles_to_remove.rbegin(), _missiles_to_remove.rend());
+
+	// Remove asteroids
+	for (int index : _asteroids_to_remove) {
+		if (index >= 0 && index < _asteroids.size()) {
+			delete _asteroids[index];  // Free memory if using pointers
+			_asteroids.erase(_asteroids.begin() + index);
+		}
+	}
+
+	// Remove missiles
+	for (int index : _missiles_to_remove) {
+		if (index >= 0 && index < _missiles.size()) {
+			delete _missiles[index];  // Free memory if using pointers
+			_missiles.erase(_missiles.begin() + index);
+		}
+	}
+
+	_score += _missiles_to_remove.size() * 150;
+	if (_asteroids_to_remove.size() > _missiles_to_remove.size())
+		_ship->hit();
+
+	_asteroids_to_remove.clear();
+	_missiles_to_remove.clear();
 
 	_ship->draw();
 	_planet->draw();

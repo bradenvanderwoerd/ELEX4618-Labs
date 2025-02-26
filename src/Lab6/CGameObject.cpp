@@ -6,7 +6,7 @@
 #define DRAG_FORCE 0.1f
 
 CGameObject::CGameObject() {
-
+	_lives = 1;
 }
 
 CGameObject::~CGameObject() {
