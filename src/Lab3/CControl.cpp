@@ -21,31 +21,30 @@ void CControl::init_com(int comport) {
 	_com.flush();
 }
 
-void CControl::init_com() {
+bool CControl::init_com() {
 	int comport = 4;
 	int dummy = 1;
 	bool connected = false;
 
-	_com.open("COM" + std::to_string(comport));
-	connected = get_data(DIGITAL, 1, dummy);
-
 	std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
+
+	connected = _com.open("COM" + std::to_string(comport));
 
 	if (!connected) comport = 0;
 	while (!connected && comport < 6) {
 		comport++;
-		_com.open("COM" + std::to_string(comport));
-		connected = get_data(DIGITAL, 1, dummy);
 		std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
+		connected = _com.open("COM" + std::to_string(comport));
 	}
 
-	if (connected){
+	if (connected) {
 		std::cout << "Connected on COM" + std::to_string(comport) << std::endl;
 		_com.flush();
+		return true;
 	}
-	else {
-		std::cout << "Auto-connect failed" << std::endl;
-	}
+
+	std::cout << "Auto-connect failed" << std::endl;
+	return false;
 }
 
 bool CControl::get_data(int type, int channel, int& result) {
