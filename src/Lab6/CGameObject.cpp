@@ -22,14 +22,6 @@ bool CGameObject::collide(CGameObject& obj) {
 	return false;
 }
 
-bool CGameObject::collide_wall(cv::Size board) {
-	/*if (_position.x <= 0 || _position.x >= board.width ||
-		_position.y <= 0 || _position.x >= board.height)
-		return true;*/
-
-	return false;
-}
-
 void CGameObject::hit() {
 	_lives--;
 }
