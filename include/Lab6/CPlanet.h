@@ -6,6 +6,7 @@ class CPlanet : public CGameObject {
 	private:
 
 	public:
+		CPlanet();
 		CPlanet(cv::Size window_size, GLfloat orbit_distance);
 		~CPlanet();
 		void move();

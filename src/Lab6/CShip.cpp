@@ -7,6 +7,8 @@
 #define THRUST_FORCE 4.0f
 #define DRAG_FORCE 0.3f
 
+CShip::CShip() {}
+
 CShip::CShip(cv::Size window_size, GLfloat orbit_distance) {
     _program_id = -1;
     _window_size = window_size;
