@@ -3,10 +3,6 @@
 #include "glad.h"
 #include <fstream>
 #include "Lab6/CAsteroidGame.h"
-#include "Lab6/CShip.h"
-#include "Lab6/CPlanet.h"
-#include "Lab6/CAsteroid.h"
-#include "Lab6/CMissile.h"
 
 #define DO_CONTROLLER true
 
@@ -14,6 +10,7 @@
 #define SHIP_INDEX 0
 #define PLANET_INDEX 1
 
+#define STARTING_ASTEROID_COUNT 50
 #define ORBIT_DISTANCE 30.0f
 #define DEADZONE_PERCENT 20
 
@@ -23,12 +20,17 @@
 
 CAsteroidGame::CAsteroidGame(cv::Size size) {
 
+	_game_started = false;
+	_controller_connected = false;
+
 	_window_size = size;
 
 	_exit_flag = false;
 	_reset_flag = false;
 
-	// Move some stuff to setup_game
+	_create_new_asteroid = 0;
+	_create_new_missile = 0;
+
 	_last_update_time = cv::getTickCount();
 	_last_asteroid_spawn_time = cv::getTickCount();
 	_last_missile_spawn_time = cv::getTickCount();
@@ -40,10 +42,6 @@ CAsteroidGame::CAsteroidGame(cv::Size size) {
 	_fire = false;
 
 	_score = 0;
-	_num_asteroids = 0;
-	_num_missiles = 0;
-
-	setup_game();
 }
 
 CAsteroidGame::~CAsteroidGame() {
@@ -69,10 +67,6 @@ CAsteroidGame::~CAsteroidGame() {
 		std::cout << "Joining Sound thread..." << std::endl;
 		_sound_thread.join();
 		std::cout << "Sound thread exited." << std::endl;
-	}
-
-	for (auto obj : _game_objects) {
-		delete obj;
 	}
 
 	if (_window) {
@@ -108,20 +102,27 @@ void CAsteroidGame::run() {
 }
 
 void CAsteroidGame::gpio_thread() {
-	if (DO_CONTROLLER)
-		_ctrl.init_com();
+	_controller_connected = _ctrl.init_com();
+	
+	while (DO_CONTROLLER && !_controller_connected && !_exit_flag) {
+		std::cout << "Retrying auto-connect in 3 seconds..." << std::endl;
+		Sleep(3000);
+		_controller_connected = _ctrl.init_com();
+	}
 	
 	do {
-		gpio();
+		if (_game_started)
+			gpio();
 	} while (_exit_flag == false);
 }
 
 void CAsteroidGame::update_thread() {
 	srand(time(0));
 
-	while (_exit_flag == false && _game_objects.size() > 0) {
-		update();
-	}
+	do {
+		if (_game_started)
+			update();
+	} while (_exit_flag == false);
 }
 
 void CAsteroidGame::draw_thread() {
@@ -162,8 +163,7 @@ void CAsteroidGame::draw_thread() {
 	_text_renderer = new CTextRenderer("fonts/Arial.ttf");
 	_text_program_id = install_text_shaders();
 
-	for (CGameObject* obj : _game_objects)
-		obj->set_program_id(_program_id);
+	setup_game();
 	
 	do {
 		double start_ticks = cv::getTickCount();
@@ -202,6 +202,7 @@ void CAsteroidGame::sound_thread() {
 }
 
 void CAsteroidGame::gpio() {
+	// Implement auto connection
 	int dummy = 1;
 	if (!_ctrl.get_data(DIGITAL, 1, dummy)) {
 		_ctrl.init_com();
@@ -222,11 +223,10 @@ void CAsteroidGame::gpio() {
 
 	_game_mutex.unlock();
 
-	int fire_button;
-	_ctrl.get_data(DIGITAL, BUTTON1, fire_button);
+	// Does this work?
+	int fire_button	= _ctrl.get_button(BUTTON1);
 	int reset_button = _ctrl.get_button(BUTTON2);
 
-	// Odd behaviour
 	if (fire_button == 0)
 		_fire = true;
 	else if (fire_button == 1)
@@ -241,71 +241,44 @@ void CAsteroidGame::update() {
 	if (1000 * (cv::getTickCount() - _last_update_time) / cv::getTickFrequency() > UPDATE_TIME) {
 		_game_mutex.lock();
 
-		CShip* ship = dynamic_cast<CShip*>(_game_objects.at(SHIP_INDEX));
-		ship->update_input(_turn_input, _thrust);
-		for (auto obj : _game_objects) {
-			obj->update_scene(_camera);
-			obj->move();
+		_ship->update_input(_turn_input, _thrust);
+		_ship->update_scene(_camera);
+		_ship->move();
+
+		_planet->update_scene(_camera);
+
+		for (CAsteroid* asteroid : _asteroids) {
+			asteroid->update_scene(_camera);
+			asteroid->move();
+		}
+
+		for (CMissile* missile : _missiles) {
+			missile->update_scene(_camera);
+			missile->move();
 		}
 
 		_game_mutex.unlock();
 
 		if (!_free_cam_enabled)
-			_camera.follow_ship(_game_objects.at(SHIP_INDEX)->get_pos(), _game_objects.at(SHIP_INDEX)->get_dir());
+			_camera.follow_ship(_ship->get_pos(), _ship->get_dir());
 
 		_last_update_time = cv::getTickCount();
 	}
 
-	if (_fire && 1000 * (cv::getTickCount() - _last_missile_spawn_time) / cv::getTickFrequency() > MISSILE_SPAWN_TIME) {
-		std::cout << "Shots fired!" << std::endl;
-		CGameObject* ship = _game_objects.at(SHIP_INDEX);
-		CGameObject* missile = new CMissile(_window_size, ORBIT_DISTANCE, ship->get_pos(), -ship->get_dir());
-
-		missile->set_program_id(_program_id);
-		missile->update_scene(_camera);
-
-		_game_mutex.lock();
-		_create_gl_objects_index = _game_objects.size();
-		_game_objects.push_back(missile);
-		_game_mutex.unlock();
-
-		_num_missiles++;
-
-		_last_missile_spawn_time = cv::getTickCount();
-	}
-
-	if (_create_gl_objects_index != -1 && 1000 * (cv::getTickCount() - _last_asteroid_spawn_time) / cv::getTickFrequency() > ASTEROID_SPAWN_TIME) {
+	if (1000 * (cv::getTickCount() - _last_asteroid_spawn_time) / cv::getTickFrequency() > ASTEROID_SPAWN_TIME) {
 		// Add ship distance
-		CGameObject* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE);
-
-		asteroid->set_program_id(_program_id);
-		asteroid->update_scene(_camera);
-
-		_game_mutex.lock();
-		_create_gl_objects_index = _game_objects.size();
-		_game_objects.push_back(asteroid);
-		_game_mutex.unlock();
-
-		_num_asteroids++;
-
+		_create_new_asteroid++;
 		_last_asteroid_spawn_time = cv::getTickCount();
 	}
 
-	for (int index = 0; index < _game_objects.size(); index++) {
-		for (int second_index = 0; second_index < _game_objects.size(); second_index++) {
-			CGameObject* first_object = _game_objects.at(index);
-			CGameObject* second_object = _game_objects.at(second_index);
-
-			if (first_object->collide(*second_object)) {
-				first_object->hit();
-				second_object->hit();
-			}
-		}
+	if (_fire && 1000 * (cv::getTickCount() - _last_missile_spawn_time) / cv::getTickFrequency() > MISSILE_SPAWN_TIME) {
+		std::cout << "Shots fired!" << std::endl;
+		_create_new_missile++;
+		_last_missile_spawn_time = cv::getTickCount();
 	}
 
 	if (_reset_flag) {
 		std::cout << "Game reset!" << std::endl;
-		_reset_flag = false;
 	}
 }
 
@@ -315,32 +288,42 @@ void CAsteroidGame::draw() {
 
 	_game_mutex.lock();
 
-	if (_create_gl_objects_index > -1)
-		_game_objects.at(_create_gl_objects_index)->create_gl_objects();
-
-	for (auto obj : _game_objects) {
-		if (_create_gl_objects_index == -1)
-			obj->create_gl_objects();
-		obj->draw();
+	while (_create_new_asteroid > 0) {
+		CAsteroid* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE, _program_id);
+		_asteroids.push_back(asteroid);
+		_create_new_asteroid--;
 	}
 
-	CGameObject* ship = _game_objects.at(SHIP_INDEX);
-	std::string hud_text = "Score: " + std::to_string(_score) +
-						 "  Lives: " + std::to_string(ship->get_lives()) + 
-						 "  Asteroids: " + std::to_string(_num_asteroids);
-	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.8f, glm::vec3(1));
+	while (_create_new_missile > 0) {
+		CMissile* missile = new CMissile(_window_size, ORBIT_DISTANCE, _ship, _program_id);
+		_missiles.push_back(missile);
+		_create_new_missile--;
+	}
 
-	_create_gl_objects_index = -2;
+	_ship->draw();
+	_planet->draw();
+
+	for (CAsteroid* asteroid : _asteroids)
+		asteroid->draw();
+
+	for (CMissile* missile : _missiles)
+		missile->draw();
 
 	_game_mutex.unlock();
+
+	std::string hud_text = "Score: " + std::to_string(_score) +
+						 "  Lives: " + std::to_string(_ship->get_lives()) + 
+						 "  Asteroids: " + std::to_string(_asteroids.size());
+	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.8f, glm::vec3(1));
+
 
 	glfwPollEvents();
 	glfwSwapBuffers(_window);
 
-	/*GLenum err;
-	while ((err = glGetError()) != GL_NO_ERROR) {
-		std::cout << "OpenGL Error: " << err << std::endl;
-	}*/
+	if (_reset_flag) {
+		setup_game();
+		_reset_flag = false;
+	}
 }
 
 void CAsteroidGame::sound() {
@@ -348,17 +331,22 @@ void CAsteroidGame::sound() {
 }
 
 void CAsteroidGame::setup_game() {
-	CGameObject* ship = new CShip(_window_size, ORBIT_DISTANCE);
-	_game_objects.push_back(ship);
+	_ship = new CShip(_window_size, ORBIT_DISTANCE, _program_id);
+	_ship->update_scene(_camera);
 
-	CGameObject* planet = new CPlanet(_window_size, ORBIT_DISTANCE);
-	_game_objects.push_back(planet);
+	_planet = new CPlanet(_window_size, ORBIT_DISTANCE, _program_id);
+	_planet->update_scene(_camera);
 
-	_create_gl_objects_index = -1;
-}
+	_asteroids.clear();
+	for (int asteroid_count = 0; asteroid_count < STARTING_ASTEROID_COUNT; asteroid_count++) {
+		CAsteroid* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE, _program_id);
+		asteroid->update_scene(_camera);
+		_asteroids.push_back(asteroid);
+	}
 
-cv::Mat crt(cv::Mat input) {
-	return input;
+	_missiles.clear();
+
+	_game_started = true;
 }
 
 void CAsteroidGame::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

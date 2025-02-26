@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Lab4/CBase4618.h"
-#include "Lab6/CGameObject.h"
+#include "Lab6/CShip.h"
+#include "Lab6/CPlanet.h"
+#include "Lab6/CAsteroid.h"
+#include "Lab6/CMissile.h"
 #include "Lab6/CCamera.h"
 #include "Lab6/CTextRenderer.h"
 
@@ -30,11 +33,23 @@ private:
 
 	CTextRenderer* _text_renderer; ///< Pointer to text renderer
 
-	std::vector<CGameObject*> _game_objects; ///< Vector containing game objects
+	CShip* _ship;
 
-	int _create_gl_objects_index; ///< Index for tracking OpenGL object creation
+	CPlanet* _planet;
+
+	std::vector<CAsteroid*> _asteroids;
+
+	std::vector<CMissile*> _missiles;
+
+	bool _game_started;
+
+	int _create_new_asteroid;
+
+	int _create_new_missile;
 
 	CCamera _camera; ///< Camera object for handling view
+
+	bool _controller_connected;
 
 	float _turn_input; ///< Player turn input
 
@@ -43,10 +58,6 @@ private:
 	bool _fire; ///< Flag indicating if fire is active
 
 	int _score; ///< Player score
-
-	int _num_asteroids; ///< Number of asteroids in the game
-
-	int _num_missiles; ///< Number of missiles in the game
 
 	double _last_update_time; ///< Last update time for game loop
 
@@ -100,14 +111,6 @@ private:
 
 	/** @brief Sets or resets all game objects */
 	void setup_game();
-
-	/**
-	* @brief Applies CRT effect to a Mat object
-	*
-	* @param input Mat on which CRT effect is to be applied
-	* @return Mat with CRT effect applied
-	*/
-	cv::Mat crt(cv::Mat input);
 
 	/** @brief Handles key presses */
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);

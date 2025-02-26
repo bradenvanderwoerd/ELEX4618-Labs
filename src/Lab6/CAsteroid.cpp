@@ -8,8 +8,8 @@
 #define ROTATE_SPEED 5.0f
 #define ASTEROID_SPEED 2.0f
 
-CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, glm::vec3 ship_position) {
-    _program_id = -1;
+CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, GLuint program_id, glm::vec3 ship_position) {
+    _program_id = program_id;
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
@@ -77,6 +77,8 @@ CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, glm::vec3 shi
         3, 9, 4,   3, 4, 2,   3, 2, 6,   3, 6, 8,   3, 8, 9,
         4, 9, 5,   2, 4, 11,   6, 2, 10,   8, 6, 7,   9, 8, 1
     };
+
+    create_gl_objects();
 }
 
 CAsteroid::~CAsteroid() {

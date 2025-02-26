@@ -17,7 +17,7 @@ CCamera::~CCamera() {
 }
 
 void CCamera::follow_ship(glm::vec3 ship_position, glm::vec3 ship_direction) {
-	glm::vec3 camera_offset = glm::vec3(0.0f, 2.6f, -3.0f); // Above and behind
+	glm::vec3 camera_offset = glm::vec3(0.0f, 2.6f, 3.0f); // Above and behind
 
 	// Compute the "right" and "up" vectors for local ship space
 	glm::vec3 up_vector = glm::normalize(ship_position);  // Normal to the sphere

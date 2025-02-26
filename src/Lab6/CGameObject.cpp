@@ -6,7 +6,7 @@
 #define DRAG_FORCE 0.1f
 
 CGameObject::CGameObject() {
-	
+
 }
 
 CGameObject::~CGameObject() {
@@ -16,8 +16,8 @@ CGameObject::~CGameObject() {
 }
 
 bool CGameObject::collide(CGameObject& obj) {
-	/*if (glm::distance(_position, obj.get_pos()) < _radius + obj.get_radius())
-		return true;*/
+	if (glm::distance(_position, obj.get_pos()) < _radius + obj.get_radius())
+		return true;
 
 	return false;
 }
@@ -78,7 +78,7 @@ void CGameObject::update_scene(CCamera camera) {
 		glm::vec3 new_up = glm::normalize(_position);
 
 		// 2. Compute the new Forward direction (opposite of _direction)
-		glm::vec3 new_forward = glm::normalize(_direction);
+		glm::vec3 new_forward = glm::normalize(-_direction);
 
 		// 3. Compute the new Right vector (perpendicular to Up & Forward)
 		glm::vec3 new_right = glm::normalize(glm::cross(new_up, new_forward));
