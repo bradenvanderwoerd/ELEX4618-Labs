@@ -26,14 +26,14 @@ bool CControl::init_com() {
 	int dummy = 1;
 	bool connected = false;
 
-	std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
+	//std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
 
 	connected = _com.open("COM" + std::to_string(comport));
 
 	if (!connected) comport = 0;
 	while (!connected && comport < 6) {
 		comport++;
-		std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
+		//std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
 		connected = _com.open("COM" + std::to_string(comport));
 	}
 
@@ -66,7 +66,9 @@ bool CControl::get_data(int type, int channel, int& result) {
 			break;
 	}
 
-	if (rx_str == " ")
+	rx_str.erase(std::remove(rx_str.begin(), rx_str.end(), '\0'), rx_str.end()); // Remove all '\0'
+	bool is_empty = rx_str.empty();
+	if (is_empty)
 		return false;
 	
 	std::regex result_exp("(\\d+)$");

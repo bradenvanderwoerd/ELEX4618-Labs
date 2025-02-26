@@ -209,7 +209,11 @@ void CAsteroidGame::gpio() {
 	int dummy = -1;
 	_controller_connected = _ctrl.get_data(DIGITAL, 0, dummy);
 	if (!_controller_connected) {
+		_turn_input = 0;
+		_thrust = false;
+		std::cout << "Controller disconnected" << std::endl;
 		_ctrl.init_com();
+		return;
 	}
 
 	float joy_x = _ctrl.get_analog(JOY_X);
@@ -226,7 +230,6 @@ void CAsteroidGame::gpio() {
 
 	_game_mutex.unlock();
 
-	// Does this work?
 	int fire_button	= _ctrl.get_button(BUTTON1);
 	int reset_button = _ctrl.get_button(BUTTON2);
 
@@ -275,7 +278,6 @@ void CAsteroidGame::update() {
 	}
 
 	if (_fire && 1000 * (cv::getTickCount() - _last_missile_spawn_time) / cv::getTickFrequency() > MISSILE_SPAWN_TIME) {
-		std::cout << "Shots fired!" << std::endl;
 		_create_new_missile++;
 		_last_missile_spawn_time = cv::getTickCount();
 	}
@@ -386,8 +388,9 @@ void CAsteroidGame::draw() {
 
 	std::string hud_text = "Score: " + std::to_string(_score) +
 						 "  Lives: " + std::to_string(_ship->get_lives()) + 
-						 "  Asteroids: " + std::to_string(_asteroids.size());
-	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.8f, glm::vec3(1));
+						 "  Asteroids: " + std::to_string(_asteroids.size()) + 
+						 "  Missiles: " + std::to_string(_missiles.size());
+	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.5f, glm::vec3(1));
 
 
 	glfwPollEvents();
