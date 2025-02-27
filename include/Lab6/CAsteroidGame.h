@@ -47,10 +47,6 @@ class CAsteroidGame : public CBase4618 {
 
 		bool _ship_hit; ///< Flag indicating if ship has been hit
 
-		std::vector<int> _asteroids_to_remove; ///< Vector of indices of asteroids to remove
-
-		std::vector<int> _missiles_to_remove; ///< Vector of indices of missiles to remove
-
 		CCamera _camera; ///< Camera object for handling view
 
 		bool _controller_connected; ///< Flag indicating if controller is connected

@@ -294,9 +294,6 @@ void CAsteroidGame::update() {
 	asteroids_copy = _asteroids;
 	missiles_copy = _missiles;
 
-	_asteroids_to_remove.clear();
-	_missiles_to_remove.clear();
-
 	_game_mutex.unlock();
 
 	_ship_hit = false;
