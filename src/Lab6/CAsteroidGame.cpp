@@ -5,6 +5,7 @@
 #include "Lab6/CAsteroidGame.h"
 
 #define DO_CONTROLLER true
+#define DO_SOUND false
 
 #define CANVAS_NAME "Asteroids"
 #define SHIP_INDEX 0
@@ -16,7 +17,7 @@
 #define ORBIT_DISTANCE 30.0f
 #define DEADZONE_PERCENT 20
 
-#define UPDATE_TIME 5
+#define UPDATE_TIME 8
 #define LOOP_PERIOD 10
 #define ASTEROID_SPAWN_TIME 200
 #define MISSILE_SPAWN_TIME 150
@@ -187,7 +188,9 @@ void CAsteroidGame::sound_thread() {
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
 	_music = Mix_LoadMUS("resources/asteroids.wav");
-	Mix_PlayMusic(_music, -1);
+	
+	if (DO_SOUND)
+		Mix_PlayMusic(_music, -1);
 
 	do {
 		Sleep(10);
@@ -302,23 +305,34 @@ void CAsteroidGame::update() {
 		if (ship_copy->collide(*asteroids_copy.at(asteroid_index))) {
 
 			asteroids_copy.at(asteroid_index)->hit();
+			_ship_hit = true;
+			
+			/*_ship_hit = true;
 
 			_game_mutex.lock();
 			_asteroids_to_remove.push_back(asteroid_index);
-			_ship_hit = true;
-			_game_mutex.unlock();
+			_game_mutex.unlock();*/
 		}
 
 		for (int missile_index = 0; missile_index < missiles_copy.size(); missile_index++) {
+
 			if (asteroids_copy.at(asteroid_index)->collide(*missiles_copy.at(missile_index))) {
 				asteroids_copy.at(asteroid_index)->hit();
-				_asteroids_to_remove.push_back(asteroid_index);
-
 				missiles_copy.at(missile_index)->hit();
 
-				_game_mutex.lock();
+				/*_game_mutex.lock();
+				_asteroids_to_remove.push_back(asteroid_index);
 				_missiles_to_remove.push_back(missile_index);
-				_game_mutex.unlock();
+				_game_mutex.unlock();*/
+
+				break;
+			}
+			else if (glm::dot(missiles_copy.at(missile_index)->get_pos(), ship_copy->get_pos()) < 0) {
+				missiles_copy.at(missile_index)->hit();
+
+				/*_game_mutex.lock();
+				_missiles_to_remove.push_back(missile_index);
+				_game_mutex.unlock();*/
 
 				break;
 			}
@@ -344,37 +358,26 @@ void CAsteroidGame::draw() {
 		_create_new_missile--;
 	}
 
-	// Sort indices in descending order to avoid shifting issues
-	if (_asteroids_to_remove.size() > 1)
-		std::sort(_asteroids_to_remove.rbegin(), _asteroids_to_remove.rend());
-	if (_missiles_to_remove.size() > 1)
-		std::sort(_missiles_to_remove.rbegin(), _missiles_to_remove.rend());
-
-	// Remove asteroids
-	for (int index : _asteroids_to_remove) {
-		if (index >= 0 && index < _asteroids.size()) {
-			delete _asteroids[index];  // Free memory if using pointers
-			_asteroids.erase(_asteroids.begin() + index);
-		}
-	}
-
-	// Remove missiles
-	for (int index : _missiles_to_remove) {
-		if (index >= 0 && index < _missiles.size()) {
-			delete _missiles[index];  // Free memory if using pointers
-			_missiles.erase(_missiles.begin() + index);
-		}
-	}
-
-	_score += _asteroids_to_remove.size() * 150;
 	if (_ship_hit) {
 		_ship->hit();
 		_score -= 150;
 		_ship_hit = false;
 	}
 
-	_asteroids_to_remove.clear();
-	_missiles_to_remove.clear();
+	for (CAsteroid* asteroid : _asteroids) {
+		if (asteroid->get_lives() < 0) {
+			_score += 150;
+			delete asteroid;
+			_asteroids.erase(std::remove(_asteroids.begin(), _asteroids.end(), asteroid), _asteroids.end());
+		}
+	}
+
+	for (CMissile* missile : _missiles) {
+		if (missile->get_lives() < 0) {
+			delete missile;
+			_missiles.erase(std::remove(_missiles.begin(), _missiles.end(), missile), _missiles.end());
+		}
+	}
 
 	_ship->draw();
 	_planet->draw();
