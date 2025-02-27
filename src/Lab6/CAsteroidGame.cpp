@@ -44,6 +44,7 @@ CAsteroidGame::CAsteroidGame(cv::Size size) {
 	_turn_input = 0;
 	_thrust = false;
 	_fire = false;
+	_do_funny_text = false;
 
 	_score = 0;
 }
@@ -230,6 +231,7 @@ void CAsteroidGame::gpio() {
 
 	int fire_button	= _ctrl.get_button(BUTTON1);
 	int reset_button = _ctrl.get_button(BUTTON2);
+	int funny_button = _ctrl.get_button(LOWER_BUTTON1);
 
 	if (fire_button == 0)
 		_fire = true;
@@ -238,6 +240,11 @@ void CAsteroidGame::gpio() {
 
 	if (reset_button == 0)
 		_reset_flag = true;
+
+	if (funny_button == 0)
+		_do_funny_text = true;
+	else if (funny_button == 1)
+		_do_funny_text = false;
 }
 
 void CAsteroidGame::update() {
@@ -391,6 +398,10 @@ void CAsteroidGame::draw() {
 						 "  Lives: " + std::to_string(_ship->get_lives()) + 
 						 "  Asteroids: " + std::to_string(_asteroids.size()) + 
 						 "  Missiles: " + std::to_string(_missiles.size());
+
+	if (_do_funny_text)
+		hud_text = "There's no sound in space, Craig.";
+
 	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.5f, glm::vec3(1));
 
 

@@ -53,6 +53,8 @@ class CAsteroidGame : public CBase4618 {
 
 		bool _game_started; ///< Flag indicating if game has started
 
+		bool _do_funny_text; ///< Flag indicating if funny text should be displayed
+
 		float _turn_input; ///< Player turn input
 
 		bool _thrust; ///< Flag indicating if thrust is active
