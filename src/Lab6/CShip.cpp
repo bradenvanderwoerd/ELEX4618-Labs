@@ -14,13 +14,13 @@ CShip::CShip(cv::Size window_size, GLfloat orbit_distance, GLuint program_id) {
     _window_size = window_size;
     _orbit_distance = orbit_distance;
 
-    _radius = 0.6;
+    _radius = 0.8;
 
     _position = glm::vec3(0.1f, _orbit_distance, 0);
     _velocity = glm::vec3(0);
     _direction = glm::vec3(0, 0, 1.0f);
     _rotation = glm::vec3(0);
-    _scale = glm::vec3(_radius);
+    _scale = glm::vec3(0.75f * _radius);
 
     _turn_input = 0;
     _thrust = false;
