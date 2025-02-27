@@ -12,7 +12,7 @@ CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, CShip* ship, GL
     _scale = glm::vec3(_radius);
 
     _direction = ship->get_dir();
-    _velocity = _direction * (MISSILE_SPEED + glm::length(ship->get_vel()));
+	_velocity = _direction * (MISSILE_SPEED + glm::length(ship->get_vel()));
 
     _position = ship->get_pos() +0.3f * _direction;
 
@@ -45,6 +45,8 @@ CMissile::~CMissile() {
 }
 
 void CMissile::move() {
+	const float speed = glm::length(_velocity);
+
     // Change position based on velocity, project onto surface
     _position += _velocity * DTIME;
     _position = glm::normalize(_position) * _orbit_distance;  // Re-project
@@ -53,5 +55,5 @@ void CMissile::move() {
     _direction -= glm::dot(_direction, glm::normalize(_position)) * glm::normalize(_position);
     _direction = normalize(_direction);
 
-    _velocity = _direction * MISSILE_SPEED;
+	_velocity = _direction * speed;
 }
