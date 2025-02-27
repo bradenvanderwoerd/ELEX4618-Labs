@@ -10,8 +10,8 @@
 #define SHIP_INDEX 0
 #define PLANET_INDEX 1
 
-#define STARTING_ASTEROID_COUNT 50
-#define MAX_ASTEROIDS 50
+#define STARTING_ASTEROID_COUNT 1
+#define MAX_ASTEROIDS 20
 
 #define ORBIT_DISTANCE 30.0f
 #define DEADZONE_PERCENT 20
@@ -174,7 +174,7 @@ void CAsteroidGame::draw_thread() {
 
 		draw();
 
-		std::this_thread::sleep_until(end_time);
+		//std::this_thread::sleep_until(end_time);
 
 		//_last_frame_time = (cv::getTickCount() - start_ticks) / cv::getTickFrequency();
 
@@ -183,25 +183,20 @@ void CAsteroidGame::draw_thread() {
 
 void CAsteroidGame::sound_thread() {
 
-	/*
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-	
-	_music = Mix_LoadMUS("resources/snake.wav");
-	_upgrade_sound = Mix_LoadWAV("resources/upgrade.wav");
-	_game_over_sound = Mix_LoadWAV("resources/game_over.wav");
-	*/
+	_music = Mix_LoadMUS("resources/asteroids.wav");
+	Mix_PlayMusic(_music, -1);
 
 	do {
-		sound();
+		Sleep(10);
+		//sound();
 	} while (_exit_flag == false);
 
-	/*
 	Mix_FreeMusic(_music);
 	Mix_CloseAudio();
 	SDL_Quit();
-	*/
 }
 
 void CAsteroidGame::gpio() {
@@ -301,6 +296,8 @@ void CAsteroidGame::update() {
 
 	_game_mutex.unlock();
 
+	_ship_hit = false;
+
 	for (int asteroid_index = 0; asteroid_index < asteroids_copy.size(); asteroid_index++) {
 		if (ship_copy->collide(*asteroids_copy.at(asteroid_index))) {
 
@@ -308,6 +305,7 @@ void CAsteroidGame::update() {
 
 			_game_mutex.lock();
 			_asteroids_to_remove.push_back(asteroid_index);
+			_ship_hit = true;
 			_game_mutex.unlock();
 		}
 
@@ -335,7 +333,7 @@ void CAsteroidGame::draw() {
 	_game_mutex.lock();
 
 	while (_create_new_asteroid > 0) {
-		CAsteroid* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE, _program_id);
+		CAsteroid* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE, _program_id, _ship->get_pos());
 		_asteroids.push_back(asteroid);
 		_create_new_asteroid--;
 	}
@@ -368,9 +366,12 @@ void CAsteroidGame::draw() {
 		}
 	}
 
-	_score += _missiles_to_remove.size() * 150;
-	if (_asteroids_to_remove.size() > _missiles_to_remove.size())
+	_score += _asteroids_to_remove.size() * 150;
+	if (_ship_hit) {
 		_ship->hit();
+		_score -= 150;
+		_ship_hit = false;
+	}
 
 	_asteroids_to_remove.clear();
 	_missiles_to_remove.clear();
@@ -403,6 +404,8 @@ void CAsteroidGame::draw() {
 }
 
 void CAsteroidGame::sound() {
+	
+	
 	Sleep(1);
 }
 
@@ -421,6 +424,8 @@ void CAsteroidGame::setup_game() {
 	}
 
 	_missiles.clear();
+
+	_score = 0;
 
 	_game_started = true;
 }
