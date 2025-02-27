@@ -146,7 +146,7 @@
       <Filter>src\Lab6</Filter>
     </ClCompile>
     <ClCompile Include="src\Lab6\CMissile.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Lab6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
