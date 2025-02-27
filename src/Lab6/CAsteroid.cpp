@@ -95,10 +95,17 @@ void CAsteroid::move() {
     _direction = normalize(_direction);
 
     _velocity = _direction * ASTEROID_SPEED;
+
+	_rotation.x -= 0.01f;
 }
 
 void CAsteroid::set_position_on_hemi(glm::vec3 ship_position) {
-    
+	bool valid_position = false;
+	while (!valid_position) {
+		_position = _orbit_distance * random_vec3();
+		if (glm::dot(_position, ship_position) < 0)  // Opposite direction
+			valid_position = true;
+	}
 }
 
 glm::vec3 CAsteroid::random_vec3() {
