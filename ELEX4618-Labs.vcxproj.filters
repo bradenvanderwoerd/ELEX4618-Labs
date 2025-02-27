@@ -92,6 +92,9 @@
     <ClInclude Include="include\stb_image_write.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab6\CMissile.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -141,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="src\Lab6\CTextRenderer.cpp">
       <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CMissile.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

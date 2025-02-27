@@ -1,0 +1,97 @@
+\hypertarget{class_c_text_renderer}{}\doxysection{CText\+Renderer Class Reference}
+\label{class_c_text_renderer}\index{CTextRenderer@{CTextRenderer}}
+
+
+Text renderer class.  
+
+
+
+
+{\ttfamily \#include $<$CText\+Renderer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_text_renderer_a6cb8cf781e8bb5c59835838fdfe91217}{CText\+Renderer}} (const std\+::string \&font\+Path)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_text_renderer}{CText\+Renderer}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_text_renderer_aacd7ebd9019f7144162cc4197b6cb43b}\label{class_c_text_renderer_aacd7ebd9019f7144162cc4197b6cb43b}} 
+\mbox{\hyperlink{class_c_text_renderer_aacd7ebd9019f7144162cc4197b6cb43b}{$\sim$\+CText\+Renderer}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_text_renderer}{CText\+Renderer}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_text_renderer_adf351b009be362ba249d06928a25b9e1}{render\+\_\+text}} (GLuint shader, std\+::string text, float x, float y, float scale, glm\+::vec3 color)
+\begin{DoxyCompactList}\small\item\em Renders text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_text_renderer_a0f6133f7980c0e693fe005bb9e6b99d0}\label{class_c_text_renderer_a0f6133f7980c0e693fe005bb9e6b99d0}} 
+std\+::map$<$ char, \mbox{\hyperlink{struct_character}{Character}} $>$ \mbox{\hyperlink{class_c_text_renderer_a0f6133f7980c0e693fe005bb9e6b99d0}{Characters}}
+\begin{DoxyCompactList}\small\item\em Map of characters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_text_renderer_a1c48ba16ab061a2616931414f8a96f90}\label{class_c_text_renderer_a1c48ba16ab061a2616931414f8a96f90}} 
+GLuint {\bfseries VAO}
+\item 
+\mbox{\Hypertarget{class_c_text_renderer_a57ad50fbfefc5b09b698e4f9f1329bb9}\label{class_c_text_renderer_a57ad50fbfefc5b09b698e4f9f1329bb9}} 
+GLuint \mbox{\hyperlink{class_c_text_renderer_a57ad50fbfefc5b09b698e4f9f1329bb9}{VBO}}
+\begin{DoxyCompactList}\small\item\em Vertex array object and vertex buffer object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Text renderer class. 
+
+This class renders text using Free\+Type
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_text_renderer_a6cb8cf781e8bb5c59835838fdfe91217}\label{class_c_text_renderer_a6cb8cf781e8bb5c59835838fdfe91217}} 
+\index{CTextRenderer@{CTextRenderer}!CTextRenderer@{CTextRenderer}}
+\index{CTextRenderer@{CTextRenderer}!CTextRenderer@{CTextRenderer}}
+\doxysubsubsection{\texorpdfstring{CTextRenderer()}{CTextRenderer()}}
+{\footnotesize\ttfamily CText\+Renderer\+::\+CText\+Renderer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{font\+Path }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_c_text_renderer}{CText\+Renderer}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+Path} & Path to font file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_text_renderer_adf351b009be362ba249d06928a25b9e1}\label{class_c_text_renderer_adf351b009be362ba249d06928a25b9e1}} 
+\index{CTextRenderer@{CTextRenderer}!render\_text@{render\_text}}
+\index{render\_text@{render\_text}!CTextRenderer@{CTextRenderer}}
+\doxysubsubsection{\texorpdfstring{render\_text()}{render\_text()}}
+{\footnotesize\ttfamily void CText\+Renderer\+::render\+\_\+text (\begin{DoxyParamCaption}\item[{GLuint}]{shader,  }\item[{std\+::string}]{text,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{scale,  }\item[{glm\+::vec3}]{color }\end{DoxyParamCaption})}
+
+
+
+Renders text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & Shader program ID \\
+\hline
+{\em text} & Text to render \\
+\hline
+{\em x} & X position \\
+\hline
+{\em y} & Y position \\
+\hline
+{\em scale} & Scale of text \\
+\hline
+{\em color} & Text color\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CText\+Renderer.\+h\end{DoxyCompactItemize}

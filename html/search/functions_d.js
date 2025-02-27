@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['_7ecbase4618_2887',['~CBase4618',['../class_c_base4618.html#a22c0de299cef06c4ef49ace3a5b0be52',1,'CBase4618']]],
-  ['_7eccontrol_2888',['~CControl',['../class_c_control.html#ab2ae420ef75b010c0c9078e597781105',1,'CControl']]],
-  ['_7ecsnakegame_2889',['~CSnakeGame',['../class_c_snake_game.html#a96364879bacad0be7c62ea148ef87349',1,'CSnakeGame']]],
-  ['_7ecsnakegamev2_2890',['~CSnakeGameV2',['../class_c_snake_game_v2.html#a779d4a9069f0e569cbe3670900509f2a',1,'CSnakeGameV2']]],
-  ['_7elab3_2891',['~Lab3',['../class_lab3.html#af9533fd46583812f7d2c8a1c9713829a',1,'Lab3']]]
+  ['update_271',['update',['../class_c_base4618.html#a1e2f3c16eb99b5bfdd5d5254aee39ee6',1,'CBase4618::update()'],['../class_c_snake_game.html#a34614fecfbf367f6bf62db84e3d20b4a',1,'CSnakeGame::update()'],['../class_c_snake_game_v2.html#a9bb872a2fce0892ffcbd8a8ff5d11903',1,'CSnakeGameV2::update()'],['../class_c_asteroid_game.html#a075909049dd964d88182c8b413d4fa90',1,'CAsteroidGame::update()']]],
+  ['update_5finput_272',['update_input',['../class_c_ship.html#a172a61810e47adb3b3c3d3c5f655a685',1,'CShip']]],
+  ['update_5fscene_273',['update_scene',['../class_c_game_object.html#a11d89bb47457c215ce9755e5cd23c278',1,'CGameObject']]],
+  ['update_5fthread_274',['update_thread',['../class_c_snake_game_v2.html#a735d1727160d3fbd7e5169357f1e9eaf',1,'CSnakeGameV2::update_thread()'],['../class_c_asteroid_game.html#aa981fc19658144bae852736dcf2bfffc',1,'CAsteroidGame::update_thread()']]]
 ];

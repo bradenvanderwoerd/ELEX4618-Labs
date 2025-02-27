@@ -1,8 +1,23 @@
 var searchData=
 [
-  ['get_5fanalog_44',['get_analog',['../class_c_control.html#a89115dbb987b3ea983ea8dbe6d78139e',1,'CControl']]],
-  ['get_5fbutton_45',['get_button',['../class_c_control.html#add56a263c0b661198261cca204952a9a',1,'CControl']]],
-  ['get_5fdata_46',['get_data',['../class_c_control.html#a0bad8e51e54cb6f1e2a7b51d3a3940d3',1,'CControl']]],
-  ['gpio_47',['gpio',['../class_c_base4618.html#a8d55ae2f3ce30021775565dc895b8b12',1,'CBase4618::gpio()'],['../class_c_snake_game.html#a81e5ef979dd35a6cfdc62461c1959f6b',1,'CSnakeGame::gpio()'],['../class_c_snake_game_v2.html#ae6e489b7d27b1166b4181b98e70a980b',1,'CSnakeGameV2::gpio()']]],
-  ['gpio_5fthread_48',['gpio_thread',['../class_c_snake_game_v2.html#afbf048cdf0e59c32f6bce054c8362c13',1,'CSnakeGameV2']]]
+  ['casteroid_84',['CAsteroid',['../class_c_asteroid.html',1,'CAsteroid'],['../class_c_asteroid.html#ab678576f07cb97389107ae3fa2246ca6',1,'CAsteroid::CAsteroid()']]],
+  ['casteroidgame_85',['CAsteroidGame',['../class_c_asteroid_game.html',1,'CAsteroidGame'],['../class_c_asteroid_game.html#a0224fb0b9d61bdf159f34dad947e4b85',1,'CAsteroidGame::CAsteroidGame()']]],
+  ['cbase4618_86',['CBase4618',['../class_c_base4618.html',1,'CBase4618'],['../class_c_base4618.html#abe2aad021452c08dd4a5726b44c5a0b7',1,'CBase4618::CBase4618()']]],
+  ['ccamera_87',['CCamera',['../class_c_camera.html',1,'CCamera'],['../class_c_camera.html#a2eb95595766a84cb745ec00783595190',1,'CCamera::CCamera()']]],
+  ['ccontrol_88',['CControl',['../class_c_control.html',1,'CControl'],['../class_c_control.html#a6498500ff403327b5770a3acebed1d93',1,'CControl::CControl()']]],
+  ['cgameobject_89',['CGameObject',['../class_c_game_object.html',1,'CGameObject'],['../class_c_game_object.html#a055661cb4f987643e335c1648ed0b2ea',1,'CGameObject::CGameObject()']]],
+  ['character_90',['Character',['../struct_character.html',1,'']]],
+  ['characters_91',['Characters',['../class_c_text_renderer.html#a0f6133f7980c0e693fe005bb9e6b99d0',1,'CTextRenderer']]],
+  ['check_5fprogram_5fstatus_92',['check_program_status',['../class_c_asteroid_game.html#aa0d326cb55511429a30d37f146d91e5e',1,'CAsteroidGame']]],
+  ['check_5fshader_5fstatus_93',['check_shader_status',['../class_c_asteroid_game.html#abb6aadf109331bdaf3080792b0dce230',1,'CAsteroidGame']]],
+  ['close_5fgame_94',['close_game',['../class_c_asteroid_game.html#a6484037a5b08388075d7644534ad4a0c',1,'CAsteroidGame']]],
+  ['cmissile_95',['CMissile',['../class_c_missile.html',1,'CMissile'],['../class_c_missile.html#aa7479c049e791faea422d7537dc3a4e0',1,'CMissile::CMissile()']]],
+  ['collide_96',['collide',['../class_c_game_object.html#a095ec5e8e92a7442f444a1d3b7e200da',1,'CGameObject']]],
+  ['cplanet_97',['CPlanet',['../class_c_planet.html',1,'CPlanet'],['../class_c_planet.html#ab45c3cf9d834a0ab04c7ef56f0ee56c9',1,'CPlanet::CPlanet()'],['../class_c_planet.html#a8c93c0f8785ddb74490a7c3852a5674e',1,'CPlanet::CPlanet(cv::Size window_size, GLfloat orbit_distance, GLuint program_id)']]],
+  ['create_5fgl_5fobjects_98',['create_gl_objects',['../class_c_game_object.html#aefc3c717f53a2f5d8c4df532e043bd86',1,'CGameObject']]],
+  ['crt_99',['crt',['../class_c_snake_game_v2.html#ad979fa99eac68377364ed88b7b6847c2',1,'CSnakeGameV2']]],
+  ['cship_100',['CShip',['../class_c_ship.html',1,'CShip'],['../class_c_ship.html#ab360264b9bcbcd4b733a8b64cb8f7529',1,'CShip::CShip()'],['../class_c_ship.html#aaa6cc431136813eec9dc19be6f8098ec',1,'CShip::CShip(cv::Size window_size, GLfloat orbit_distance, GLuint program_id)']]],
+  ['csnakegame_101',['CSnakeGame',['../class_c_snake_game.html',1,'CSnakeGame'],['../class_c_snake_game.html#aa4bf9c1390e1ddf7f0971b66eab5b0ea',1,'CSnakeGame::CSnakeGame()'],['../class_c_snake_game.html#a75bdb1d761200172ec2115fd95575a4a',1,'CSnakeGame::CSnakeGame(cv::Size size)'],['../class_c_snake_game.html#ac53acf1a3dc9b28aa6ffb6b87988d924',1,'CSnakeGame::CSnakeGame(cv::Size size, int comport)']]],
+  ['csnakegamev2_102',['CSnakeGameV2',['../class_c_snake_game_v2.html',1,'CSnakeGameV2'],['../class_c_snake_game_v2.html#acb1ba0c302144c94b529056149b51dea',1,'CSnakeGameV2::CSnakeGameV2()']]],
+  ['ctextrenderer_103',['CTextRenderer',['../class_c_text_renderer.html',1,'CTextRenderer'],['../class_c_text_renderer.html#a6cb8cf781e8bb5c59835838fdfe91217',1,'CTextRenderer::CTextRenderer()']]]
 ];

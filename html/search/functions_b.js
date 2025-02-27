@@ -1,8 +1,15 @@
 var searchData=
 [
-  ['_7ecbase4618_107',['~CBase4618',['../class_c_base4618.html#a22c0de299cef06c4ef49ace3a5b0be52',1,'CBase4618']]],
-  ['_7eccontrol_108',['~CControl',['../class_c_control.html#ab2ae420ef75b010c0c9078e597781105',1,'CControl']]],
-  ['_7ecsnakegame_109',['~CSnakeGame',['../class_c_snake_game.html#a96364879bacad0be7c62ea148ef87349',1,'CSnakeGame']]],
-  ['_7ecsnakegamev2_110',['~CSnakeGameV2',['../class_c_snake_game_v2.html#a779d4a9069f0e569cbe3670900509f2a',1,'CSnakeGameV2']]],
-  ['_7elab3_111',['~Lab3',['../class_lab3.html#af9533fd46583812f7d2c8a1c9713829a',1,'Lab3']]]
+  ['set_5fdata_254',['set_data',['../class_c_control.html#a13f557815616ef66a8f5dd4b725d8c32',1,'CControl']]],
+  ['set_5fdir_255',['set_dir',['../class_c_game_object.html#a42da557eac02b118d53cd19b937cc30a',1,'CGameObject']]],
+  ['set_5flives_256',['set_lives',['../class_c_game_object.html#a1fbab5676bc0491dd10266bce54ad577',1,'CGameObject']]],
+  ['set_5fpos_257',['set_pos',['../class_c_game_object.html#a1b2a86a66f8d05e1f54bbbd892d54ca5',1,'CGameObject']]],
+  ['set_5fposition_5fon_5fhemi_258',['set_position_on_hemi',['../class_c_asteroid.html#aa889d754cdcd85311ed687c3876854fe',1,'CAsteroid']]],
+  ['set_5frotation_259',['set_rotation',['../class_c_game_object.html#ab684216b16687028b73402456c529c20',1,'CGameObject']]],
+  ['set_5fvel_260',['set_vel',['../class_c_game_object.html#af05b5bafacdf2f22e025ff7b68ad8c91',1,'CGameObject']]],
+  ['setup_5fgame_261',['setup_game',['../class_c_asteroid_game.html#a56722e6987daa6dc10342ee8578c6347',1,'CAsteroidGame']]],
+  ['sound_262',['sound',['../class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b',1,'CSnakeGameV2::sound()'],['../class_c_asteroid_game.html#ab2bc5b35791c5677decac89dbfb01166',1,'CAsteroidGame::sound()']]],
+  ['sound_5fthread_263',['sound_thread',['../class_c_snake_game_v2.html#a8118501dadd1443d8d9a43f9978f5873',1,'CSnakeGameV2::sound_thread()'],['../class_c_asteroid_game.html#aa57038f69349aa30ee7c19ba2bd955fa',1,'CAsteroidGame::sound_thread()']]],
+  ['strafe_5fleft_264',['strafe_left',['../class_c_camera.html#ab21117968c92de8f277931920c6cf7d5',1,'CCamera']]],
+  ['strafe_5fright_265',['strafe_right',['../class_c_camera.html#a55656abbfdd5e796e16e64b286b2cee2',1,'CCamera']]]
 ];

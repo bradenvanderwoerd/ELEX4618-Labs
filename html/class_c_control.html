@@ -88,9 +88,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d1384d0e1ee2a4a478a798b46457468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468">init_com</a> (int comport)</td></tr>
 <tr class="memdesc:a3d1384d0e1ee2a4a478a798b46457468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes serial port object.  <a href="class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468">More...</a><br /></td></tr>
 <tr class="separator:a3d1384d0e1ee2a4a478a798b46457468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7589c187aacdc1305a8c97c4d2ae1dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_control.html#a7589c187aacdc1305a8c97c4d2ae1dd6">init_com</a> ()</td></tr>
-<tr class="memdesc:a7589c187aacdc1305a8c97c4d2ae1dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes serial port object (scans ports automatically)  <a href="class_c_control.html#a7589c187aacdc1305a8c97c4d2ae1dd6">More...</a><br /></td></tr>
-<tr class="separator:a7589c187aacdc1305a8c97c4d2ae1dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2719cd7e1ba1feb1ecd4fb8ce85ebbf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_control.html#a2719cd7e1ba1feb1ecd4fb8ce85ebbf1">init_com</a> ()</td></tr>
+<tr class="memdesc:a2719cd7e1ba1feb1ecd4fb8ce85ebbf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes serial port object (scans ports automatically)  <a href="class_c_control.html#a2719cd7e1ba1feb1ecd4fb8ce85ebbf1">More...</a><br /></td></tr>
+<tr class="separator:a2719cd7e1ba1feb1ecd4fb8ce85ebbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bad8e51e54cb6f1e2a7b51d3a3940d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_control.html#a0bad8e51e54cb6f1e2a7b51d3a3940d3">get_data</a> (int type, int channel, int &amp;result)</td></tr>
 <tr class="memdesc:a0bad8e51e54cb6f1e2a7b51d3a3940d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets data from the com port.  <a href="class_c_control.html#a0bad8e51e54cb6f1e2a7b51d3a3940d3">More...</a><br /></td></tr>
 <tr class="separator:a0bad8e51e54cb6f1e2a7b51d3a3940d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,14 +215,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7589c187aacdc1305a8c97c4d2ae1dd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7589c187aacdc1305a8c97c4d2ae1dd6">&#9670;&nbsp;</a></span>init_com() <span class="overload">[1/2]</span></h2>
+<a id="a2719cd7e1ba1feb1ecd4fb8ce85ebbf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2719cd7e1ba1feb1ecd4fb8ce85ebbf1">&#9670;&nbsp;</a></span>init_com() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CControl::init_com </td>
+          <td class="memname">bool CControl::init_com </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -231,7 +231,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes serial port object (scans ports automatically) </p>
-<dl class="section return"><dt>Returns</dt><dd>nothing to return </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if connection was a success </dd></dl>
 
 </div>
 </div>

@@ -1,0 +1,396 @@
+\hypertarget{class_c_game_object}{}\doxysection{CGame\+Object Class Reference}
+\label{class_c_game_object}\index{CGameObject@{CGameObject}}
+
+
+Game object class.  
+
+
+
+
+{\ttfamily \#include $<$CGame\+Object.\+h$>$}
+
+Inheritance diagram for CGame\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_game_object}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_game_object_a055661cb4f987643e335c1648ed0b2ea}\label{class_c_game_object_a055661cb4f987643e335c1648ed0b2ea}} 
+\mbox{\hyperlink{class_c_game_object_a055661cb4f987643e335c1648ed0b2ea}{CGame\+Object}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_game_object}{CGame\+Object}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a2a248dc92f6c4eb96c484cc51f21010c}\label{class_c_game_object_a2a248dc92f6c4eb96c484cc51f21010c}} 
+\mbox{\hyperlink{class_c_game_object_a2a248dc92f6c4eb96c484cc51f21010c}{$\sim$\+CGame\+Object}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_game_object}{CGame\+Object}} destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_game_object_a5dd62633c879dfabac2b2cb09defad31}{move}} ()=0
+\begin{DoxyCompactList}\small\item\em Moves the object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}{collide}} (\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \&obj)
+\begin{DoxyCompactList}\small\item\em Checks for collision with another object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}{hit}} ()
+\begin{DoxyCompactList}\small\item\em Handles hit event. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}{get\+\_\+lives}} ()
+\begin{DoxyCompactList}\small\item\em Gets number of lives. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}{set\+\_\+lives}} (int lives)
+\begin{DoxyCompactList}\small\item\em Sets number of lives. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_c_game_object_abb6e338231b4b729edc1912b57abafc5}{get\+\_\+radius}} ()
+\begin{DoxyCompactList}\small\item\em Sets radius. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_a1b2a86a66f8d05e1f54bbbd892d54ca5}{set\+\_\+pos}} (glm\+::vec3 pos)
+\begin{DoxyCompactList}\small\item\em Sets radius. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a86795266ee30fd3c8b0af85f5c635f08}{get\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em Gets position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_af05b5bafacdf2f22e025ff7b68ad8c91}{set\+\_\+vel}} (glm\+::vec3 vel)
+\begin{DoxyCompactList}\small\item\em Sets velocity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a3dd935bcf2bab0ca3bdabedee1a939d0}{get\+\_\+vel}} ()
+\begin{DoxyCompactList}\small\item\em Gets velocity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_a42da557eac02b118d53cd19b937cc30a}{set\+\_\+dir}} (glm\+::vec3 dir)
+\begin{DoxyCompactList}\small\item\em Sets direction. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a61a09b7123047b5cef65564bf851f1fa}{get\+\_\+dir}} ()
+\begin{DoxyCompactList}\small\item\em Gets direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_ab684216b16687028b73402456c529c20}{set\+\_\+rotation}} (glm\+::vec3 rot)
+\begin{DoxyCompactList}\small\item\em Sets rotation. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a3c71dc6288ac1db96062c12e3247fb7a}{get\+\_\+rotation}} ()
+\begin{DoxyCompactList}\small\item\em Gets rotation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_a644f3479a32f0dc4c1a393e2206ff4cb}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_game_object_a11d89bb47457c215ce9755e5cd23c278}{update\+\_\+scene}} (\mbox{\hyperlink{class_c_camera}{CCamera}} camera)
+\begin{DoxyCompactList}\small\item\em Updates scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_game_object_aefc3c717f53a2f5d8c4df532e043bd86}{create\+\_\+gl\+\_\+objects}} ()
+\begin{DoxyCompactList}\small\item\em Creates Open\+GL objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_game_object_a3cc05f856d544786660f9967d28b68a7}\label{class_c_game_object_a3cc05f856d544786660f9967d28b68a7}} 
+cv\+::\+Size \mbox{\hyperlink{class_c_game_object_a3cc05f856d544786660f9967d28b68a7}{\+\_\+window\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a738e5a9ae3c745b9a91c622bda025eb4}\label{class_c_game_object_a738e5a9ae3c745b9a91c622bda025eb4}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a738e5a9ae3c745b9a91c622bda025eb4}{\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Position of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a37568f4e696115b88840142158a910bb}\label{class_c_game_object_a37568f4e696115b88840142158a910bb}} 
+GLfloat \mbox{\hyperlink{class_c_game_object_a37568f4e696115b88840142158a910bb}{\+\_\+orbit\+\_\+distance}}
+\begin{DoxyCompactList}\small\item\em Distance from origin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_ac339de51c643f5d91c4d6e9a8eff4016}\label{class_c_game_object_ac339de51c643f5d91c4d6e9a8eff4016}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_ac339de51c643f5d91c4d6e9a8eff4016}{\+\_\+velocity}}
+\begin{DoxyCompactList}\small\item\em Velocity of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a0620284cae24da5168f649134f27c9fc}\label{class_c_game_object_a0620284cae24da5168f649134f27c9fc}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a0620284cae24da5168f649134f27c9fc}{\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em Direction of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a13cd50a0f92079b8c526259ddf3eaa87}\label{class_c_game_object_a13cd50a0f92079b8c526259ddf3eaa87}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_a13cd50a0f92079b8c526259ddf3eaa87}{\+\_\+rotation}}
+\begin{DoxyCompactList}\small\item\em Rotation of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_ab8f310059db2f635bd9f670729b2676d}\label{class_c_game_object_ab8f310059db2f635bd9f670729b2676d}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_game_object_ab8f310059db2f635bd9f670729b2676d}{\+\_\+scale}}
+\begin{DoxyCompactList}\small\item\em Scale of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a6f79ce10ac0d7001ad20bc339ddf7b42}\label{class_c_game_object_a6f79ce10ac0d7001ad20bc339ddf7b42}} 
+float \mbox{\hyperlink{class_c_game_object_a6f79ce10ac0d7001ad20bc339ddf7b42}{\+\_\+radius}}
+\begin{DoxyCompactList}\small\item\em Radius of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}\label{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}} 
+int \mbox{\hyperlink{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}{\+\_\+lives}}
+\begin{DoxyCompactList}\small\item\em Number of lives. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a46959cbf4f4207be22b87ece9f3ecf58}\label{class_c_game_object_a46959cbf4f4207be22b87ece9f3ecf58}} 
+GLuint \mbox{\hyperlink{class_c_game_object_a46959cbf4f4207be22b87ece9f3ecf58}{\+\_\+\+VAO}}
+\begin{DoxyCompactList}\small\item\em Vertex array object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_af1cddc6975fece706364fdddec21fa54}\label{class_c_game_object_af1cddc6975fece706364fdddec21fa54}} 
+GLuint \mbox{\hyperlink{class_c_game_object_af1cddc6975fece706364fdddec21fa54}{\+\_\+\+VBO}}
+\begin{DoxyCompactList}\small\item\em Vertex buffer object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a0c794515cdd6e1a09233cb496ec3d374}\label{class_c_game_object_a0c794515cdd6e1a09233cb496ec3d374}} 
+GLuint \mbox{\hyperlink{class_c_game_object_a0c794515cdd6e1a09233cb496ec3d374}{\+\_\+\+EBO}}
+\begin{DoxyCompactList}\small\item\em Element buffer object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a16715e9d11f226fefcf2aed0263d1070}\label{class_c_game_object_a16715e9d11f226fefcf2aed0263d1070}} 
+GLuint \mbox{\hyperlink{class_c_game_object_a16715e9d11f226fefcf2aed0263d1070}{\+\_\+program\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em Shader program ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a0a49165de9e313ef0fe0e5831fb507a1}\label{class_c_game_object_a0a49165de9e313ef0fe0e5831fb507a1}} 
+std\+::vector$<$ GLfloat $>$ \mbox{\hyperlink{class_c_game_object_a0a49165de9e313ef0fe0e5831fb507a1}{\+\_\+vertices}}
+\begin{DoxyCompactList}\small\item\em Vertex data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a5eb690247a9591b8badd074b89d79f83}\label{class_c_game_object_a5eb690247a9591b8badd074b89d79f83}} 
+std\+::vector$<$ GLuint $>$ \mbox{\hyperlink{class_c_game_object_a5eb690247a9591b8badd074b89d79f83}{\+\_\+indices}}
+\begin{DoxyCompactList}\small\item\em Index data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_game_object_a235c1eeaae25b6fa14a89046cf5d6576}\label{class_c_game_object_a235c1eeaae25b6fa14a89046cf5d6576}} 
+glm\+::mat4 \mbox{\hyperlink{class_c_game_object_a235c1eeaae25b6fa14a89046cf5d6576}{\+\_\+mvp\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Model-\/view-\/projection matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Game object class. 
+
+This class represents a game object in the scene
+
+This class is an abstract class that represents a game object in the scene. It contains members and methods that are common to all game objects.
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}\label{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}} 
+\index{CGameObject@{CGameObject}!collide@{collide}}
+\index{collide@{collide}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{collide()}{collide()}}
+{\footnotesize\ttfamily bool CGame\+Object\+::collide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \&}]{obj }\end{DoxyParamCaption})}
+
+
+
+Checks for collision with another object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & Object to check for collision with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if collision occurred 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_aefc3c717f53a2f5d8c4df532e043bd86}\label{class_c_game_object_aefc3c717f53a2f5d8c4df532e043bd86}} 
+\index{CGameObject@{CGameObject}!create\_gl\_objects@{create\_gl\_objects}}
+\index{create\_gl\_objects@{create\_gl\_objects}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{create\_gl\_objects()}{create\_gl\_objects()}}
+{\footnotesize\ttfamily void CGame\+Object\+::create\+\_\+gl\+\_\+objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates Open\+GL objects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a644f3479a32f0dc4c1a393e2206ff4cb}\label{class_c_game_object_a644f3479a32f0dc4c1a393e2206ff4cb}} 
+\index{CGameObject@{CGameObject}!draw@{draw}}
+\index{draw@{draw}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void CGame\+Object\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws object. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a61a09b7123047b5cef65564bf851f1fa}\label{class_c_game_object_a61a09b7123047b5cef65564bf851f1fa}} 
+\index{CGameObject@{CGameObject}!get\_dir@{get\_dir}}
+\index{get\_dir@{get\_dir}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_dir()}{get\_dir()}}
+{\footnotesize\ttfamily glm\+::vec3 CGame\+Object\+::get\+\_\+dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets direction. 
+
+\begin{DoxyReturn}{Returns}
+Direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}\label{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}} 
+\index{CGameObject@{CGameObject}!get\_lives@{get\_lives}}
+\index{get\_lives@{get\_lives}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_lives()}{get\_lives()}}
+{\footnotesize\ttfamily int CGame\+Object\+::get\+\_\+lives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets number of lives. 
+
+\begin{DoxyReturn}{Returns}
+Number of lives 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a86795266ee30fd3c8b0af85f5c635f08}\label{class_c_game_object_a86795266ee30fd3c8b0af85f5c635f08}} 
+\index{CGameObject@{CGameObject}!get\_pos@{get\_pos}}
+\index{get\_pos@{get\_pos}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_pos()}{get\_pos()}}
+{\footnotesize\ttfamily glm\+::vec3 CGame\+Object\+::get\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets position. 
+
+\begin{DoxyReturn}{Returns}
+Position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_abb6e338231b4b729edc1912b57abafc5}\label{class_c_game_object_abb6e338231b4b729edc1912b57abafc5}} 
+\index{CGameObject@{CGameObject}!get\_radius@{get\_radius}}
+\index{get\_radius@{get\_radius}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_radius()}{get\_radius()}}
+{\footnotesize\ttfamily float CGame\+Object\+::get\+\_\+radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets radius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radius} & Radius \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a3c71dc6288ac1db96062c12e3247fb7a}\label{class_c_game_object_a3c71dc6288ac1db96062c12e3247fb7a}} 
+\index{CGameObject@{CGameObject}!get\_rotation@{get\_rotation}}
+\index{get\_rotation@{get\_rotation}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_rotation()}{get\_rotation()}}
+{\footnotesize\ttfamily glm\+::vec3 CGame\+Object\+::get\+\_\+rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets rotation. 
+
+\begin{DoxyReturn}{Returns}
+Rotation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a3dd935bcf2bab0ca3bdabedee1a939d0}\label{class_c_game_object_a3dd935bcf2bab0ca3bdabedee1a939d0}} 
+\index{CGameObject@{CGameObject}!get\_vel@{get\_vel}}
+\index{get\_vel@{get\_vel}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_vel()}{get\_vel()}}
+{\footnotesize\ttfamily glm\+::vec3 CGame\+Object\+::get\+\_\+vel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets velocity. 
+
+\begin{DoxyReturn}{Returns}
+Velocity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}\label{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}} 
+\index{CGameObject@{CGameObject}!hit@{hit}}
+\index{hit@{hit}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{hit()}{hit()}}
+{\footnotesize\ttfamily void CGame\+Object\+::hit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles hit event. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a5dd62633c879dfabac2b2cb09defad31}\label{class_c_game_object_a5dd62633c879dfabac2b2cb09defad31}} 
+\index{CGameObject@{CGameObject}!move@{move}}
+\index{move@{move}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily virtual void CGame\+Object\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Moves the object. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_c_ship_a92d6dbdc1bcfc22f56925d6da0b656e3}{CShip}}, \mbox{\hyperlink{class_c_planet_add72d41134f3066ffc8f6ade18dc9300}{CPlanet}}, \mbox{\hyperlink{class_c_missile_a4233ed92d12c3d14d2ea66c5ffcb072b}{CMissile}}, and \mbox{\hyperlink{class_c_asteroid_a734f90a84b2771a7a251eb501252d8db}{CAsteroid}}.
+
+\mbox{\Hypertarget{class_c_game_object_a42da557eac02b118d53cd19b937cc30a}\label{class_c_game_object_a42da557eac02b118d53cd19b937cc30a}} 
+\index{CGameObject@{CGameObject}!set\_dir@{set\_dir}}
+\index{set\_dir@{set\_dir}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_dir()}{set\_dir()}}
+{\footnotesize\ttfamily void CGame\+Object\+::set\+\_\+dir (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Direction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}\label{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}} 
+\index{CGameObject@{CGameObject}!set\_lives@{set\_lives}}
+\index{set\_lives@{set\_lives}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_lives()}{set\_lives()}}
+{\footnotesize\ttfamily void CGame\+Object\+::set\+\_\+lives (\begin{DoxyParamCaption}\item[{int}]{lives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets number of lives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lives} & Number of lives \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a1b2a86a66f8d05e1f54bbbd892d54ca5}\label{class_c_game_object_a1b2a86a66f8d05e1f54bbbd892d54ca5}} 
+\index{CGameObject@{CGameObject}!set\_pos@{set\_pos}}
+\index{set\_pos@{set\_pos}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_pos()}{set\_pos()}}
+{\footnotesize\ttfamily void CGame\+Object\+::set\+\_\+pos (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets radius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radius} & Radius \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_ab684216b16687028b73402456c529c20}\label{class_c_game_object_ab684216b16687028b73402456c529c20}} 
+\index{CGameObject@{CGameObject}!set\_rotation@{set\_rotation}}
+\index{set\_rotation@{set\_rotation}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_rotation()}{set\_rotation()}}
+{\footnotesize\ttfamily void CGame\+Object\+::set\+\_\+rotation (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{rot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_af05b5bafacdf2f22e025ff7b68ad8c91}\label{class_c_game_object_af05b5bafacdf2f22e025ff7b68ad8c91}} 
+\index{CGameObject@{CGameObject}!set\_vel@{set\_vel}}
+\index{set\_vel@{set\_vel}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_vel()}{set\_vel()}}
+{\footnotesize\ttfamily void CGame\+Object\+::set\+\_\+vel (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{vel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel} & Velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_game_object_a11d89bb47457c215ce9755e5cd23c278}\label{class_c_game_object_a11d89bb47457c215ce9755e5cd23c278}} 
+\index{CGameObject@{CGameObject}!update\_scene@{update\_scene}}
+\index{update\_scene@{update\_scene}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{update\_scene()}{update\_scene()}}
+{\footnotesize\ttfamily virtual void CGame\+Object\+::update\+\_\+scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_camera}{CCamera}}}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & Camera object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CGame\+Object.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,96 @@
+\hypertarget{class_c_asteroid}{}\doxysection{CAsteroid Class Reference}
+\label{class_c_asteroid}\index{CAsteroid@{CAsteroid}}
+
+
+Asteroid class for asteroid game.  
+
+
+
+
+{\ttfamily \#include $<$CAsteroid.\+h$>$}
+
+Inheritance diagram for CAsteroid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_asteroid}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_asteroid_ab678576f07cb97389107ae3fa2246ca6}{CAsteroid}} (cv\+::\+Size window\+\_\+size, GLfloat orbit\+\_\+distance, GLuint program\+\_\+id, glm\+::vec3 ship\+\_\+position=glm\+::vec3(0))
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_asteroid}{CAsteroid}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_a67394c71612ad73386a0412e3bae78fa}\label{class_c_asteroid_a67394c71612ad73386a0412e3bae78fa}} 
+\mbox{\hyperlink{class_c_asteroid_a67394c71612ad73386a0412e3bae78fa}{$\sim$\+CAsteroid}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_asteroid}{CAsteroid}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_a734f90a84b2771a7a251eb501252d8db}{move}} ()
+\begin{DoxyCompactList}\small\item\em Moves the asteroid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_asteroid_aa889d754cdcd85311ed687c3876854fe}\label{class_c_asteroid_aa889d754cdcd85311ed687c3876854fe}} 
+void \mbox{\hyperlink{class_c_asteroid_aa889d754cdcd85311ed687c3876854fe}{set\+\_\+position\+\_\+on\+\_\+hemi}} (glm\+::vec3 ship\+\_\+position)
+\begin{DoxyCompactList}\small\item\em Sets position opposite to ship. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_a1f17c67b867231256038709da4dc4eba}\label{class_c_asteroid_a1f17c67b867231256038709da4dc4eba}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_asteroid_a1f17c67b867231256038709da4dc4eba}{random\+\_\+vec3}} ()
+\begin{DoxyCompactList}\small\item\em Generates random vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Asteroid class for asteroid game. 
+
+This class represents an asteroid in the game. It inherits from \mbox{\hyperlink{class_c_game_object}{CGame\+Object}} and contains methods for moving the asteroid.
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_asteroid_ab678576f07cb97389107ae3fa2246ca6}\label{class_c_asteroid_ab678576f07cb97389107ae3fa2246ca6}} 
+\index{CAsteroid@{CAsteroid}!CAsteroid@{CAsteroid}}
+\index{CAsteroid@{CAsteroid}!CAsteroid@{CAsteroid}}
+\doxysubsubsection{\texorpdfstring{CAsteroid()}{CAsteroid()}}
+{\footnotesize\ttfamily CAsteroid\+::\+CAsteroid (\begin{DoxyParamCaption}\item[{cv\+::\+Size}]{window\+\_\+size,  }\item[{GLfloat}]{orbit\+\_\+distance,  }\item[{GLuint}]{program\+\_\+id,  }\item[{glm\+::vec3}]{ship\+\_\+position = {\ttfamily glm\+:\+:vec3(0)} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_c_asteroid}{CAsteroid}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window\+\_\+size} & Size of the window \\
+\hline
+{\em orbit\+\_\+distance} & Distance from origin \\
+\hline
+{\em program\+\_\+id} & Shader program ID \\
+\hline
+{\em ship\+\_\+position} & Ship position \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_asteroid_a734f90a84b2771a7a251eb501252d8db}\label{class_c_asteroid_a734f90a84b2771a7a251eb501252d8db}} 
+\index{CAsteroid@{CAsteroid}!move@{move}}
+\index{move@{move}!CAsteroid@{CAsteroid}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void CAsteroid\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Moves the asteroid. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_game_object_a5dd62633c879dfabac2b2cb09defad31}{CGame\+Object}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CAsteroid.\+h\end{DoxyCompactItemize}
