@@ -54,10 +54,13 @@ void CGameObject::create_gl_objects() {
 
 void CGameObject::draw() {
 	glUseProgram(_program_id);
+	glViewport(0, 0, _window_size.width, _window_size.height);
 
-	/*GLint matLoc = glGetUniformLocation(_program_id, "mvp");
-	glUniformMatrix4fv(matLoc, 1, GL_FALSE, &_mvp_matrix[0][0]);*/
-	
+	glActiveTexture(GL_TEXTURE1);  // Use texture unit 1
+	glBindTexture(GL_TEXTURE_2D, _depth_map);
+	GLint shadow_map_loc = glGetUniformLocation(_program_id, "shadow_map");
+	glUniform1i(shadow_map_loc, 1);  // Tell OpenGL that "shadow_map" is bound to texture unit 1
+
 	GLint model_loc = glGetUniformLocation(_program_id, "model");
 	glUniformMatrix4fv(model_loc, 1, GL_FALSE, &_model_matrix[0][0]);
 
@@ -93,6 +96,26 @@ void CGameObject::draw() {
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Wireframe
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Filled faces
 
+	glBindVertexArray(_VAO);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
+}
+
+void CGameObject::draw_depth(GLuint depth_program_id, glm::mat4 light_space_matrix) {
+	glUseProgram(depth_program_id);
+	glEnable(GL_DEPTH_TEST);
+
+	// Compute model matrix (same as in normal rendering)
+	glm::mat4 model_matrix = _model_matrix;
+
+	// Upload model matrix to shader
+	GLint model_loc = glGetUniformLocation(depth_program_id, "model");
+	glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_matrix));
+
+	GLint light_space_loc = glGetUniformLocation(depth_program_id, "light_space_matrix");
+	glUniformMatrix4fv(light_space_loc, 1, GL_FALSE, glm::value_ptr(light_space_matrix));
+
+	// Bind VAO and draw
 	glBindVertexArray(_VAO);
 	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);

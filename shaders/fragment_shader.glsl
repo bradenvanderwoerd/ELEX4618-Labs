@@ -54,5 +54,6 @@ void main() {
 
     // Apply shadow factor
     vec3 result = (ambient + (diffuse + specular) * shadow) * vertex_color;
-    FragColor = vec4(result, 1.0);
+    //FragColor = vec4(result, 1.0);
+    FragColor = vec4(vec3(texture(shadow_map, FragPosLightSpace.xy).r), 1.0);
 }

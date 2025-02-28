@@ -158,7 +158,7 @@ void CAsteroidGame::draw_thread() {
 	glViewport(0, 0, _window_size.width, _window_size.height); // Set OpenGL viewport
 
 	glfwSetWindowUserPointer(_window, this);
-	glfwSetKeyCallback(_window, CAsteroidGame::key_callback);
+	glfwSetKeyCallback(_window, CAsteroidGame::key_callback);glViewport(0, 0, _window_size.width, _window_size.height);
 	glfwSetCursorPosCallback(_window, CAsteroidGame::mouse_callback);
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
@@ -385,7 +385,7 @@ void CAsteroidGame::draw() {
 		}
 	}
 
-	//_light.render_depth_map(_depth_program_id, _ship, _asteroids, _missiles);
+	_light.render_depth_map(_depth_program_id, _ship, _planet, _asteroids, _missiles);
 
 	_ship->draw();
 	_planet->draw();
@@ -439,7 +439,7 @@ void CAsteroidGame::setup_game() {
 
 	_missiles.clear();
 
-	_light = CLight(glm::vec3(0, ORBIT_DISTANCE * 2.0f, 0), glm::vec3(1.0f));
+	_light = CLight(glm::vec3(0, ORBIT_DISTANCE * 1.2f, 0), glm::vec3(1.0f));
 	_depth_program_id = install_depth_shaders();
 
 	_ship->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());

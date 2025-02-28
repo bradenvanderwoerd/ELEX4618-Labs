@@ -57,7 +57,7 @@ class CLight {
 		 * 
 		 * @return nothing to return
 		 */
-		void render_depth_map(GLuint depth_shader, CShip*& ship, std::vector<CAsteroid*>& asteroids, std::vector<CMissile*>& missiles);
+		void render_depth_map(GLuint depth_shader, CShip*& ship, CPlanet*& planet, std::vector<CAsteroid*>& asteroids, std::vector<CMissile*>& missiles);
 
 		/** @brief Gets position of the light
 		 *

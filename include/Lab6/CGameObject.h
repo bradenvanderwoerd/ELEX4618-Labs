@@ -193,6 +193,12 @@ class CGameObject {
 		 */
 		void draw();
 
+		/** @brief Renders object depth
+		 *
+		 * @return nothing to return
+		 */
+		void draw_depth(GLuint depth_shader_id, glm::mat4 light_space_matrix);
+
 		/** @brief Updates scene
 		 *
 		 * @param camera Camera object
