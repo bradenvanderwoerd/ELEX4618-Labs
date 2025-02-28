@@ -5,7 +5,7 @@
 #include "Lab6/CAsteroidGame.h"
 
 #define DO_CONTROLLER true
-#define DO_SOUND false
+#define DO_SOUND true
 
 #define CANVAS_NAME "Asteroids"
 #define SHIP_INDEX 0
@@ -231,7 +231,9 @@ void CAsteroidGame::gpio() {
 
 	int fire_button	= _ctrl.get_button(BUTTON1);
 	int reset_button = _ctrl.get_button(BUTTON2);
-	int funny_button = _ctrl.get_button(LOWER_BUTTON1);
+
+	int funny_button = -1;
+	_ctrl.get_data(DIGITAL, LOWER_BUTTON2, funny_button);
 
 	if (fire_button == 0)
 		_fire = true;
@@ -394,13 +396,15 @@ void CAsteroidGame::draw() {
 
 	_game_mutex.unlock();
 
-	std::string hud_text = "Score: " + std::to_string(_score) +
-						 "  Lives: " + std::to_string(_ship->get_lives()) + 
-						 "  Asteroids: " + std::to_string(_asteroids.size()) + 
-						 "  Missiles: " + std::to_string(_missiles.size());
+	std::string hud_text;
 
 	if (_do_funny_text)
 		hud_text = "There's no sound in space, Craig.";
+	else
+		hud_text = "Score: " + std::to_string(_score) +
+		"  Lives: " + std::to_string(_ship->get_lives()) +
+		"  Asteroids: " + std::to_string(_asteroids.size()) +
+		"  Missiles: " + std::to_string(_missiles.size());
 
 	_text_renderer->render_text(_text_program_id, hud_text, 25.0f, 50.0f, 0.5f, glm::vec3(1));
 
