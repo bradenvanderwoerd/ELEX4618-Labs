@@ -385,7 +385,7 @@ void CAsteroidGame::draw() {
 		}
 	}
 
-	_light.render_depth_map(_depth_program_id, _ship, _asteroids, _missiles);
+	//_light.render_depth_map(_depth_program_id, _ship, _asteroids, _missiles);
 
 	_ship->draw();
 	_planet->draw();
