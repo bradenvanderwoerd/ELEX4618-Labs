@@ -6,6 +6,7 @@
 #include "Lab6/CAsteroid.h"
 #include "Lab6/CMissile.h"
 #include "Lab6/CCamera.h"
+#include "Lab6/CLight.h"
 #include "Lab6/CTextRenderer.h"
 
 #include <GLFW/glfw3.h>
@@ -49,6 +50,8 @@ class CAsteroidGame : public CBase4618 {
 
 		CCamera _camera; ///< Camera object for handling view
 
+		CLight _light; ///< Light object for handling lighting
+
 		bool _controller_connected; ///< Flag indicating if controller is connected
 
 		bool _game_started; ///< Flag indicating if game has started
@@ -80,6 +83,8 @@ class CAsteroidGame : public CBase4618 {
 		GLuint _program_id; ///< OpenGL program ID
 
 		GLuint _text_program_id; ///< OpenGL text program ID
+
+		GLuint _depth_program_id; ///< OpenGL depth program ID
 
 		Mix_Music* _music; ///< Background music file
 
@@ -145,6 +150,12 @@ class CAsteroidGame : public CBase4618 {
 		 */
 		void setup_game();
 
+		/** @brief Checks object collisions
+		 * 
+		 * @return nothing to return
+		 */
+		void check_collisions();
+
 		/** @brief Handles key presses 
 		 *
 		 * @return nothing to return
@@ -158,14 +169,22 @@ class CAsteroidGame : public CBase4618 {
 		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 		/** @brief Compiles and links shaders
+		* 
 		*  @return Program ID
 		*/
 		static GLuint install_shaders();
 
 		/** @brief Compiles and links text shaders
+		* 
 		*  @return Text program ID
 		*/
 		static GLuint install_text_shaders();
+
+		/** @brief Compiles and links depth shaders
+		* 
+		*  @return Depth program ID
+		*/
+		static GLuint install_depth_shaders();
 
 		/**
 		* @brief Reads code from GLSL file for shader
