@@ -34,7 +34,7 @@ float calculate_shadow(vec4 fragPosLightSpace) {
 
 void main() {
     // Ambient lighting
-    float ambient_strength = 0.2;
+    float ambient_strength = 1.0;
     vec3 ambient = ambient_strength * light_color;
 
     // Diffuse lighting
