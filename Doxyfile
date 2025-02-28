@@ -954,7 +954,12 @@ RECURSIVE              = YES
 
 EXCLUDE                = "C:\ELEX 4618\ELEX4618-Labs\lib" \
                          "C:\ELEX 4618\ELEX4618-Labs\include\cvui.h" \
-                         "C:\ELEX 4618\ELEX4618-Labs\include\SDL2"
+                         "C:\ELEX 4618\ELEX4618-Labs\include\SDL2" \
+                         "C:\ELEX 4618\ELEX4618-Labs\include\glad.h" \
+                         "C:\ELEX 4618\ELEX4618-Labs\include\khrplatform.h" \
+                         "C:\ELEX 4618\ELEX4618-Labs\include\resource.h" \
+                         "C:\ELEX 4618\ELEX4618-Labs\include\stb_image_write.h" \
+                         "C:\ELEX 4618\ELEX4618-Labs\include\stdafx.h"
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

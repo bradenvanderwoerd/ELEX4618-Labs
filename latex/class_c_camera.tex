@@ -1,0 +1,215 @@
+\hypertarget{class_c_camera}{}\doxysection{CCamera Class Reference}
+\label{class_c_camera}\index{CCamera@{CCamera}}
+
+
+Camera class.  
+
+
+
+
+{\ttfamily \#include $<$CCamera.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_camera_a2eb95595766a84cb745ec00783595190}\label{class_c_camera_a2eb95595766a84cb745ec00783595190}} 
+\mbox{\hyperlink{class_c_camera_a2eb95595766a84cb745ec00783595190}{CCamera}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_camera}{CCamera}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_camera_a0123231b9f52caebf8cc7e95baa1403e}\label{class_c_camera_a0123231b9f52caebf8cc7e95baa1403e}} 
+\mbox{\hyperlink{class_c_camera_a0123231b9f52caebf8cc7e95baa1403e}{$\sim$\+CCamera}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_camera}{CCamera}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a95821d3db82745839d43017b3ab80f35}{follow\+\_\+ship}} (glm\+::vec3 ship\+\_\+position, glm\+::vec3 ship\+\_\+velocity)
+\begin{DoxyCompactList}\small\item\em Follows the ship. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_ad1ea804d06f7c63bd138da5877f0aef8}{mouse\+\_\+update}} (glm\+::vec2 new\+\_\+mouse\+\_\+position)
+\begin{DoxyCompactList}\small\item\em Updates camera position based on mouse movement. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_c_camera_aea004cea70e6a27c957a9606ebba76f0}{get\+\_\+view\+\_\+matrix}} ()
+\begin{DoxyCompactList}\small\item\em Gets view matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a08b418feb5a4a2289a51959f210e2a7c}{move\+\_\+forward}} ()
+\begin{DoxyCompactList}\small\item\em Moves camera forward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a2942fcc640db3a3bfe57508b693f8a46}{move\+\_\+backward}} ()
+\begin{DoxyCompactList}\small\item\em Moves camera backward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_ab21117968c92de8f277931920c6cf7d5}{strafe\+\_\+left}} ()
+\begin{DoxyCompactList}\small\item\em Strafes camera left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a55656abbfdd5e796e16e64b286b2cee2}{strafe\+\_\+right}} ()
+\begin{DoxyCompactList}\small\item\em Strafes camera right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a9429e8b815e4e435fbd515fd971b8a9c}{move\+\_\+up}} ()
+\begin{DoxyCompactList}\small\item\em Moves camera up. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a6273ec9d907201e57543edc49aa176b5}{move\+\_\+down}} ()
+\begin{DoxyCompactList}\small\item\em Moves camera down. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a48506137454597a2a467495aa612655c}{look\+\_\+at\+\_\+origin}} ()
+\begin{DoxyCompactList}\small\item\em Changes view direction to point to origin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_camera_ac3650f80e06272bf6fcf6e2234d108b6}\label{class_c_camera_ac3650f80e06272bf6fcf6e2234d108b6}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_camera_ac3650f80e06272bf6fcf6e2234d108b6}{\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Camera position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_camera_aa742d8c0165dceb69c16ad15b8d59593}\label{class_c_camera_aa742d8c0165dceb69c16ad15b8d59593}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_camera_aa742d8c0165dceb69c16ad15b8d59593}{\+\_\+view\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em Camera view direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_camera_ada2e1eb1f66fe64c962d3fab18dfe166}\label{class_c_camera_ada2e1eb1f66fe64c962d3fab18dfe166}} 
+glm\+::vec2 \mbox{\hyperlink{class_c_camera_ada2e1eb1f66fe64c962d3fab18dfe166}{\+\_\+old\+\_\+mouse\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Previous mouse position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_camera_aed45225851bdb9b9a4716bac4dc306c1}\label{class_c_camera_aed45225851bdb9b9a4716bac4dc306c1}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_camera_aed45225851bdb9b9a4716bac4dc306c1}{\+\_\+relative\+\_\+up}}
+\begin{DoxyCompactList}\small\item\em Camera up direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Camera class. 
+
+This class handles camera movement and view direction
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_camera_a95821d3db82745839d43017b3ab80f35}\label{class_c_camera_a95821d3db82745839d43017b3ab80f35}} 
+\index{CCamera@{CCamera}!follow\_ship@{follow\_ship}}
+\index{follow\_ship@{follow\_ship}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{follow\_ship()}{follow\_ship()}}
+{\footnotesize\ttfamily void CCamera\+::follow\+\_\+ship (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{ship\+\_\+position,  }\item[{glm\+::vec3}]{ship\+\_\+velocity }\end{DoxyParamCaption})}
+
+
+
+Follows the ship. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ship\+\_\+position} & Ship position \\
+\hline
+{\em ship\+\_\+velocity} & Ship velocity\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_aea004cea70e6a27c957a9606ebba76f0}\label{class_c_camera_aea004cea70e6a27c957a9606ebba76f0}} 
+\index{CCamera@{CCamera}!get\_view\_matrix@{get\_view\_matrix}}
+\index{get\_view\_matrix@{get\_view\_matrix}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{get\_view\_matrix()}{get\_view\_matrix()}}
+{\footnotesize\ttfamily glm\+::mat4 CCamera\+::get\+\_\+view\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets view matrix. 
+
+\begin{DoxyReturn}{Returns}
+View matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a48506137454597a2a467495aa612655c}\label{class_c_camera_a48506137454597a2a467495aa612655c}} 
+\index{CCamera@{CCamera}!look\_at\_origin@{look\_at\_origin}}
+\index{look\_at\_origin@{look\_at\_origin}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{look\_at\_origin()}{look\_at\_origin()}}
+{\footnotesize\ttfamily void CCamera\+::look\+\_\+at\+\_\+origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Changes view direction to point to origin. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_ad1ea804d06f7c63bd138da5877f0aef8}\label{class_c_camera_ad1ea804d06f7c63bd138da5877f0aef8}} 
+\index{CCamera@{CCamera}!mouse\_update@{mouse\_update}}
+\index{mouse\_update@{mouse\_update}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{mouse\_update()}{mouse\_update()}}
+{\footnotesize\ttfamily void CCamera\+::mouse\+\_\+update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{new\+\_\+mouse\+\_\+position }\end{DoxyParamCaption})}
+
+
+
+Updates camera position based on mouse movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+mouse\+\_\+position} & New mouse position\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a2942fcc640db3a3bfe57508b693f8a46}\label{class_c_camera_a2942fcc640db3a3bfe57508b693f8a46}} 
+\index{CCamera@{CCamera}!move\_backward@{move\_backward}}
+\index{move\_backward@{move\_backward}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{move\_backward()}{move\_backward()}}
+{\footnotesize\ttfamily void CCamera\+::move\+\_\+backward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves camera backward. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a6273ec9d907201e57543edc49aa176b5}\label{class_c_camera_a6273ec9d907201e57543edc49aa176b5}} 
+\index{CCamera@{CCamera}!move\_down@{move\_down}}
+\index{move\_down@{move\_down}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{move\_down()}{move\_down()}}
+{\footnotesize\ttfamily void CCamera\+::move\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves camera down. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a08b418feb5a4a2289a51959f210e2a7c}\label{class_c_camera_a08b418feb5a4a2289a51959f210e2a7c}} 
+\index{CCamera@{CCamera}!move\_forward@{move\_forward}}
+\index{move\_forward@{move\_forward}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{move\_forward()}{move\_forward()}}
+{\footnotesize\ttfamily void CCamera\+::move\+\_\+forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves camera forward. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a9429e8b815e4e435fbd515fd971b8a9c}\label{class_c_camera_a9429e8b815e4e435fbd515fd971b8a9c}} 
+\index{CCamera@{CCamera}!move\_up@{move\_up}}
+\index{move\_up@{move\_up}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{move\_up()}{move\_up()}}
+{\footnotesize\ttfamily void CCamera\+::move\+\_\+up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves camera up. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_ab21117968c92de8f277931920c6cf7d5}\label{class_c_camera_ab21117968c92de8f277931920c6cf7d5}} 
+\index{CCamera@{CCamera}!strafe\_left@{strafe\_left}}
+\index{strafe\_left@{strafe\_left}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{strafe\_left()}{strafe\_left()}}
+{\footnotesize\ttfamily void CCamera\+::strafe\+\_\+left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Strafes camera left. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a55656abbfdd5e796e16e64b286b2cee2}\label{class_c_camera_a55656abbfdd5e796e16e64b286b2cee2}} 
+\index{CCamera@{CCamera}!strafe\_right@{strafe\_right}}
+\index{strafe\_right@{strafe\_right}!CCamera@{CCamera}}
+\doxysubsubsection{\texorpdfstring{strafe\_right()}{strafe\_right()}}
+{\footnotesize\ttfamily void CCamera\+::strafe\+\_\+right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Strafes camera right. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CCamera.\+h\end{DoxyCompactItemize}

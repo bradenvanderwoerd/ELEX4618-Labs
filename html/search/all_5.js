@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lab3_50',['Lab3',['../class_lab3.html',1,'Lab3'],['../class_lab3.html#a3c7ca8d463b14809b879f242174c1976',1,'Lab3::Lab3()']]],
-  ['lab3main_51',['lab3main',['../class_lab3.html#a6f42fdfc6a254f312dfdb38f1e15f052',1,'Lab3']]]
+  ['follow_5fship_104',['follow_ship',['../class_c_camera.html#a95821d3db82745839d43017b3ab80f35',1,'CCamera']]],
+  ['free_5fcam_5fenabled_105',['free_cam_enabled',['../class_c_asteroid_game.html#a062a14516320b57788b166215edde0b8',1,'CAsteroidGame']]]
 ];

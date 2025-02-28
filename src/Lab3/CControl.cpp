@@ -4,7 +4,7 @@
 #include <iostream>
 
 #define DEBOUNCE_TIME 200
-#define TIMEOUT_TIME 1000
+#define TIMEOUT_TIME 500
 
 CControl::CControl() {
 
@@ -21,42 +21,30 @@ void CControl::init_com(int comport) {
 	_com.flush();
 }
 
-void CControl::init_com() {
-	int result;
+bool CControl::init_com() {
 	int comport = 4;
-	bool port_detected = false;
+	int dummy = 1;
+	bool connected = false;
 
-	std::cout << "Attempting communication on COM" << comport << std::endl;
-	_com.open("COM" + std::to_string(comport));
-	_com.flush();
-	port_detected = get_data(DIGITAL, 0, result);
+	//std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
 
-	if (port_detected) {
-		std::cout << "Successfully established communication on COM" << comport << std::endl;
-		return;
-	}
+	connected = _com.open("COM" + std::to_string(comport));
 
-	comport = -1;
-
-	while (!port_detected && comport < 10) {
+	if (!connected) comport = 0;
+	while (!connected && comport < 6) {
 		comport++;
-		std::cout << "Attempting communication on COM" << comport << std::endl;
-		_com.open("COM" + std::to_string(comport));
+		//std::cout << "Attempting to connect on COM" + std::to_string(comport) << std::endl;
+		connected = _com.open("COM" + std::to_string(comport));
+	}
+
+	if (connected) {
+		std::cout << "Connected on COM" + std::to_string(comport) << std::endl;
 		_com.flush();
-		port_detected = get_data(DIGITAL, 0, result);
+		return true;
 	}
-	
-	if (port_detected)
-		std::cout << "Successfully established communication on COM" << comport << std::endl;
-	else {
-		std::cout << "Auto-detection failed. Enter COM number or (r) to retry: ";
-		char cmd = ' ';
-		std::cin >> cmd;
-		if (cmd == 'r' || cmd == 'R')
-			init_com();
-		else
-			init_com(cmd);
-	}
+
+	std::cout << "Auto-connect failed" << std::endl;
+	return false;
 }
 
 bool CControl::get_data(int type, int channel, int& result) {
@@ -64,16 +52,24 @@ bool CControl::get_data(int type, int channel, int& result) {
 	std::string rx_str = "";
 
 	_com.write(tx_str.c_str(), tx_str.length());
-	Sleep(10);
+	Sleep(1);
 
 	char buff[2];
 	buff[0] = 0;
 
 	float timer = cv::getTickCount();
 
-	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME)
-		if (_com.read(buff, 1) > 0)
-			rx_str = rx_str + buff[0];
+	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME) {
+		if (_com.read(buff, 1) >= 0)
+			rx_str += buff[0];
+		else
+			break;
+	}
+
+	rx_str.erase(std::remove(rx_str.begin(), rx_str.end(), '\0'), rx_str.end()); // Remove all '\0'
+	bool is_empty = rx_str.empty();
+	if (is_empty)
+		return false;
 	
 	std::regex result_exp("(\\d+)$");
 	std::smatch match;
@@ -100,9 +96,12 @@ bool CControl::set_data(int type, int channel, int val) {
 
 	float timer = cv::getTickCount();
 
-	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME)
-		if (_com.read(buff, 1) > 0)
-			rx_str = rx_str + buff[0];
+	while (buff[0] != '\n' && (cv::getTickCount() - timer) / cv::getTickFrequency() * 1000 < TIMEOUT_TIME) {
+		if (_com.read(buff, 1) >= 0)
+			rx_str += buff[0];
+		else
+			break;
+	}
 
 	if (rx_str == "A " + std::to_string(type) + " " + std::to_string(channel) + " " + std::to_string(val) + "\n")
 		return true;

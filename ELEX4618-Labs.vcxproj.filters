@@ -27,6 +27,12 @@
     <Filter Include="src\Lab5">
       <UniqueIdentifier>{dbf1c435-70c4-4b05-b267-996bafda20f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Lab6">
+      <UniqueIdentifier>{08e6315e-2b9f-4d4e-9622-1b93bb0c5651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Lab6">
+      <UniqueIdentifier>{beb4792f-c71e-4a8e-a23e-a8215d49eb2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cvui.h">
@@ -56,6 +62,39 @@
     <ClInclude Include="include\Lab5\CSnakeGameV2.h">
       <Filter>include\Lab5</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab6\CShip.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CAsteroidGame.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CGameObject.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glad.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\khrplatform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CPlanet.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CCamera.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CAsteroid.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CTextRenderer.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stb_image_write.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Lab6\CMissile.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -81,6 +120,33 @@
     </ClCompile>
     <ClCompile Include="src\Lab5\CSnakeGameV2.cpp">
       <Filter>src\Lab5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CShip.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CAsteroidGame.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CGameObject.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CPlanet.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CCamera.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CAsteroid.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CTextRenderer.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CMissile.cpp">
+      <Filter>src\Lab6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

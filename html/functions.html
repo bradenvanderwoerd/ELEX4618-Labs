@@ -67,11 +67,17 @@ $(function() {
 <li>_apple
 : <a class="el" href="class_c_snake_game_v2.html#a01a6c0eb01b857ebf40c8318bc69cf25">CSnakeGameV2</a>
 </li>
+<li>_asteroids
+: <a class="el" href="class_c_asteroid_game.html#a5673c6cd7d88d906e071c458fa3f74a7">CAsteroidGame</a>
+</li>
 <li>_barrel_x
 : <a class="el" href="class_c_snake_game_v2.html#a777f75fed3d872e2bd634482c4d84ec7">CSnakeGameV2</a>
 </li>
 <li>_barrel_y
 : <a class="el" href="class_c_snake_game_v2.html#aa5e3b0038a574b6aedbea41c9df1c04d">CSnakeGameV2</a>
+</li>
+<li>_camera
+: <a class="el" href="class_c_asteroid_game.html#a95eb213c33c79f3b79cded5efc6c6657">CAsteroidGame</a>
 </li>
 <li>_canvas
 : <a class="el" href="class_c_base4618.html#a1b925f757247b33ca2072f777f24582d">CBase4618</a>
@@ -86,6 +92,15 @@ $(function() {
 <li>_com
 : <a class="el" href="class_c_control.html#aef87fbcfdcd323b1fdcf41be993e006c">CControl</a>
 </li>
+<li>_controller_connected
+: <a class="el" href="class_c_asteroid_game.html#a8f8104fac59ba9d509e29b6688565cca">CAsteroidGame</a>
+</li>
+<li>_create_new_asteroid
+: <a class="el" href="class_c_asteroid_game.html#a12ab51626ac15c38cf062674df95313c">CAsteroidGame</a>
+</li>
+<li>_create_new_missile
+: <a class="el" href="class_c_asteroid_game.html#ae694f4c9a2b67e5cc0ea582d6d732769">CAsteroidGame</a>
+</li>
 <li>_crt_mask
 : <a class="el" href="class_c_snake_game_v2.html#a350f07b10623c0b9e64855f5976e1a62">CSnakeGameV2</a>
 </li>
@@ -94,18 +109,35 @@ $(function() {
 , <a class="el" href="class_lab3.html#ac1110d57cba3aab62383d8364b914d73">Lab3</a>
 </li>
 <li>_direction
-: <a class="el" href="class_c_snake_game.html#af242ff0d67385d43547c29e971c91b22">CSnakeGame</a>
+: <a class="el" href="class_c_game_object.html#a0620284cae24da5168f649134f27c9fc">CGameObject</a>
+, <a class="el" href="class_c_snake_game.html#af242ff0d67385d43547c29e971c91b22">CSnakeGame</a>
 , <a class="el" href="class_c_snake_game_v2.html#acd14a73fd3171fa25c40392ab6b73443">CSnakeGameV2</a>
 </li>
 <li>_do_crt
 : <a class="el" href="class_c_snake_game_v2.html#af270e7abd0358908d1f8ce84ee36f380">CSnakeGameV2</a>
 </li>
+<li>_draw_thread
+: <a class="el" href="class_c_asteroid_game.html#aa632cb1957845f792387b299677b5430">CAsteroidGame</a>
+</li>
+<li>_EBO
+: <a class="el" href="class_c_game_object.html#a0c794515cdd6e1a09233cb496ec3d374">CGameObject</a>
+</li>
 <li>_exit_flag
-: <a class="el" href="class_c_snake_game.html#a1af284e157baf095e9baed9818097827">CSnakeGame</a>
+: <a class="el" href="class_c_asteroid_game.html#a005a39f219094f6ebd3443041f434c2f">CAsteroidGame</a>
+, <a class="el" href="class_c_snake_game.html#a1af284e157baf095e9baed9818097827">CSnakeGame</a>
 , <a class="el" href="class_c_snake_game_v2.html#a7a7d5943a54b44ee1c0b6d65472f5a11">CSnakeGameV2</a>
+</li>
+<li>_fire
+: <a class="el" href="class_c_asteroid_game.html#a546e2d677f1fb17f18c2286eee816537">CAsteroidGame</a>
 </li>
 <li>_fps
 : <a class="el" href="class_c_snake_game_v2.html#a6b594f932ebd4f46f222ab55b71e2158">CSnakeGameV2</a>
+</li>
+<li>_free_cam_enabled
+: <a class="el" href="class_c_asteroid_game.html#a7b06bc32c671a3bfdfba3470442b2692">CAsteroidGame</a>
+</li>
+<li>_game_mutex
+: <a class="el" href="class_c_asteroid_game.html#a581fc721f17f214cc310823a40866c21">CAsteroidGame</a>
 </li>
 <li>_game_over
 : <a class="el" href="class_c_snake_game_v2.html#a9b18d417d72c5becb8fd0a03f87fec31">CSnakeGameV2</a>
@@ -116,11 +148,26 @@ $(function() {
 <li>_game_over_sound
 : <a class="el" href="class_c_snake_game_v2.html#a5447194af797edb8e26c04b5d9a13670">CSnakeGameV2</a>
 </li>
+<li>_game_started
+: <a class="el" href="class_c_asteroid_game.html#a4e9af4ff1777d7a266893a6122b2be3b">CAsteroidGame</a>
+</li>
+<li>_gpio_thread
+: <a class="el" href="class_c_asteroid_game.html#aa44a4e5fe67cac3075e37097c658b48f">CAsteroidGame</a>
+</li>
 <li>_high_score
 : <a class="el" href="class_c_snake_game_v2.html#a130353275006b6520230f80adc542280">CSnakeGameV2</a>
 </li>
+<li>_indices
+: <a class="el" href="class_c_game_object.html#a5eb690247a9591b8badd074b89d79f83">CGameObject</a>
+</li>
+<li>_last_asteroid_spawn_time
+: <a class="el" href="class_c_asteroid_game.html#a1f9f8d25a2a76348f58e7545df4429e7">CAsteroidGame</a>
+</li>
 <li>_last_frame_time
 : <a class="el" href="class_c_snake_game_v2.html#ab8e16c994ff51fb2df7be88ba3f9f0ab">CSnakeGameV2</a>
+</li>
+<li>_last_missile_spawn_time
+: <a class="el" href="class_c_asteroid_game.html#a32ca35dfcdf74d88758e36df9da5c4e5">CAsteroidGame</a>
 </li>
 <li>_last_update_complete
 : <a class="el" href="class_c_snake_game_v2.html#a97175003c6c0843fe0d50bfab1663dd0">CSnakeGameV2</a>
@@ -128,14 +175,36 @@ $(function() {
 <li>_last_update_tick
 : <a class="el" href="class_c_snake_game_v2.html#a7cb294d9397ad3e385211b17c9745b39">CSnakeGameV2</a>
 </li>
+<li>_last_update_time
+: <a class="el" href="class_c_asteroid_game.html#a053a1a3a29c90fad409b3e884cc0b2e1">CAsteroidGame</a>
+</li>
+<li>_lives
+: <a class="el" href="class_c_game_object.html#acb7176fe06c83819114f7e8a8490c755">CGameObject</a>
+</li>
 <li>_menu_no_start_text
 : <a class="el" href="class_c_snake_game_v2.html#a44d76dd7d3fb8393e756857139dcf939">CSnakeGameV2</a>
 </li>
 <li>_menu_start_text
 : <a class="el" href="class_c_snake_game_v2.html#a1b7954990f909f73b05e0d0aa1b99147">CSnakeGameV2</a>
 </li>
+<li>_missiles
+: <a class="el" href="class_c_asteroid_game.html#a0759c858a423f199427c2b08dbc18edd">CAsteroidGame</a>
+</li>
 <li>_music
-: <a class="el" href="class_c_snake_game_v2.html#a0e54d45e920214bfff4934618e364fb8">CSnakeGameV2</a>
+: <a class="el" href="class_c_asteroid_game.html#a32a13f47ac8bdbc92bd461b8739e3c1a">CAsteroidGame</a>
+, <a class="el" href="class_c_snake_game_v2.html#a0e54d45e920214bfff4934618e364fb8">CSnakeGameV2</a>
+</li>
+<li>_mvp_matrix
+: <a class="el" href="class_c_game_object.html#a235c1eeaae25b6fa14a89046cf5d6576">CGameObject</a>
+</li>
+<li>_old_mouse_position
+: <a class="el" href="class_c_camera.html#ada2e1eb1f66fe64c962d3fab18dfe166">CCamera</a>
+</li>
+<li>_orbit_distance
+: <a class="el" href="class_c_game_object.html#a37568f4e696115b88840142158a910bb">CGameObject</a>
+</li>
+<li>_planet
+: <a class="el" href="class_c_asteroid_game.html#a125300bf6c093978712772d79289a4ed">CAsteroidGame</a>
 </li>
 <li>_play_game_over_sound
 : <a class="el" href="class_c_snake_game_v2.html#a28ab64c7c26f5aee0bb8a81a889dd590">CSnakeGameV2</a>
@@ -146,15 +215,43 @@ $(function() {
 <li>_play_upgrade_sound
 : <a class="el" href="class_c_snake_game_v2.html#a9efa56c49e1e42248ec5c41413524fdc">CSnakeGameV2</a>
 </li>
+<li>_position
+: <a class="el" href="class_c_camera.html#ac3650f80e06272bf6fcf6e2234d108b6">CCamera</a>
+, <a class="el" href="class_c_game_object.html#a738e5a9ae3c745b9a91c622bda025eb4">CGameObject</a>
+</li>
 <li>_previous_direction
 : <a class="el" href="class_c_snake_game.html#ac62facefc4c8724ac382c7886906dfab">CSnakeGame</a>
 </li>
+<li>_program_id
+: <a class="el" href="class_c_asteroid_game.html#a3f8fad55a8ee78147d8aa763a642c71c">CAsteroidGame</a>
+, <a class="el" href="class_c_game_object.html#a16715e9d11f226fefcf2aed0263d1070">CGameObject</a>
+</li>
+<li>_radius
+: <a class="el" href="class_c_game_object.html#a6f79ce10ac0d7001ad20bc339ddf7b42">CGameObject</a>
+</li>
+<li>_relative_up
+: <a class="el" href="class_c_camera.html#aed45225851bdb9b9a4716bac4dc306c1">CCamera</a>
+</li>
 <li>_reset_flag
-: <a class="el" href="class_c_snake_game.html#ac764661e0d65771edbb221e3a31c0726">CSnakeGame</a>
+: <a class="el" href="class_c_asteroid_game.html#a840df8b5be0de7197697ba0dbb44f694">CAsteroidGame</a>
+, <a class="el" href="class_c_snake_game.html#ac764661e0d65771edbb221e3a31c0726">CSnakeGame</a>
 , <a class="el" href="class_c_snake_game_v2.html#a40aa6ed29c2cf74c92b0e1cfc79021ea">CSnakeGameV2</a>
 </li>
+<li>_rotation
+: <a class="el" href="class_c_game_object.html#a13cd50a0f92079b8c526259ddf3eaa87">CGameObject</a>
+</li>
+<li>_scale
+: <a class="el" href="class_c_game_object.html#ab8f310059db2f635bd9f670729b2676d">CGameObject</a>
+</li>
 <li>_score
-: <a class="el" href="class_c_snake_game_v2.html#af6440edfb449f14cb6003e9d737387c7">CSnakeGameV2</a>
+: <a class="el" href="class_c_asteroid_game.html#aa6a4351439aaaa4b3abd31b4a4d98a54">CAsteroidGame</a>
+, <a class="el" href="class_c_snake_game_v2.html#af6440edfb449f14cb6003e9d737387c7">CSnakeGameV2</a>
+</li>
+<li>_ship
+: <a class="el" href="class_c_asteroid_game.html#aaf0c3fd09695e63d7ec0714fc37cf514">CAsteroidGame</a>
+</li>
+<li>_ship_hit
+: <a class="el" href="class_c_asteroid_game.html#a6252ca264a2cebc518b2fdbaac029581">CAsteroidGame</a>
 </li>
 <li>_show_start_text
 : <a class="el" href="class_c_snake_game_v2.html#a4b403cf5a1fd940888f5ae53be0f8871">CSnakeGameV2</a>
@@ -172,8 +269,28 @@ $(function() {
 <li>_snake_speed
 : <a class="el" href="class_c_snake_game_v2.html#aa6185a9f5a5e64af35bed6661dece90e">CSnakeGameV2</a>
 </li>
+<li>_sound_thread
+: <a class="el" href="class_c_asteroid_game.html#aaef607c5f28cec55efab3c50ed1af59c">CAsteroidGame</a>
+</li>
 <li>_start_game
 : <a class="el" href="class_c_snake_game_v2.html#a55058c7c10164c92d02e307dbce659b1">CSnakeGameV2</a>
+</li>
+<li>_text_program_id
+: <a class="el" href="class_c_asteroid_game.html#a3ce684ac91e8e486ee6455249bcab892">CAsteroidGame</a>
+</li>
+<li>_text_renderer
+: <a class="el" href="class_c_asteroid_game.html#acf8da14826fc84e41ff396b9a2ed381e">CAsteroidGame</a>
+</li>
+<li>_thrust
+: <a class="el" href="class_c_asteroid_game.html#abc4379d72eb820e45161bec9cd0292a8">CAsteroidGame</a>
+, <a class="el" href="class_c_ship.html#a042f47f657f80cd128e651d208476518">CShip</a>
+</li>
+<li>_turn_input
+: <a class="el" href="class_c_asteroid_game.html#a9099ca2f6340be0cfed0b8d97a235d8e">CAsteroidGame</a>
+, <a class="el" href="class_c_ship.html#a75f02486eafec9b012ec60a89c4d087b">CShip</a>
+</li>
+<li>_update_thread
+: <a class="el" href="class_c_asteroid_game.html#a87612d4f33fae44dffe629b2909db799">CAsteroidGame</a>
 </li>
 <li>_upgrade_channel
 : <a class="el" href="class_c_snake_game_v2.html#aeae85371d020d2011e2c167e50cc2e18">CSnakeGameV2</a>
@@ -181,163 +298,27 @@ $(function() {
 <li>_upgrade_sound
 : <a class="el" href="class_c_snake_game_v2.html#a5afcbe9b576a5db637838842a128818a">CSnakeGameV2</a>
 </li>
-</ul>
-
-
-<h3><a id="index_c"></a>- c -</h3><ul>
-<li>CBase4618()
-: <a class="el" href="class_c_base4618.html#abe2aad021452c08dd4a5726b44c5a0b7">CBase4618</a>
+<li>_VAO
+: <a class="el" href="class_c_game_object.html#a46959cbf4f4207be22b87ece9f3ecf58">CGameObject</a>
 </li>
-<li>CControl()
-: <a class="el" href="class_c_control.html#a6498500ff403327b5770a3acebed1d93">CControl</a>
+<li>_VBO
+: <a class="el" href="class_c_game_object.html#af1cddc6975fece706364fdddec21fa54">CGameObject</a>
 </li>
-<li>crt()
-: <a class="el" href="class_c_snake_game_v2.html#ad979fa99eac68377364ed88b7b6847c2">CSnakeGameV2</a>
+<li>_velocity
+: <a class="el" href="class_c_game_object.html#ac339de51c643f5d91c4d6e9a8eff4016">CGameObject</a>
 </li>
-<li>CSnakeGame()
-: <a class="el" href="class_c_snake_game.html#a75bdb1d761200172ec2115fd95575a4a">CSnakeGame</a>
+<li>_vertices
+: <a class="el" href="class_c_game_object.html#a0a49165de9e313ef0fe0e5831fb507a1">CGameObject</a>
 </li>
-<li>CSnakeGameV2()
-: <a class="el" href="class_c_snake_game_v2.html#acb1ba0c302144c94b529056149b51dea">CSnakeGameV2</a>
+<li>_view_direction
+: <a class="el" href="class_c_camera.html#aa742d8c0165dceb69c16ad15b8d59593">CCamera</a>
 </li>
-</ul>
-
-
-<h3><a id="index_d"></a>- d -</h3><ul>
-<li>draw()
-: <a class="el" href="class_c_base4618.html#a0987bf28e9beed4753d3628fcddc3315">CBase4618</a>
-, <a class="el" href="class_c_snake_game.html#a698c033f63c64fa684b9a70b22b1b607">CSnakeGame</a>
-, <a class="el" href="class_c_snake_game_v2.html#aeeeb8e5bbabf8fa27ad7aaf80412e2cf">CSnakeGameV2</a>
+<li>_window
+: <a class="el" href="class_c_asteroid_game.html#a6d25ff725447c85f7bee8a4012904789">CAsteroidGame</a>
 </li>
-<li>draw_thread()
-: <a class="el" href="class_c_snake_game_v2.html#ad57c9135fb7af0b0a1d16e485fd7cbd0">CSnakeGameV2</a>
-</li>
-</ul>
-
-
-<h3><a id="index_g"></a>- g -</h3><ul>
-<li>get_analog()
-: <a class="el" href="class_c_control.html#a89115dbb987b3ea983ea8dbe6d78139e">CControl</a>
-</li>
-<li>get_button()
-: <a class="el" href="class_c_control.html#add56a263c0b661198261cca204952a9a">CControl</a>
-</li>
-<li>get_data()
-: <a class="el" href="class_c_control.html#a0bad8e51e54cb6f1e2a7b51d3a3940d3">CControl</a>
-</li>
-<li>gpio()
-: <a class="el" href="class_c_base4618.html#a8d55ae2f3ce30021775565dc895b8b12">CBase4618</a>
-, <a class="el" href="class_c_snake_game.html#a81e5ef979dd35a6cfdc62461c1959f6b">CSnakeGame</a>
-, <a class="el" href="class_c_snake_game_v2.html#ae6e489b7d27b1166b4181b98e70a980b">CSnakeGameV2</a>
-</li>
-<li>gpio_thread()
-: <a class="el" href="class_c_snake_game_v2.html#afbf048cdf0e59c32f6bce054c8362c13">CSnakeGameV2</a>
-</li>
-</ul>
-
-
-<h3><a id="index_i"></a>- i -</h3><ul>
-<li>init_com()
-: <a class="el" href="class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468">CControl</a>
-</li>
-</ul>
-
-
-<h3><a id="index_l"></a>- l -</h3><ul>
-<li>Lab3()
-: <a class="el" href="class_lab3.html#a3c7ca8d463b14809b879f242174c1976">Lab3</a>
-</li>
-<li>lab3main()
-: <a class="el" href="class_lab3.html#a6f42fdfc6a254f312dfdb38f1e15f052">Lab3</a>
-</li>
-</ul>
-
-
-<h3><a id="index_p"></a>- p -</h3><ul>
-<li>print_menu()
-: <a class="el" href="class_lab3.html#afb17860d92726dbc354f4c8316839afd">Lab3</a>
-</li>
-</ul>
-
-
-<h3><a id="index_r"></a>- r -</h3><ul>
-<li>read()
-: <a class="el" href="class_serial.html#a8266889eb5bfa7ef8b53595c5482133d">Serial</a>
-</li>
-<li>reset()
-: <a class="el" href="class_c_snake_game.html#aae59ac38033d3a1fe7156271decc7aa1">CSnakeGame</a>
-</li>
-<li>run()
-: <a class="el" href="class_c_base4618.html#a988cdbb83863a0f3f48fed28677bfa40">CBase4618</a>
-, <a class="el" href="class_c_snake_game.html#aed6ffa91d5668b39b3a4f4f45dbb43a0">CSnakeGame</a>
-, <a class="el" href="class_c_snake_game_v2.html#a64f141150ea063c3a55e4e2d726e255f">CSnakeGameV2</a>
-</li>
-</ul>
-
-
-<h3><a id="index_s"></a>- s -</h3><ul>
-<li>set_data()
-: <a class="el" href="class_c_control.html#a13f557815616ef66a8f5dd4b725d8c32">CControl</a>
-</li>
-<li>sound()
-: <a class="el" href="class_c_snake_game_v2.html#a82e37e90acf4415e00c582a1b0a3d34b">CSnakeGameV2</a>
-</li>
-<li>sound_thread()
-: <a class="el" href="class_c_snake_game_v2.html#a8118501dadd1443d8d9a43f9978f5873">CSnakeGameV2</a>
-</li>
-</ul>
-
-
-<h3><a id="index_t"></a>- t -</h3><ul>
-<li>test_analog()
-: <a class="el" href="class_lab3.html#a8e794b1e136a5cbdfaffc69aa592263b">Lab3</a>
-</li>
-<li>test_button()
-: <a class="el" href="class_lab3.html#a6caf00c9acd59cd879f3efe5396b71b5">Lab3</a>
-</li>
-<li>test_digital()
-: <a class="el" href="class_lab3.html#ae9a992388486843aed99f47b53b5610e">Lab3</a>
-</li>
-<li>test_servo()
-: <a class="el" href="class_lab3.html#a7f831569563fe5e2ef29562721812241">Lab3</a>
-</li>
-</ul>
-
-
-<h3><a id="index_u"></a>- u -</h3><ul>
-<li>update()
-: <a class="el" href="class_c_base4618.html#a1e2f3c16eb99b5bfdd5d5254aee39ee6">CBase4618</a>
-, <a class="el" href="class_c_snake_game.html#a34614fecfbf367f6bf62db84e3d20b4a">CSnakeGame</a>
-, <a class="el" href="class_c_snake_game_v2.html#a9bb872a2fce0892ffcbd8a8ff5d11903">CSnakeGameV2</a>
-</li>
-<li>update_thread()
-: <a class="el" href="class_c_snake_game_v2.html#a735d1727160d3fbd7e5169357f1e9eaf">CSnakeGameV2</a>
-</li>
-</ul>
-
-
-<h3><a id="index_w"></a>- w -</h3><ul>
-<li>write()
-: <a class="el" href="class_serial.html#aae3d630a4fd81c8b148cb4eebdb91392">Serial</a>
-</li>
-</ul>
-
-
-<h3><a id="index__7E"></a>- ~ -</h3><ul>
-<li>~CBase4618()
-: <a class="el" href="class_c_base4618.html#a22c0de299cef06c4ef49ace3a5b0be52">CBase4618</a>
-</li>
-<li>~CControl()
-: <a class="el" href="class_c_control.html#ab2ae420ef75b010c0c9078e597781105">CControl</a>
-</li>
-<li>~CSnakeGame()
-: <a class="el" href="class_c_snake_game.html#a96364879bacad0be7c62ea148ef87349">CSnakeGame</a>
-</li>
-<li>~CSnakeGameV2()
-: <a class="el" href="class_c_snake_game_v2.html#a779d4a9069f0e569cbe3670900509f2a">CSnakeGameV2</a>
-</li>
-<li>~Lab3()
-: <a class="el" href="class_lab3.html#af9533fd46583812f7d2c8a1c9713829a">Lab3</a>
+<li>_window_size
+: <a class="el" href="class_c_asteroid_game.html#a2079dd63c37978c558305dd79e5b5e2c">CAsteroidGame</a>
+, <a class="el" href="class_c_game_object.html#a3cc05f856d544786660f9967d28b68a7">CGameObject</a>
 </li>
 </ul>
 </div><!-- contents -->

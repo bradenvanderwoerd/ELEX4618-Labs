@@ -7,14 +7,14 @@
 
 #define DEADZONE_PERCENT 40
 #define STARTING_SEGMENTS 10
-#define CANVAS_NAME "SSSSSNAKE"
+#define CANVAS_NAME "RETRO SNAKE"
 #define LOOP_PERIOD 28
 #define SIMPLE_RENDER_SIZE 3
 #define APPLE_SPAWN_RATE 5
 #define X_OFFSET 0
 #define CURVATURE 0.09
 #define MENU_SPEED 500
-#define DO_SESSION_HIGH_SCORE 0
+#define DO_SESSION_HIGH_SCORE false
 
 
 enum { UP = 0, RIGHT, DOWN, LEFT };
@@ -68,8 +68,8 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 		}
 	}
 
-	_menu_no_start_text = cv::imread("resources/menu_start.png");
-	_menu_start_text = cv::imread("resources/menu_no_start.png");
+	//_menu_no_start_text = cv::imread("resources/menu_no_start.png");
+	//_menu_start_text = cv::imread("resources/menu_start.png");
 
 	_play_snake_music = false;
 	_play_upgrade_sound = false;
@@ -367,10 +367,10 @@ void CSnakeGameV2::draw() {
 	_canvas.setTo(cv::Scalar(0, 0, 0));
 
 	if (!_start_game) {
-		if (_show_start_text)
+		/*if (_show_start_text)
 			_menu_start_text.copyTo(_canvas);
 		else
-			_menu_no_start_text.copyTo(_canvas);
+			_menu_no_start_text.copyTo(_canvas);*/
 
 		_canvas = crt(_canvas);
 
@@ -465,7 +465,7 @@ void CSnakeGameV2::draw() {
 		cvui::text(_canvas, 375, 55, "New High Score!", 1);
 
 	cvui::text(_canvas, 290, 750, "RESET", 1);
-	cvui::text(_canvas, 650, 750, "Quit", 1);
+	cvui::text(_canvas, 650, 750, "QUIT", 1);
 
 	cv::rectangle(_canvas, cv::Rect(10, 10, _canvas_size.width - 5, _canvas_size.height - 20), cv::Scalar(200, 200, 200), 5);
 
@@ -490,7 +490,7 @@ void CSnakeGameV2::draw() {
 }
 
 void CSnakeGameV2::sound() {
-	if (_play_snake_music && _start_game) {
+	if (_play_snake_music && _start_game && !Mix_Playing(_game_over_channel)) {
 		Mix_PlayMusic(_music, -1);
 		_play_snake_music = !_play_snake_music;
 	}

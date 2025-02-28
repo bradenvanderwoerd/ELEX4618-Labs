@@ -20,7 +20,7 @@ Implements ELEX 4618 communication protocol on serial port.
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_control}{CControl}} destructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\+\_\+com}} (int comport)
 \begin{DoxyCompactList}\small\item\em Initializes serial port object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}{init\+\_\+com}} ()
+bool \mbox{\hyperlink{class_c_control_a2719cd7e1ba1feb1ecd4fb8ce85ebbf1}{init\+\_\+com}} ()
 \begin{DoxyCompactList}\small\item\em Initializes serial port object (scans ports automatically) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\+\_\+data}} (int type, int channel, int \&result)
 \begin{DoxyCompactList}\small\item\em Gets data from the com port. \end{DoxyCompactList}\item 
@@ -107,18 +107,18 @@ Gets data from the com port.
 \begin{DoxyReturn}{Returns}
 True is the get command is successful, false if request timed out 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}\label{class_c_control_a7589c187aacdc1305a8c97c4d2ae1dd6}} 
+\mbox{\Hypertarget{class_c_control_a2719cd7e1ba1feb1ecd4fb8ce85ebbf1}\label{class_c_control_a2719cd7e1ba1feb1ecd4fb8ce85ebbf1}} 
 \index{CControl@{CControl}!init\_com@{init\_com}}
 \index{init\_com@{init\_com}!CControl@{CControl}}
 \doxysubsubsection{\texorpdfstring{init\_com()}{init\_com()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void CControl\+::init\+\_\+com (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool CControl\+::init\+\_\+com (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Initializes serial port object (scans ports automatically) 
 
 \begin{DoxyReturn}{Returns}
-nothing to return 
+True if connection was a success 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}\label{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}} 
 \index{CControl@{CControl}!init\_com@{init\_com}}

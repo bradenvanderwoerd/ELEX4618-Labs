@@ -1,0 +1,510 @@
+\hypertarget{class_c_asteroid_game}{}\doxysection{CAsteroid\+Game Class Reference}
+\label{class_c_asteroid_game}\index{CAsteroidGame@{CAsteroidGame}}
+
+
+Asteroids Game.  
+
+
+
+
+{\ttfamily \#include $<$CAsteroid\+Game.\+h$>$}
+
+Inheritance diagram for CAsteroid\+Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_asteroid_game}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_asteroid_game_a0224fb0b9d61bdf159f34dad947e4b85}{CAsteroid\+Game}} (cv\+::\+Size size)
+\begin{DoxyCompactList}\small\item\em Initializes members and auto-\/initializes COM port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aeff6edbfe3d143a46815bdba68833476}\label{class_c_asteroid_game_aeff6edbfe3d143a46815bdba68833476}} 
+\mbox{\hyperlink{class_c_asteroid_game_aeff6edbfe3d143a46815bdba68833476}{$\sim$\+CAsteroid\+Game}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_asteroid_game}{CAsteroid\+Game}} destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_camera}{CCamera}} $\ast$ \mbox{\hyperlink{class_c_asteroid_game_a5837fb8c5ad05b6bda43292b02ab96ef}{get\+\_\+camera}} ()
+\begin{DoxyCompactList}\small\item\em Gets \mbox{\hyperlink{class_c_camera}{CCamera}} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_asteroid_game_a062a14516320b57788b166215edde0b8}{free\+\_\+cam\+\_\+enabled}} ()
+\begin{DoxyCompactList}\small\item\em Determines if mouse should update camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_a6484037a5b08388075d7644534ad4a0c}{close\+\_\+game}} ()
+\begin{DoxyCompactList}\small\item\em Ends game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_a6dd639e66a76be78a087a313da09024b}{toggle\+\_\+free\+\_\+cam}} ()
+\begin{DoxyCompactList}\small\item\em Toggles free camera mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_aaccc0701d4c6cc52f8079d09a1bc95ae}{run}} ()
+\begin{DoxyCompactList}\small\item\em Starts gpio, update, draw, and sound threads and waits for command to quit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_c_asteroid_game_ae2a37292d2799d15456b6d53389ee5af}{gpio\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_asteroid_game_aab6b9f31f6cb123e6da24f4c43358d0d}{gpio()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_aa981fc19658144bae852736dcf2bfffc}{update\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_asteroid_game_a075909049dd964d88182c8b413d4fa90}{update()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_a151adda48a7491c3dd1dfb4c59106c64}{draw\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_asteroid_game_aabe1c98aa4c5cccc36224ddd531352b1}{draw()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_aa57038f69349aa30ee7c19ba2bd955fa}{sound\+\_\+thread}} ()
+\begin{DoxyCompactList}\small\item\em Runs \mbox{\hyperlink{class_c_asteroid_game_ab2bc5b35791c5677decac89dbfb01166}{sound()}} in a loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_aab6b9f31f6cb123e6da24f4c43358d0d}{gpio}} ()
+\begin{DoxyCompactList}\small\item\em Changes ship direction and may reset game based on controller input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_a075909049dd964d88182c8b413d4fa90}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates game objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_aabe1c98aa4c5cccc36224ddd531352b1}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws game objects and UI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_ab2bc5b35791c5677decac89dbfb01166}{sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays sound effects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_asteroid_game_a56722e6987daa6dc10342ee8578c6347}{setup\+\_\+game}} ()
+\begin{DoxyCompactList}\small\item\em Sets or resets all game objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_c_asteroid_game_a46bbbe6ca22b013c4172a7c917830ea8}{key\+\_\+callback}} (GLFWwindow $\ast$window, int key, int scancode, int action, int mods)
+\begin{DoxyCompactList}\small\item\em Handles key presses. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_c_asteroid_game_a26b48b85703e3898287045a6e9599aa8}{mouse\+\_\+callback}} (GLFWwindow $\ast$window, double xpos, double ypos)
+\begin{DoxyCompactList}\small\item\em Handles mouse movements. \end{DoxyCompactList}\item 
+static GLuint \mbox{\hyperlink{class_c_asteroid_game_a06643267425d216cbf0b6f66c1b72361}{install\+\_\+shaders}} ()
+\begin{DoxyCompactList}\small\item\em Compiles and links shaders. \end{DoxyCompactList}\item 
+static GLuint \mbox{\hyperlink{class_c_asteroid_game_a6febfa8728290e536c155100c4910456}{install\+\_\+text\+\_\+shaders}} ()
+\begin{DoxyCompactList}\small\item\em Compiles and links text shaders. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{class_c_asteroid_game_a016246178b40bcf91a7516df4cf5c1f6}{read\+\_\+shader\+\_\+code}} (std\+::string file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Reads code from GLSL file for shader. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_c_asteroid_game_abb6aadf109331bdaf3080792b0dce230}{check\+\_\+shader\+\_\+status}} (GLuint shader\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Checks if shader compiled successfully. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_c_asteroid_game_aa0d326cb55511429a30d37f146d91e5e}{check\+\_\+program\+\_\+status}} (GLuint program\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Checks if program linked successfully. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a6d25ff725447c85f7bee8a4012904789}\label{class_c_asteroid_game_a6d25ff725447c85f7bee8a4012904789}} 
+GLFWwindow $\ast$ \mbox{\hyperlink{class_c_asteroid_game_a6d25ff725447c85f7bee8a4012904789}{\+\_\+window}}
+\begin{DoxyCompactList}\small\item\em Pointer to GLFW window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a2079dd63c37978c558305dd79e5b5e2c}\label{class_c_asteroid_game_a2079dd63c37978c558305dd79e5b5e2c}} 
+cv\+::\+Size \mbox{\hyperlink{class_c_asteroid_game_a2079dd63c37978c558305dd79e5b5e2c}{\+\_\+window\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the game window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_acf8da14826fc84e41ff396b9a2ed381e}\label{class_c_asteroid_game_acf8da14826fc84e41ff396b9a2ed381e}} 
+\mbox{\hyperlink{class_c_text_renderer}{CText\+Renderer}} $\ast$ \mbox{\hyperlink{class_c_asteroid_game_acf8da14826fc84e41ff396b9a2ed381e}{\+\_\+text\+\_\+renderer}}
+\begin{DoxyCompactList}\small\item\em Pointer to text renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aaf0c3fd09695e63d7ec0714fc37cf514}\label{class_c_asteroid_game_aaf0c3fd09695e63d7ec0714fc37cf514}} 
+\mbox{\hyperlink{class_c_ship}{CShip}} $\ast$ \mbox{\hyperlink{class_c_asteroid_game_aaf0c3fd09695e63d7ec0714fc37cf514}{\+\_\+ship}}
+\begin{DoxyCompactList}\small\item\em Pointer to player ship. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a125300bf6c093978712772d79289a4ed}\label{class_c_asteroid_game_a125300bf6c093978712772d79289a4ed}} 
+\mbox{\hyperlink{class_c_planet}{CPlanet}} $\ast$ \mbox{\hyperlink{class_c_asteroid_game_a125300bf6c093978712772d79289a4ed}{\+\_\+planet}}
+\begin{DoxyCompactList}\small\item\em Pointer to planet object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a5673c6cd7d88d906e071c458fa3f74a7}\label{class_c_asteroid_game_a5673c6cd7d88d906e071c458fa3f74a7}} 
+std\+::vector$<$ \mbox{\hyperlink{class_c_asteroid}{CAsteroid}} $\ast$ $>$ \mbox{\hyperlink{class_c_asteroid_game_a5673c6cd7d88d906e071c458fa3f74a7}{\+\_\+asteroids}}
+\begin{DoxyCompactList}\small\item\em Vector of asteroid objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a0759c858a423f199427c2b08dbc18edd}\label{class_c_asteroid_game_a0759c858a423f199427c2b08dbc18edd}} 
+std\+::vector$<$ \mbox{\hyperlink{class_c_missile}{CMissile}} $\ast$ $>$ \mbox{\hyperlink{class_c_asteroid_game_a0759c858a423f199427c2b08dbc18edd}{\+\_\+missiles}}
+\begin{DoxyCompactList}\small\item\em Vector of missile objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a12ab51626ac15c38cf062674df95313c}\label{class_c_asteroid_game_a12ab51626ac15c38cf062674df95313c}} 
+int \mbox{\hyperlink{class_c_asteroid_game_a12ab51626ac15c38cf062674df95313c}{\+\_\+create\+\_\+new\+\_\+asteroid}}
+\begin{DoxyCompactList}\small\item\em Flag to create new asteroids. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_ae694f4c9a2b67e5cc0ea582d6d732769}\label{class_c_asteroid_game_ae694f4c9a2b67e5cc0ea582d6d732769}} 
+int \mbox{\hyperlink{class_c_asteroid_game_ae694f4c9a2b67e5cc0ea582d6d732769}{\+\_\+create\+\_\+new\+\_\+missile}}
+\begin{DoxyCompactList}\small\item\em Flag to create new missiles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a6252ca264a2cebc518b2fdbaac029581}\label{class_c_asteroid_game_a6252ca264a2cebc518b2fdbaac029581}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a6252ca264a2cebc518b2fdbaac029581}{\+\_\+ship\+\_\+hit}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if ship has been hit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a95eb213c33c79f3b79cded5efc6c6657}\label{class_c_asteroid_game_a95eb213c33c79f3b79cded5efc6c6657}} 
+\mbox{\hyperlink{class_c_camera}{CCamera}} \mbox{\hyperlink{class_c_asteroid_game_a95eb213c33c79f3b79cded5efc6c6657}{\+\_\+camera}}
+\begin{DoxyCompactList}\small\item\em Camera object for handling view. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a8f8104fac59ba9d509e29b6688565cca}\label{class_c_asteroid_game_a8f8104fac59ba9d509e29b6688565cca}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a8f8104fac59ba9d509e29b6688565cca}{\+\_\+controller\+\_\+connected}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if controller is connected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a4e9af4ff1777d7a266893a6122b2be3b}\label{class_c_asteroid_game_a4e9af4ff1777d7a266893a6122b2be3b}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a4e9af4ff1777d7a266893a6122b2be3b}{\+\_\+game\+\_\+started}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if game has started. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a9099ca2f6340be0cfed0b8d97a235d8e}\label{class_c_asteroid_game_a9099ca2f6340be0cfed0b8d97a235d8e}} 
+float \mbox{\hyperlink{class_c_asteroid_game_a9099ca2f6340be0cfed0b8d97a235d8e}{\+\_\+turn\+\_\+input}}
+\begin{DoxyCompactList}\small\item\em Player turn input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_abc4379d72eb820e45161bec9cd0292a8}\label{class_c_asteroid_game_abc4379d72eb820e45161bec9cd0292a8}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_abc4379d72eb820e45161bec9cd0292a8}{\+\_\+thrust}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if thrust is active. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a546e2d677f1fb17f18c2286eee816537}\label{class_c_asteroid_game_a546e2d677f1fb17f18c2286eee816537}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a546e2d677f1fb17f18c2286eee816537}{\+\_\+fire}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if fire is active. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aa6a4351439aaaa4b3abd31b4a4d98a54}\label{class_c_asteroid_game_aa6a4351439aaaa4b3abd31b4a4d98a54}} 
+int \mbox{\hyperlink{class_c_asteroid_game_aa6a4351439aaaa4b3abd31b4a4d98a54}{\+\_\+score}}
+\begin{DoxyCompactList}\small\item\em Player score. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a053a1a3a29c90fad409b3e884cc0b2e1}\label{class_c_asteroid_game_a053a1a3a29c90fad409b3e884cc0b2e1}} 
+double \mbox{\hyperlink{class_c_asteroid_game_a053a1a3a29c90fad409b3e884cc0b2e1}{\+\_\+last\+\_\+update\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Last update time for game loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a1f9f8d25a2a76348f58e7545df4429e7}\label{class_c_asteroid_game_a1f9f8d25a2a76348f58e7545df4429e7}} 
+double \mbox{\hyperlink{class_c_asteroid_game_a1f9f8d25a2a76348f58e7545df4429e7}{\+\_\+last\+\_\+asteroid\+\_\+spawn\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Last time an asteroid was spawned. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a32ca35dfcdf74d88758e36df9da5c4e5}\label{class_c_asteroid_game_a32ca35dfcdf74d88758e36df9da5c4e5}} 
+double \mbox{\hyperlink{class_c_asteroid_game_a32ca35dfcdf74d88758e36df9da5c4e5}{\+\_\+last\+\_\+missile\+\_\+spawn\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Last time a missile was spawned. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a7b06bc32c671a3bfdfba3470442b2692}\label{class_c_asteroid_game_a7b06bc32c671a3bfdfba3470442b2692}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a7b06bc32c671a3bfdfba3470442b2692}{\+\_\+free\+\_\+cam\+\_\+enabled}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if free camera mode is enabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a005a39f219094f6ebd3443041f434c2f}\label{class_c_asteroid_game_a005a39f219094f6ebd3443041f434c2f}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a005a39f219094f6ebd3443041f434c2f}{\+\_\+exit\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to exit game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a840df8b5be0de7197697ba0dbb44f694}\label{class_c_asteroid_game_a840df8b5be0de7197697ba0dbb44f694}} 
+bool \mbox{\hyperlink{class_c_asteroid_game_a840df8b5be0de7197697ba0dbb44f694}{\+\_\+reset\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Flag to reset game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a581fc721f17f214cc310823a40866c21}\label{class_c_asteroid_game_a581fc721f17f214cc310823a40866c21}} 
+std\+::mutex \mbox{\hyperlink{class_c_asteroid_game_a581fc721f17f214cc310823a40866c21}{\+\_\+game\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex to protect game attributes across threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a3f8fad55a8ee78147d8aa763a642c71c}\label{class_c_asteroid_game_a3f8fad55a8ee78147d8aa763a642c71c}} 
+GLuint \mbox{\hyperlink{class_c_asteroid_game_a3f8fad55a8ee78147d8aa763a642c71c}{\+\_\+program\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em Open\+GL program ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a3ce684ac91e8e486ee6455249bcab892}\label{class_c_asteroid_game_a3ce684ac91e8e486ee6455249bcab892}} 
+GLuint \mbox{\hyperlink{class_c_asteroid_game_a3ce684ac91e8e486ee6455249bcab892}{\+\_\+text\+\_\+program\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em Open\+GL text program ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a32a13f47ac8bdbc92bd461b8739e3c1a}\label{class_c_asteroid_game_a32a13f47ac8bdbc92bd461b8739e3c1a}} 
+Mix\+\_\+\+Music $\ast$ \mbox{\hyperlink{class_c_asteroid_game_a32a13f47ac8bdbc92bd461b8739e3c1a}{\+\_\+music}}
+\begin{DoxyCompactList}\small\item\em Background music file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aa44a4e5fe67cac3075e37097c658b48f}\label{class_c_asteroid_game_aa44a4e5fe67cac3075e37097c658b48f}} 
+std\+::thread \mbox{\hyperlink{class_c_asteroid_game_aa44a4e5fe67cac3075e37097c658b48f}{\+\_\+gpio\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread for handling GPIO inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_a87612d4f33fae44dffe629b2909db799}\label{class_c_asteroid_game_a87612d4f33fae44dffe629b2909db799}} 
+std\+::thread \mbox{\hyperlink{class_c_asteroid_game_a87612d4f33fae44dffe629b2909db799}{\+\_\+update\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread for handling game updates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aa632cb1957845f792387b299677b5430}\label{class_c_asteroid_game_aa632cb1957845f792387b299677b5430}} 
+std\+::thread \mbox{\hyperlink{class_c_asteroid_game_aa632cb1957845f792387b299677b5430}{\+\_\+draw\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread for handling rendering. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_asteroid_game_aaef607c5f28cec55efab3c50ed1af59c}\label{class_c_asteroid_game_aaef607c5f28cec55efab3c50ed1af59c}} 
+std\+::thread \mbox{\hyperlink{class_c_asteroid_game_aaef607c5f28cec55efab3c50ed1af59c}{\+\_\+sound\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread for handling sound effects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Asteroids Game. 
+
+This class runs the game Asteroids by inheriting from \mbox{\hyperlink{class_c_base4618}{CBase4618}}. The user controls a ship that can shoot and destroy incoming asteroids.
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_asteroid_game_a0224fb0b9d61bdf159f34dad947e4b85}\label{class_c_asteroid_game_a0224fb0b9d61bdf159f34dad947e4b85}} 
+\index{CAsteroidGame@{CAsteroidGame}!CAsteroidGame@{CAsteroidGame}}
+\index{CAsteroidGame@{CAsteroidGame}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{CAsteroidGame()}{CAsteroidGame()}}
+{\footnotesize\ttfamily CAsteroid\+Game\+::\+CAsteroid\+Game (\begin{DoxyParamCaption}\item[{cv\+::\+Size}]{size }\end{DoxyParamCaption})}
+
+
+
+Initializes members and auto-\/initializes COM port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of canvas \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_asteroid_game_aa0d326cb55511429a30d37f146d91e5e}\label{class_c_asteroid_game_aa0d326cb55511429a30d37f146d91e5e}} 
+\index{CAsteroidGame@{CAsteroidGame}!check\_program\_status@{check\_program\_status}}
+\index{check\_program\_status@{check\_program\_status}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{check\_program\_status()}{check\_program\_status()}}
+{\footnotesize\ttfamily static bool CAsteroid\+Game\+::check\+\_\+program\+\_\+status (\begin{DoxyParamCaption}\item[{GLuint}]{program\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Checks if program linked successfully. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em program\+\_\+id} & ID of program \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if program linked without error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_abb6aadf109331bdaf3080792b0dce230}\label{class_c_asteroid_game_abb6aadf109331bdaf3080792b0dce230}} 
+\index{CAsteroidGame@{CAsteroidGame}!check\_shader\_status@{check\_shader\_status}}
+\index{check\_shader\_status@{check\_shader\_status}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{check\_shader\_status()}{check\_shader\_status()}}
+{\footnotesize\ttfamily static bool CAsteroid\+Game\+::check\+\_\+shader\+\_\+status (\begin{DoxyParamCaption}\item[{GLuint}]{shader\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Checks if shader compiled successfully. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader\+\_\+id} & ID of shader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if shader compiled without error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a6484037a5b08388075d7644534ad4a0c}\label{class_c_asteroid_game_a6484037a5b08388075d7644534ad4a0c}} 
+\index{CAsteroidGame@{CAsteroidGame}!close\_game@{close\_game}}
+\index{close\_game@{close\_game}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{close\_game()}{close\_game()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::close\+\_\+game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ends game. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_aabe1c98aa4c5cccc36224ddd531352b1}\label{class_c_asteroid_game_aabe1c98aa4c5cccc36224ddd531352b1}} 
+\index{CAsteroidGame@{CAsteroidGame}!draw@{draw}}
+\index{draw@{draw}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Draws game objects and UI. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_asteroid_game_a151adda48a7491c3dd1dfb4c59106c64}\label{class_c_asteroid_game_a151adda48a7491c3dd1dfb4c59106c64}} 
+\index{CAsteroidGame@{CAsteroidGame}!draw\_thread@{draw\_thread}}
+\index{draw\_thread@{draw\_thread}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{draw\_thread()}{draw\_thread()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::draw\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_asteroid_game_aabe1c98aa4c5cccc36224ddd531352b1}{draw()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a062a14516320b57788b166215edde0b8}\label{class_c_asteroid_game_a062a14516320b57788b166215edde0b8}} 
+\index{CAsteroidGame@{CAsteroidGame}!free\_cam\_enabled@{free\_cam\_enabled}}
+\index{free\_cam\_enabled@{free\_cam\_enabled}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{free\_cam\_enabled()}{free\_cam\_enabled()}}
+{\footnotesize\ttfamily bool CAsteroid\+Game\+::free\+\_\+cam\+\_\+enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines if mouse should update camera. 
+
+\begin{DoxyReturn}{Returns}
+Value of \+\_\+free\+\_\+cam\+\_\+enabled flag 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a5837fb8c5ad05b6bda43292b02ab96ef}\label{class_c_asteroid_game_a5837fb8c5ad05b6bda43292b02ab96ef}} 
+\index{CAsteroidGame@{CAsteroidGame}!get\_camera@{get\_camera}}
+\index{get\_camera@{get\_camera}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{get\_camera()}{get\_camera()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_c_camera}{CCamera}}$\ast$ CAsteroid\+Game\+::get\+\_\+camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets \mbox{\hyperlink{class_c_camera}{CCamera}} object. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to \mbox{\hyperlink{class_c_camera}{CCamera}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_aab6b9f31f6cb123e6da24f4c43358d0d}\label{class_c_asteroid_game_aab6b9f31f6cb123e6da24f4c43358d0d}} 
+\index{CAsteroidGame@{CAsteroidGame}!gpio@{gpio}}
+\index{gpio@{gpio}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::gpio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Changes ship direction and may reset game based on controller input. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_asteroid_game_ae2a37292d2799d15456b6d53389ee5af}\label{class_c_asteroid_game_ae2a37292d2799d15456b6d53389ee5af}} 
+\index{CAsteroidGame@{CAsteroidGame}!gpio\_thread@{gpio\_thread}}
+\index{gpio\_thread@{gpio\_thread}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{gpio\_thread()}{gpio\_thread()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::gpio\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_asteroid_game_aab6b9f31f6cb123e6da24f4c43358d0d}{gpio()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a06643267425d216cbf0b6f66c1b72361}\label{class_c_asteroid_game_a06643267425d216cbf0b6f66c1b72361}} 
+\index{CAsteroidGame@{CAsteroidGame}!install\_shaders@{install\_shaders}}
+\index{install\_shaders@{install\_shaders}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{install\_shaders()}{install\_shaders()}}
+{\footnotesize\ttfamily static GLuint CAsteroid\+Game\+::install\+\_\+shaders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Compiles and links shaders. 
+
+\begin{DoxyReturn}{Returns}
+Program ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a6febfa8728290e536c155100c4910456}\label{class_c_asteroid_game_a6febfa8728290e536c155100c4910456}} 
+\index{CAsteroidGame@{CAsteroidGame}!install\_text\_shaders@{install\_text\_shaders}}
+\index{install\_text\_shaders@{install\_text\_shaders}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{install\_text\_shaders()}{install\_text\_shaders()}}
+{\footnotesize\ttfamily static GLuint CAsteroid\+Game\+::install\+\_\+text\+\_\+shaders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Compiles and links text shaders. 
+
+\begin{DoxyReturn}{Returns}
+Text program ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a46bbbe6ca22b013c4172a7c917830ea8}\label{class_c_asteroid_game_a46bbbe6ca22b013c4172a7c917830ea8}} 
+\index{CAsteroidGame@{CAsteroidGame}!key\_callback@{key\_callback}}
+\index{key\_callback@{key\_callback}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{key\_callback()}{key\_callback()}}
+{\footnotesize\ttfamily static void CAsteroid\+Game\+::key\+\_\+callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{int}]{key,  }\item[{int}]{scancode,  }\item[{int}]{action,  }\item[{int}]{mods }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Handles key presses. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a26b48b85703e3898287045a6e9599aa8}\label{class_c_asteroid_game_a26b48b85703e3898287045a6e9599aa8}} 
+\index{CAsteroidGame@{CAsteroidGame}!mouse\_callback@{mouse\_callback}}
+\index{mouse\_callback@{mouse\_callback}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{mouse\_callback()}{mouse\_callback()}}
+{\footnotesize\ttfamily static void CAsteroid\+Game\+::mouse\+\_\+callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{double}]{xpos,  }\item[{double}]{ypos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Handles mouse movements. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a016246178b40bcf91a7516df4cf5c1f6}\label{class_c_asteroid_game_a016246178b40bcf91a7516df4cf5c1f6}} 
+\index{CAsteroidGame@{CAsteroidGame}!read\_shader\_code@{read\_shader\_code}}
+\index{read\_shader\_code@{read\_shader\_code}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{read\_shader\_code()}{read\_shader\_code()}}
+{\footnotesize\ttfamily static std\+::string CAsteroid\+Game\+::read\+\_\+shader\+\_\+code (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Reads code from GLSL file for shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & Path of GLSL file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shader code as a string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_aaccc0701d4c6cc52f8079d09a1bc95ae}\label{class_c_asteroid_game_aaccc0701d4c6cc52f8079d09a1bc95ae}} 
+\index{CAsteroidGame@{CAsteroidGame}!run@{run}}
+\index{run@{run}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Starts gpio, update, draw, and sound threads and waits for command to quit. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a988cdbb83863a0f3f48fed28677bfa40}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_asteroid_game_a56722e6987daa6dc10342ee8578c6347}\label{class_c_asteroid_game_a56722e6987daa6dc10342ee8578c6347}} 
+\index{CAsteroidGame@{CAsteroidGame}!setup\_game@{setup\_game}}
+\index{setup\_game@{setup\_game}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{setup\_game()}{setup\_game()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::setup\+\_\+game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets or resets all game objects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_ab2bc5b35791c5677decac89dbfb01166}\label{class_c_asteroid_game_ab2bc5b35791c5677decac89dbfb01166}} 
+\index{CAsteroidGame@{CAsteroidGame}!sound@{sound}}
+\index{sound@{sound}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{sound()}{sound()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Plays sound effects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_aa57038f69349aa30ee7c19ba2bd955fa}\label{class_c_asteroid_game_aa57038f69349aa30ee7c19ba2bd955fa}} 
+\index{CAsteroidGame@{CAsteroidGame}!sound\_thread@{sound\_thread}}
+\index{sound\_thread@{sound\_thread}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{sound\_thread()}{sound\_thread()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::sound\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_asteroid_game_ab2bc5b35791c5677decac89dbfb01166}{sound()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a6dd639e66a76be78a087a313da09024b}\label{class_c_asteroid_game_a6dd639e66a76be78a087a313da09024b}} 
+\index{CAsteroidGame@{CAsteroidGame}!toggle\_free\_cam@{toggle\_free\_cam}}
+\index{toggle\_free\_cam@{toggle\_free\_cam}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{toggle\_free\_cam()}{toggle\_free\_cam()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::toggle\+\_\+free\+\_\+cam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Toggles free camera mode. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_asteroid_game_a075909049dd964d88182c8b413d4fa90}\label{class_c_asteroid_game_a075909049dd964d88182c8b413d4fa90}} 
+\index{CAsteroidGame@{CAsteroidGame}!update@{update}}
+\index{update@{update}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Updates game objects. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{CBase4618}}.
+
+\mbox{\Hypertarget{class_c_asteroid_game_aa981fc19658144bae852736dcf2bfffc}\label{class_c_asteroid_game_aa981fc19658144bae852736dcf2bfffc}} 
+\index{CAsteroidGame@{CAsteroidGame}!update\_thread@{update\_thread}}
+\index{update\_thread@{update\_thread}!CAsteroidGame@{CAsteroidGame}}
+\doxysubsubsection{\texorpdfstring{update\_thread()}{update\_thread()}}
+{\footnotesize\ttfamily void CAsteroid\+Game\+::update\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Runs \mbox{\hyperlink{class_c_asteroid_game_a075909049dd964d88182c8b413d4fa90}{update()}} in a loop. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CAsteroid\+Game.\+h\end{DoxyCompactItemize}

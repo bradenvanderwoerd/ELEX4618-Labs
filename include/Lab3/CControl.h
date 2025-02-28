@@ -47,10 +47,10 @@ class CControl {
 		void init_com(int comport);
 
 		/** @brief Initializes serial port object (scans ports automatically)
-		* 
-		* @return nothing to return
+		*
+		* @return True if connection was a success
 		*/
-		void init_com();
+		bool init_com();
 
 		/** @brief Gets data from the com port
 		*

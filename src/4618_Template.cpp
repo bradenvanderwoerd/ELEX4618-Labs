@@ -22,9 +22,10 @@
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h"
 
-#include "Lab3\\Lab3.h"
-#include "Lab4\\CSnakeGame.h"
-#include "Lab5\\CSnakeGameV2.h"
+#include "Lab3/Lab3.h"
+#include "Lab4/CSnakeGame.h"
+#include "Lab5/CSnakeGameV2.h"
+#include "Lab6/CAsteroidGame.h"
 
 #define CANVAS_NAME "Display Image"
 
@@ -268,6 +269,8 @@ void lab5()
 ////////////////////////////////////////////////////////////////
 void lab6()
 {
+    CAsteroidGame game(cv::Size(2000, 1500));
+    game.run();
 }
 
 void print_menu()
@@ -278,7 +281,7 @@ void print_menu()
     std::cout << "\n(3) Lab 3 - Embedded Control";
     std::cout << "\n(4) Lab 4 - Snake V1";
     std::cout << "\n(5) Lab 5 - Snake V2";
-    std::cout << "\n(6) Lab 6 - Classic Arcade Game";
+    std::cout << "\n(6) Lab 6 - Asteroids";
     std::cout << "\n(7) Lab 7 - Linux Port";
     std::cout << "\n(8) Lab 8 - Sorting";
     std::cout << "\n(9) Lab 9 - Sockets";

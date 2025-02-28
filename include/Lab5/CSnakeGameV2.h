@@ -7,7 +7,7 @@
 *
 * @brief Snake Game V2
 *
-* This class runs the game Snake by inheriting from CBase4618Threaded.
+* This class runs the game Snake by inheriting from CBase4618.
 * Version 2 improves on version 1 by adding colisions, variable snake speed and size,
 * and a fixed frame rate.
 *
