@@ -23,14 +23,12 @@
 - Real-time collision detection in 3D space
 - Dynamic camera system with free-cam mode
 
-*[Screenshot placeholder: 3D Asteroids with 3D graphics and lighting]*
-
 ---
 
 ### Advanced Snake Game V2 (Lab 5)
 **Professional-grade 2D game with visual effects and audio**
 
-*[GIF placeholder: Snake gameplay with CRT effects, smooth movement, and visual polish]*
+![Snake Gameplay](media/snake-gameplay.gif)
 
 **Key Features:**
 - Multi-threaded architecture (4 separate threads)
@@ -38,14 +36,10 @@
 - SDL2 audio system with background music and sound effects
 - Fixed 30 FPS with performance optimization
 
-*[Screenshot placeholder: Snake game with CRT effects and retro styling]*
-
 ---
 
 ### Basic Snake Game (Lab 4)
 **Clean 2D implementation with OpenCV rendering**
-
-*[Screenshot placeholder: Basic Snake gameplay with clean graphics]*
 
 **Key Features:**
 - OpenCV-based rendering system
@@ -57,8 +51,6 @@
 
 ### Embedded Control System (Lab 3)
 **Serial communication protocol with TM4C123GH6PM microcontroller**
-
-*[Screenshot placeholder: Serial communication interface and hardware setup]*
 
 **Key Features:**
 - Custom serial communication protocol
