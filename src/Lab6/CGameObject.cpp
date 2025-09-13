@@ -1,6 +1,7 @@
 #include "Lab6/CGameObject.h"
 #include "stdafx.h"
 #include <cmath>
+#include <glm/gtc/type_ptr.hpp>
 
 #define THRUST_FORCE 1.0f
 #define DRAG_FORCE 0.1f
@@ -39,19 +40,56 @@ void CGameObject::create_gl_objects() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.size() * sizeof(GLuint), _indices.data(), GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
 
 	glBindVertexArray(0);
 }
 
 void CGameObject::draw() {
 	glUseProgram(_program_id);
-	GLint matLoc = glGetUniformLocation(_program_id, "mvp"); // change to full mvp
-	glUniformMatrix4fv(matLoc, 1, GL_FALSE, &_mvp_matrix[0][0]);
+
+	/*GLint matLoc = glGetUniformLocation(_program_id, "mvp");
+	glUniformMatrix4fv(matLoc, 1, GL_FALSE, &_mvp_matrix[0][0]);*/
 	
+	GLint model_loc = glGetUniformLocation(_program_id, "model");
+	glUniformMatrix4fv(model_loc, 1, GL_FALSE, &_model_matrix[0][0]);
+
+	GLint view_loc = glGetUniformLocation(_program_id, "view");
+	glUniformMatrix4fv(view_loc, 1, GL_FALSE, &_view_matrix[0][0]);
+
+	GLint proj_loc = glGetUniformLocation(_program_id, "projection");
+	glUniformMatrix4fv(proj_loc, 1, GL_FALSE, &_projection_matrix[0][0]);
+
+	// Pass light position to shader
+	GLint light_pos_loc = glGetUniformLocation(_program_id, "light_pos");
+	glUniform3f(light_pos_loc, _light_pos.x, _light_pos.y, _light_pos.z); // Set your light's position
+
+	// Pass camera position to shader
+	GLint view_pos_loc = glGetUniformLocation(_program_id, "view_pos");
+	glUniform3f(view_pos_loc, _camera_pos.x, _camera_pos.y, _camera_pos.z); // Use actual camera position
+
+	// Pass light color
+	GLint light_color_loc = glGetUniformLocation(_program_id, "light_color");
+	glUniform3f(light_color_loc, _light_color.r, _light_color.g, _light_color.b);
+
+	// Pass shininess
+	GLint shininess_loc = glGetUniformLocation(_program_id, "shininess");
+	glUniform1f(shininess_loc, _shininess);
+
+	// Pass specular strength
+	GLint specular_strength_loc = glGetUniformLocation(_program_id, "specular_strength");
+	glUniform1f(specular_strength_loc, _specular_strength);
+
+	GLuint light_space_matrix_loc = glGetUniformLocation(_program_id, "light_space_matrix");
+	glUniformMatrix4fv(light_space_matrix_loc, 1, GL_FALSE, glm::value_ptr(_light_space_matrix));
+
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Wireframe
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Filled faces
 
@@ -60,7 +98,7 @@ void CGameObject::draw() {
 	glBindVertexArray(0);
 }
 
-void CGameObject::update_scene(CCamera camera) {
+void CGameObject::update_scene(CCamera camera, glm::vec3 light_pos, glm::vec3 light_color, glm::mat4 light_space_matrix, GLuint depth_map) {
 	glm::mat4 model_matrix = glm::mat4(1.0f);
 	glm::mat4 rotation_matrix = glm::mat4(1.0f);
 
@@ -100,5 +138,39 @@ void CGameObject::update_scene(CCamera camera) {
 		(float)_window_size.width / (float)_window_size.height,
 		NEAR_PLANE, FAR_PLANE);
 
-	_mvp_matrix = projection_matrix * camera.get_view_matrix() * model_matrix;
+	_model_matrix = model_matrix;
+	_view_matrix = camera.get_view_matrix();
+	_projection_matrix = projection_matrix;
+
+	_camera_pos = camera.get_pos();
+
+	_light_pos = light_pos;
+	_light_color = light_color;
+
+	_light_space_matrix = light_space_matrix;
+	_depth_map = depth_map;
+}
+
+void CGameObject::compute_vertex_normals() {
+	_normals = std::vector<glm::vec3>(_vertices.size() / 6, glm::vec3(0.0f)); // One normal per vertex
+
+	for (size_t i = 0; i < _indices.size(); i += 3) {
+		unsigned int i0 = _indices[i];
+		unsigned int i2 = _indices[i + 2];
+		unsigned int i1 = _indices[i + 1];
+
+		glm::vec3 v0(_vertices[i0 * 6], _vertices[i0 * 6 + 1], _vertices[i0 * 6 + 2]);
+		glm::vec3 v1(_vertices[i1 * 6], _vertices[i1 * 6 + 1], _vertices[i1 * 6 + 2]);
+		glm::vec3 v2(_vertices[i2 * 6], _vertices[i2 * 6 + 1], _vertices[i2 * 6 + 2]);
+
+		glm::vec3 normal = glm::normalize(glm::cross(v1 - v0, v2 - v0));
+
+		_normals[i0] += normal;
+		_normals[i1] += normal;
+		_normals[i2] += normal;
+	}
+
+	for (glm::vec3& normal : _normals) {
+		normal = glm::normalize(normal);
+	}
 }

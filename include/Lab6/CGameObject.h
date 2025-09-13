@@ -38,6 +38,10 @@ class CGameObject {
 
 		glm::vec3 _scale; ///< Scale of the object
 
+		GLfloat _shininess; ///< Shininess of the object
+
+		GLfloat _specular_strength; ///< Specular strength of the object
+
 		float _radius; ///< Radius of the object
 
 		int _lives; ///< Number of lives
@@ -54,7 +58,23 @@ class CGameObject {
 
 		std::vector<GLuint> _indices; ///< Index data
 
-		glm::mat4 _mvp_matrix; ///< Model-view-projection matrix
+		std::vector<glm::vec3> _normals; ///< Normal data
+
+		glm::mat4 _model_matrix; ///< Model matrix
+
+		glm::mat4 _view_matrix; ///< View matrix
+
+		glm::mat4 _projection_matrix; ///< Projection matrix
+
+		glm::vec3 _camera_pos; ///< Camera position
+
+		glm::vec3 _light_pos; ///< Light position
+
+		glm::vec3 _light_color; ///< Light color
+
+		glm::mat4 _light_space_matrix; ///< Light space matrix
+
+		GLuint _depth_map; ///< Depth map texture
 
 	public:
 
@@ -155,6 +175,18 @@ class CGameObject {
 		 */
 		glm::vec3 get_rotation() { return _rotation; }
 
+		/** @brief Gets model matrix
+		 * 
+		 * @return Model matrix
+		 */
+		glm::mat4 get_model_matrix() { return _model_matrix; }
+
+		/** @brief Gets projection matrix
+		 *
+		 * @return projection matrix
+		 */
+		glm::mat4 get_projection_matrix() { return _projection_matrix; }
+
 		/** @brief Draws object
 		 *
 		 * @return nothing to return
@@ -166,12 +198,18 @@ class CGameObject {
 		 * @param camera Camera object
 		 * @return nothing to return
 		 */
-		virtual void update_scene(CCamera camera);
+		virtual void update_scene(CCamera camera, glm::vec3 light_pos, glm::vec3 light_color, glm::mat4 light_space_matrix, GLuint depth_map);
 
 		/** @brief Creates OpenGL objects
 		 *
 		 * @return nothing to return
 		 */
 		void create_gl_objects();
+
+		/** @brief Computes vertex normals
+		 *
+		 * @return nothing to return
+		 */
+		void compute_vertex_normals();
 };
 

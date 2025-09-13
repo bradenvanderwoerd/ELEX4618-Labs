@@ -22,6 +22,9 @@ CShip::CShip(cv::Size window_size, GLfloat orbit_distance, GLuint program_id) {
     _rotation = glm::vec3(0);
     _scale = glm::vec3(0.75f * _radius);
 
+	_shininess = 100.0f;
+	_specular_strength = 0.8f;
+
     _turn_input = 0;
     _thrust = false;
 
@@ -42,11 +45,31 @@ CShip::CShip(cv::Size window_size, GLfloat orbit_distance, GLuint program_id) {
     };
 
     _indices = {
-        0, 1, 2,
-        0, 2, 3,
-        0, 3, 1,
-        1, 3, 2 
+        0, 2, 1,
+        0, 3, 2,
+        0, 1, 3,
+        1, 2, 3
     };
+
+	compute_vertex_normals();
+	std::vector<GLfloat> original_vertices = _vertices;
+	_vertices.clear();
+    for (size_t i = 0; i < original_vertices.size(); i += 6) {
+        // Copy position (x, y, z)
+        _vertices.push_back(original_vertices[i]);
+        _vertices.push_back(original_vertices[i + 1]);
+        _vertices.push_back(original_vertices[i + 2]);
+
+        // Copy color (r, g, b)
+        _vertices.push_back(original_vertices[i + 3]);
+        _vertices.push_back(original_vertices[i + 4]);
+        _vertices.push_back(original_vertices[i + 5]);
+
+        // Copy normal (nx, ny, nz)
+        _vertices.push_back(_normals[i / 6].x);
+        _vertices.push_back(_normals[i / 6].y);
+        _vertices.push_back(_normals[i / 6].z);
+    }
 
     create_gl_objects();
 }

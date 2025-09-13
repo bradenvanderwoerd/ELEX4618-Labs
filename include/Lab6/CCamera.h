@@ -51,6 +51,12 @@ class CCamera {
 		 */
 		glm::mat4 get_view_matrix();
 
+		/** @brief Gets position
+		 *
+		 * @return Position
+		 */
+		glm::vec3 get_pos() { return _position; }
+
 		/** @brief Moves camera forward
 		 *
 		 * @return nothing to return

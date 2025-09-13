@@ -95,6 +95,9 @@
     <ClInclude Include="include\Lab6\CMissile.h">
       <Filter>include\Lab6</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lab6\CLight.h">
+      <Filter>include\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\4618_Template.cpp">
@@ -146,6 +149,9 @@
       <Filter>src\Lab6</Filter>
     </ClCompile>
     <ClCompile Include="src\Lab6\CMissile.cpp">
+      <Filter>src\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lab6\CLight.cpp">
       <Filter>src\Lab6</Filter>
     </ClCompile>
   </ItemGroup>

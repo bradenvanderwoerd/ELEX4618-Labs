@@ -201,6 +201,7 @@
     <ClInclude Include="include\Lab6\CAsteroidGame.h" />
     <ClInclude Include="include\Lab6\CCamera.h" />
     <ClInclude Include="include\Lab6\CGameObject.h" />
+    <ClInclude Include="include\Lab6\CLight.h" />
     <ClInclude Include="include\Lab6\CMissile.h" />
     <ClInclude Include="include\Lab6\CPlanet.h" />
     <ClInclude Include="include\Lab6\CShip.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="src\Lab6\CAsteroidGame.cpp" />
     <ClCompile Include="src\Lab6\CCamera.cpp" />
     <ClCompile Include="src\Lab6\CGameObject.cpp" />
+    <ClCompile Include="src\Lab6\CLight.cpp" />
     <ClCompile Include="src\Lab6\CMissile.cpp" />
     <ClCompile Include="src\Lab6\CPlanet.cpp" />
     <ClCompile Include="src\Lab6\CShip.cpp" />

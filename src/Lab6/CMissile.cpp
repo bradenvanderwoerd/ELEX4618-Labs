@@ -16,6 +16,9 @@ CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, CShip* ship, GL
 
     _position = ship->get_pos() +0.3f * _direction;
 
+    _shininess = 100.0f;
+    _specular_strength = 0.8f;
+
     _vertices = {
         +1.0f, +0.0f, -0.707f,
         +1.0f, +0.0f, +0.0f,
@@ -31,11 +34,31 @@ CMissile::CMissile(cv::Size window_size, GLfloat orbit_distance, CShip* ship, GL
     };
 
     _indices = {
-        0, 1, 2,
-        0, 2, 3,
-        0, 3, 1,
-        1, 3, 2 
+        0, 2, 1,
+        0, 3, 2,
+        0, 1, 3,
+        1, 2, 3
     };
+
+    compute_vertex_normals();
+    std::vector<GLfloat> original_vertices = _vertices;
+    _vertices.clear();
+    for (size_t i = 0; i < original_vertices.size(); i += 6) {
+        // Copy position (x, y, z)
+        _vertices.push_back(original_vertices[i]);
+        _vertices.push_back(original_vertices[i + 1]);
+        _vertices.push_back(original_vertices[i + 2]);
+
+        // Copy color (r, g, b)
+        _vertices.push_back(original_vertices[i + 3]);
+        _vertices.push_back(original_vertices[i + 4]);
+        _vertices.push_back(original_vertices[i + 5]);
+
+        // Copy normal (nx, ny, nz)
+        _vertices.push_back(_normals[i / 6].x);
+        _vertices.push_back(_normals[i / 6].y);
+        _vertices.push_back(_normals[i / 6].z);
+    }
 
     create_gl_objects();
 }

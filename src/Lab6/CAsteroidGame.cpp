@@ -255,18 +255,18 @@ void CAsteroidGame::update() {
 		_game_mutex.lock();
 
 		_ship->update_input(_turn_input, _thrust);
-		_ship->update_scene(_camera);
+		_ship->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
 		_ship->move();
 
-		_planet->update_scene(_camera);
+		_planet->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
 
 		for (CAsteroid* asteroid : _asteroids) {
-			asteroid->update_scene(_camera);
+			asteroid->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
 			asteroid->move();
 		}
 
 		for (CMissile* missile : _missiles) {
-			missile->update_scene(_camera);
+			missile->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
 			missile->move();
 		}
 
@@ -274,6 +274,11 @@ void CAsteroidGame::update() {
 
 		if (!_free_cam_enabled)
 			_camera.follow_ship(_ship->get_pos(), _ship->get_dir());
+
+		if (_ship->get_lives() < 1 && !_reset_flag) {
+			std::cout << "Game over!" << std::endl;
+			_reset_flag = true;
+		}
 
 		_last_update_time = cv::getTickCount();
 	}
@@ -288,15 +293,12 @@ void CAsteroidGame::update() {
 		_create_new_missile++;
 		_last_missile_spawn_time = cv::getTickCount();
 	}
-
-	if (_reset_flag) {
-		std::cout << "Game reset!" << std::endl;
-	}
-
+	/**
 	CShip* ship_copy;
 	std::vector<CAsteroid*> asteroids_copy;
 	std::vector<CMissile*> missiles_copy;
 
+	
 	_game_mutex.lock();
 
 	ship_copy = _ship;
@@ -308,16 +310,19 @@ void CAsteroidGame::update() {
 	_ship_hit = false;
 
 	for (int asteroid_index = 0; asteroid_index < asteroids_copy.size(); asteroid_index++) {
-		if (ship_copy->collide(*asteroids_copy.at(asteroid_index))) {
+		if (!_ship_hit && ship_copy->collide(*asteroids_copy.at(asteroid_index))) {
 
+			_game_mutex.lock();
 			asteroids_copy.at(asteroid_index)->hit();
 			_ship_hit = true;
+			_game_mutex.unlock();
 			
 			/*_ship_hit = true;
 
 			_game_mutex.lock();
 			_asteroids_to_remove.push_back(asteroid_index);
-			_game_mutex.unlock();*/
+			_game_mutex.unlock();
+			break;
 		}
 
 		for (int missile_index = 0; missile_index < missiles_copy.size(); missile_index++) {
@@ -329,7 +334,7 @@ void CAsteroidGame::update() {
 				/*_game_mutex.lock();
 				_asteroids_to_remove.push_back(asteroid_index);
 				_missiles_to_remove.push_back(missile_index);
-				_game_mutex.unlock();*/
+				_game_mutex.unlock();
 
 				break;
 			}
@@ -338,12 +343,12 @@ void CAsteroidGame::update() {
 
 				/*_game_mutex.lock();
 				_missiles_to_remove.push_back(missile_index);
-				_game_mutex.unlock();*/
+				_game_mutex.unlock();
 
 				break;
 			}
 		}
-	}
+	}*/
 }
 
 void CAsteroidGame::draw() {
@@ -364,26 +369,23 @@ void CAsteroidGame::draw() {
 		_create_new_missile--;
 	}
 
-	if (_ship_hit) {
-		_ship->hit();
-		_score -= 150;
-		_ship_hit = false;
-	}
+	check_collisions();
 
 	for (CAsteroid* asteroid : _asteroids) {
-		if (asteroid->get_lives() < 0) {
-			_score += 150;
+		if (asteroid->get_lives() < 1) {
 			delete asteroid;
 			_asteroids.erase(std::remove(_asteroids.begin(), _asteroids.end(), asteroid), _asteroids.end());
 		}
 	}
 
 	for (CMissile* missile : _missiles) {
-		if (missile->get_lives() < 0) {
+		if (missile->get_lives() < 1) {
 			delete missile;
 			_missiles.erase(std::remove(_missiles.begin(), _missiles.end(), missile), _missiles.end());
 		}
 	}
+
+	//_light.render_depth_map(_depth_program_id, _ship, _asteroids, _missiles);
 
 	_ship->draw();
 	_planet->draw();
@@ -426,23 +428,72 @@ void CAsteroidGame::sound() {
 
 void CAsteroidGame::setup_game() {
 	_ship = new CShip(_window_size, ORBIT_DISTANCE, _program_id);
-	_ship->update_scene(_camera);
 
 	_planet = new CPlanet(_window_size, ORBIT_DISTANCE, _program_id);
-	_planet->update_scene(_camera);
 
 	_asteroids.clear();
 	for (int asteroid_count = 0; asteroid_count < STARTING_ASTEROID_COUNT; asteroid_count++) {
 		CAsteroid* asteroid = new CAsteroid(_window_size, ORBIT_DISTANCE, _program_id);
-		asteroid->update_scene(_camera);
 		_asteroids.push_back(asteroid);
 	}
 
 	_missiles.clear();
 
+	_light = CLight(glm::vec3(0, ORBIT_DISTANCE * 2.0f, 0), glm::vec3(1.0f));
+	_depth_program_id = install_depth_shaders();
+
+	_ship->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
+	_planet->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
+
+	for (CAsteroid* asteroid : _asteroids)
+		asteroid->update_scene(_camera, _light.get_pos(), _light.get_color(), _light.get_light_space_matrix(), _light.get_depth_map());
+
 	_score = 0;
 
 	_game_started = true;
+}
+
+void CAsteroidGame::check_collisions() {
+
+	for (int asteroid_index = 0; asteroid_index < _asteroids.size(); asteroid_index++) {
+		if (_ship->collide(*_asteroids.at(asteroid_index))) {
+
+			_asteroids.at(asteroid_index)->hit();
+			_ship->hit();
+
+			/*_ship_hit = true;
+
+			_game_mutex.lock();
+			_asteroids_to_remove.push_back(asteroid_index);
+			_game_mutex.unlock();*/
+			//break;
+		}
+
+		for (int missile_index = 0; missile_index < _missiles.size(); missile_index++) {
+
+			if (_asteroids.at(asteroid_index)->collide(*_missiles.at(missile_index))) {
+				_score += 150;
+				_asteroids.at(asteroid_index)->hit();
+				_missiles.at(missile_index)->hit();
+
+				/*_game_mutex.lock();
+				_asteroids_to_remove.push_back(asteroid_index);
+				_missiles_to_remove.push_back(missile_index);
+				_game_mutex.unlock();*/
+
+				break;
+			}
+			else if (glm::dot(_missiles.at(missile_index)->get_pos(), _ship->get_pos()) < 0) {
+				_missiles.at(missile_index)->hit();
+
+				/*_game_mutex.lock();
+				_missiles_to_remove.push_back(missile_index);
+				_game_mutex.unlock();*/
+
+				break;
+			}
+		}
+	}
 }
 
 void CAsteroidGame::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -544,6 +595,41 @@ GLuint CAsteroidGame::install_text_shaders() {
 
 	glDeleteShader(text_vertex_id);
 	glDeleteShader(text_fragment_id);
+
+	glUseProgram(program_id);
+
+	return program_id;
+}
+
+GLuint CAsteroidGame::install_depth_shaders() {
+	GLuint depth_vertex_id = glad_glCreateShader(GL_VERTEX_SHADER);
+	GLuint depth_fragment_id = glad_glCreateShader(GL_FRAGMENT_SHADER);
+
+	std::string depth_vertex_code = read_shader_code("shaders/depth_vertex.glsl");
+	std::string depth_fragment_code = read_shader_code("shaders/depth_fragment.glsl");
+
+	const GLchar* depth_vertex_source = depth_vertex_code.c_str();
+	const GLchar* depth_fragment_source = depth_fragment_code.c_str();
+
+	glShaderSource(depth_vertex_id, 1, &depth_vertex_source, 0);
+	glShaderSource(depth_fragment_id, 1, &depth_fragment_source, 0);
+
+	glCompileShader(depth_vertex_id);
+	glCompileShader(depth_fragment_id);
+
+	if (!check_shader_status(depth_vertex_id) || !check_shader_status(depth_fragment_id))
+		return -1;
+
+	GLuint program_id = glCreateProgram();
+	glAttachShader(program_id, depth_vertex_id);
+	glAttachShader(program_id, depth_fragment_id);
+	glLinkProgram(program_id);
+
+	if (!check_program_status(program_id))
+		return -1;
+
+	glDeleteShader(depth_vertex_id);
+	glDeleteShader(depth_fragment_id);
 
 	glUseProgram(program_id);
 

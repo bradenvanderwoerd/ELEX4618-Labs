@@ -28,6 +28,9 @@ CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, GLuint progra
 
     _velocity = _direction * ASTEROID_SPEED;
 
+    _shininess = 8.0f;
+    _specular_strength = 0.2f;
+
     const float PHI = (1.0f + sqrt(5.0f)) / 2.0f;  // Golden ratio
     const float SIZE = 1 / PHI;  // Scale factor
 
@@ -77,6 +80,26 @@ CAsteroid::CAsteroid(cv::Size window_size, GLfloat orbit_distance, GLuint progra
         3, 9, 4,   3, 4, 2,   3, 2, 6,   3, 6, 8,   3, 8, 9,
         4, 9, 5,   2, 4, 11,   6, 2, 10,   8, 6, 7,   9, 8, 1
     };
+
+    compute_vertex_normals();
+    std::vector<GLfloat> original_vertices = _vertices;
+    _vertices.clear();
+    for (size_t i = 0; i < original_vertices.size(); i += 6) {
+        // Copy position (x, y, z)
+        _vertices.push_back(original_vertices[i]);
+        _vertices.push_back(original_vertices[i + 1]);
+        _vertices.push_back(original_vertices[i + 2]);
+
+        // Copy color (r, g, b)
+        _vertices.push_back(original_vertices[i + 3]);
+        _vertices.push_back(original_vertices[i + 4]);
+        _vertices.push_back(original_vertices[i + 5]);
+
+        // Copy normal (nx, ny, nz)
+        _vertices.push_back(_normals[i / 6].x);
+        _vertices.push_back(_normals[i / 6].y);
+        _vertices.push_back(_normals[i / 6].z);
+    }
 
     create_gl_objects();
 }
