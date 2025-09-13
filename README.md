@@ -14,7 +14,7 @@
 ### 3D Asteroids Game (Lab 6)
 **Full 3D implementation with custom OpenGL graphics engine**
 
-![3D Asteroids Gameplay](media/asteroids-gameplay.gi)
+![3D Asteroids Gameplay](media/asteroids-gameplay.gif)
 
 **Key Features:**
 - Complete 3D graphics engine built from scratch
