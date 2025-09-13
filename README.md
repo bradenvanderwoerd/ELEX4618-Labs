@@ -152,7 +152,7 @@ bool CControl::get_data(int type, int channel, int& result) {
 
 ## Documentation
 
-Complete API documentation is available at: **[Live Documentation](https://bradenvanderwoerd.github.io/ELEX4618-Labs/)**
+Complete API documentation is available at: **[Live Documentation](https://bradenvanderwoerd.github.io/ELEX4618-Labs/html/)**
 
 The documentation includes:
 - **Class hierarchy** and inheritance relationships
