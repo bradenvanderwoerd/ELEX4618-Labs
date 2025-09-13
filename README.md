@@ -197,6 +197,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *This portfolio represents advanced software engineering skills in C++ game development, demonstrating expertise in multi-threading, 3D graphics programming, and real-time systems development.*
 
----
-
-*[Footer placeholder: Contact information and additional links]* 
