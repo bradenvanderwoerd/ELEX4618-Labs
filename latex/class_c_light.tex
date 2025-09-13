@@ -1,0 +1,194 @@
+\hypertarget{class_c_light}{}\doxysection{CLight Class Reference}
+\label{class_c_light}\index{CLight@{CLight}}
+
+
+Light class.  
+
+
+
+
+{\ttfamily \#include $<$CLight.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_light_a6428960cf198a7a9644e3146cf59f82e}\label{class_c_light_a6428960cf198a7a9644e3146cf59f82e}} 
+\mbox{\hyperlink{class_c_light_a6428960cf198a7a9644e3146cf59f82e}{CLight}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_light}{CLight}} default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_light_a43d8c07f6a7b0f6c332d54199cf3b750}{CLight}} (glm\+::vec3 pos, glm\+::vec3 col)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_light}{CLight}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_light_aef6c25b7608cf6776c3a627c03f70ff2}\label{class_c_light_aef6c25b7608cf6776c3a627c03f70ff2}} 
+\mbox{\hyperlink{class_c_light_aef6c25b7608cf6776c3a627c03f70ff2}{$\sim$\+CLight}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_c_light}{CLight}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_light_a1c26a71fe23f4ab4b13a4997b55967ec}{init\+\_\+depth\+\_\+map}} ()
+\begin{DoxyCompactList}\small\item\em Creates depth map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_light_a57bcf9d496a5054f6087b4dad29fc991}{update\+\_\+light\+\_\+space\+\_\+matrix}} ()
+\begin{DoxyCompactList}\small\item\em Updates light space matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_light_ad3db9f71b71f31bf083e08abdd894fa7}{render\+\_\+depth\+\_\+map}} (GLuint depth\+\_\+shader, \mbox{\hyperlink{class_c_ship}{CShip}} $\ast$\&ship, std\+::vector$<$ \mbox{\hyperlink{class_c_asteroid}{CAsteroid}} $\ast$ $>$ \&asteroids, std\+::vector$<$ \mbox{\hyperlink{class_c_missile}{CMissile}} $\ast$ $>$ \&missiles)
+\begin{DoxyCompactList}\small\item\em Renders depth map. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_light_ae8403d67622ed1916ad1e5b06ed2eda3}{get\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em Gets position of the light. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_c_light_a58b442de1d64161cbe35997878c50dc9}{get\+\_\+color}} ()
+\begin{DoxyCompactList}\small\item\em Gets color of the light. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_c_light_a5d346f01286a26653d8886cc4692ea1e}{get\+\_\+light\+\_\+space\+\_\+matrix}} ()
+\begin{DoxyCompactList}\small\item\em Gets light space matrix. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_c_light_af89738106ca7a3fcf0d119ec830aa00f}{get\+\_\+depth\+\_\+map}} ()
+\begin{DoxyCompactList}\small\item\em Gets depth map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_light_a707245ed07f23dc69ca2b117f03c0e64}\label{class_c_light_a707245ed07f23dc69ca2b117f03c0e64}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_light_a707245ed07f23dc69ca2b117f03c0e64}{\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Position of the light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_light_a26fbb0fdee9cb63109894bc5628668ce}\label{class_c_light_a26fbb0fdee9cb63109894bc5628668ce}} 
+glm\+::vec3 \mbox{\hyperlink{class_c_light_a26fbb0fdee9cb63109894bc5628668ce}{\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Color of the light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_light_a642f7d930175f27ad0158be9b9261c31}\label{class_c_light_a642f7d930175f27ad0158be9b9261c31}} 
+glm\+::mat4 \mbox{\hyperlink{class_c_light_a642f7d930175f27ad0158be9b9261c31}{\+\_\+light\+\_\+space\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Light space matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_light_a789253e17668780230ad79c42730c133}\label{class_c_light_a789253e17668780230ad79c42730c133}} 
+GLuint \mbox{\hyperlink{class_c_light_a789253e17668780230ad79c42730c133}{\+\_\+depth\+\_\+map\+\_\+\+FBO}}
+\begin{DoxyCompactList}\small\item\em Depth map frame buffer object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_light_aa60d7a651a07ffabb7c8e2dd6d2c68b9}\label{class_c_light_aa60d7a651a07ffabb7c8e2dd6d2c68b9}} 
+GLuint \mbox{\hyperlink{class_c_light_aa60d7a651a07ffabb7c8e2dd6d2c68b9}{\+\_\+depth\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em Depth map texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Light class. 
+
+This class handles lighting
+
+\begin{DoxyAuthor}{Author}
+Braden Vanderwoerd 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_light_a43d8c07f6a7b0f6c332d54199cf3b750}\label{class_c_light_a43d8c07f6a7b0f6c332d54199cf3b750}} 
+\index{CLight@{CLight}!CLight@{CLight}}
+\index{CLight@{CLight}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{CLight()}{CLight()}}
+{\footnotesize\ttfamily CLight\+::\+CLight (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{pos,  }\item[{glm\+::vec3}]{col }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_c_light}{CLight}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position of the light \\
+\hline
+{\em col} & Color of the light \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_light_a58b442de1d64161cbe35997878c50dc9}\label{class_c_light_a58b442de1d64161cbe35997878c50dc9}} 
+\index{CLight@{CLight}!get\_color@{get\_color}}
+\index{get\_color@{get\_color}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{get\_color()}{get\_color()}}
+{\footnotesize\ttfamily glm\+::vec3 CLight\+::get\+\_\+color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets color of the light. 
+
+\begin{DoxyReturn}{Returns}
+Color of the light 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_af89738106ca7a3fcf0d119ec830aa00f}\label{class_c_light_af89738106ca7a3fcf0d119ec830aa00f}} 
+\index{CLight@{CLight}!get\_depth\_map@{get\_depth\_map}}
+\index{get\_depth\_map@{get\_depth\_map}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{get\_depth\_map()}{get\_depth\_map()}}
+{\footnotesize\ttfamily GLuint CLight\+::get\+\_\+depth\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets depth map. 
+
+\begin{DoxyReturn}{Returns}
+Depth map 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_a5d346f01286a26653d8886cc4692ea1e}\label{class_c_light_a5d346f01286a26653d8886cc4692ea1e}} 
+\index{CLight@{CLight}!get\_light\_space\_matrix@{get\_light\_space\_matrix}}
+\index{get\_light\_space\_matrix@{get\_light\_space\_matrix}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{get\_light\_space\_matrix()}{get\_light\_space\_matrix()}}
+{\footnotesize\ttfamily glm\+::mat4 CLight\+::get\+\_\+light\+\_\+space\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets light space matrix. 
+
+\begin{DoxyReturn}{Returns}
+Light space matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_ae8403d67622ed1916ad1e5b06ed2eda3}\label{class_c_light_ae8403d67622ed1916ad1e5b06ed2eda3}} 
+\index{CLight@{CLight}!get\_pos@{get\_pos}}
+\index{get\_pos@{get\_pos}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{get\_pos()}{get\_pos()}}
+{\footnotesize\ttfamily glm\+::vec3 CLight\+::get\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets position of the light. 
+
+\begin{DoxyReturn}{Returns}
+Position of the light 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_a1c26a71fe23f4ab4b13a4997b55967ec}\label{class_c_light_a1c26a71fe23f4ab4b13a4997b55967ec}} 
+\index{CLight@{CLight}!init\_depth\_map@{init\_depth\_map}}
+\index{init\_depth\_map@{init\_depth\_map}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{init\_depth\_map()}{init\_depth\_map()}}
+{\footnotesize\ttfamily void CLight\+::init\+\_\+depth\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates depth map. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_ad3db9f71b71f31bf083e08abdd894fa7}\label{class_c_light_ad3db9f71b71f31bf083e08abdd894fa7}} 
+\index{CLight@{CLight}!render\_depth\_map@{render\_depth\_map}}
+\index{render\_depth\_map@{render\_depth\_map}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{render\_depth\_map()}{render\_depth\_map()}}
+{\footnotesize\ttfamily void CLight\+::render\+\_\+depth\+\_\+map (\begin{DoxyParamCaption}\item[{GLuint}]{depth\+\_\+shader,  }\item[{\mbox{\hyperlink{class_c_ship}{CShip}} $\ast$\&}]{ship,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_c_asteroid}{CAsteroid}} $\ast$ $>$ \&}]{asteroids,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_c_missile}{CMissile}} $\ast$ $>$ \&}]{missiles }\end{DoxyParamCaption})}
+
+
+
+Renders depth map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em depth\+Shader} & Depth shader program ID \\
+\hline
+{\em ship} & Ship object \\
+\hline
+{\em asteroids} & Vector of asteroid objects \\
+\hline
+{\em missiles} & Vector of missile objects\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_light_a57bcf9d496a5054f6087b4dad29fc991}\label{class_c_light_a57bcf9d496a5054f6087b4dad29fc991}} 
+\index{CLight@{CLight}!update\_light\_space\_matrix@{update\_light\_space\_matrix}}
+\index{update\_light\_space\_matrix@{update\_light\_space\_matrix}!CLight@{CLight}}
+\doxysubsubsection{\texorpdfstring{update\_light\_space\_matrix()}{update\_light\_space\_matrix()}}
+{\footnotesize\ttfamily void CLight\+::update\+\_\+light\+\_\+space\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates light space matrix. 
+
+\begin{DoxyReturn}{Returns}
+nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Lab6/CLight.\+h\end{DoxyCompactItemize}
