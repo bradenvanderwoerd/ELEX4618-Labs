@@ -150,43 +150,15 @@ bool CControl::get_data(int type, int channel, int& result) {
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- Visual Studio 2022 or compatible C++ compiler
-- OpenCV 4.10.0
-- OpenGL 4.1+ compatible graphics card
-- Windows 10/11 (for serial communication)
-
-### Build Instructions
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/ELEX4618-Labs.git
-
-# Open in Visual Studio
-# Build the solution (Debug/Release configurations available)
-
-# Run the executable
-./ELEX4618-Labs.exe
-```
-
-### Usage
-1. **Lab 3**: Connect TM4C123GH6PM microcontroller via USB
-2. **Labs 4-6**: Use microcontroller as game controller
-3. **Lab 6**: Requires OpenGL 4.1+ compatible graphics card
-
----
-
 ## Documentation
 
-Complete API documentation is available in the `html/` directory, generated using Doxygen. Key documentation includes:
+Complete API documentation is available at: **[Live Documentation](https://bradenvanderwoerd.github.io/ELEX4618-Labs/html/)**
 
+The documentation includes:
 - **Class hierarchy** and inheritance relationships
 - **Function documentation** with parameters and return values
 - **Code examples** and usage patterns
 - **Architecture diagrams** and design patterns
-
-*[Link placeholder: Live documentation]*
 
 ---
 
@@ -225,6 +197,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *This portfolio represents advanced software engineering skills in C++ game development, demonstrating expertise in multi-threading, 3D graphics programming, and real-time systems development.*
 
----
-
-*[Footer placeholder: Contact information and additional links]* 
