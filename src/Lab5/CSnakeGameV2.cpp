@@ -38,7 +38,7 @@ CSnakeGameV2::CSnakeGameV2(cv::Size canvas_size) {
 	_do_crt = true;
 
 	_show_start_text = false;
-	_start_game = false;
+	_start_game = true;  // Removed start screen due to png bug
 
 	_canvas = cv::Mat::zeros(_canvas_size, CV_8UC3);
 
